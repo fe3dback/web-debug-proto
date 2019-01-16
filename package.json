@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "markdown-it-table-of-contents": "^0.4.3"
+  }
+}
