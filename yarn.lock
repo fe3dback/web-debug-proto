@@ -2,7 +2,3 @@
 # yarn lockfile v1
 
 
-markdown-it-table-of-contents@^0.4.3:
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/markdown-it-table-of-contents/-/markdown-it-table-of-contents-0.4.3.tgz#6453925a76e49b9b3d9569a0d89f1c2168b46982"
-  integrity sha512-x/OdaRzLYxAjmB+jIVlXuE3nX7tZTLDQxm58RkgjTLyQ+I290jYQvPS9cJjVN6SM3U6K6CHKYNgUtPNZmLblYQ==

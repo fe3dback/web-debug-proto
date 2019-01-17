@@ -17,63 +17,38 @@ features:
   details: You can implement it in super custom backend app in hour
 - title: Scalable
   details: Clients can debug nested requests from all backends
-footer: MIT Licensed | Copyright © 2018-present Perov Konstantin (fe3dback@yandex.ru)
+footer: MIT Licensed | Copyright © 2019 Perov Konstantin (fe3dback@yandex.ru)
 ---
-
-<Badge text="draft v0.1" type="warn" />
-
-## Abstract
-
-Union debug protocol for any modern web application. Scheme can be
-easy implemented on any programming language and framework.
-
-Also any client can implement debug support and give more
-helpful information to developers. HTTP response traditionally
-contains:
-
-- response body
-- response headers
-
-This protocol working over HTTP, and allows to add more
-information about what is going on during request, for example:
-
-- sql queries
-- events
-- profiling (timings, flamegraph)
-- matched routes
-- checked acl
-- used cache (hits, reads, writes, etc..)
-- logs
-- user information
-- .. and many more (also custom data)
 
 ## How it works
 
-1. Client makes real Request to Server:
+<Badge text="draft v0.1" type="warn" />
 
-```text
-/api/my-url/?hello-world
+1. Client makes Request to Application:
+
+```
+https://example.com/api/my-url/?hello-world
 ```
 
-2. Server return real Response with 3 debug headers:
+2. Application return Response with 2 additional headers:
 
-```text
-X-Http-Debug-Id: 5b67d5...e09
-X-Http-Debug-Version: 1.0
+```
+X-Http-Debug-Id: ae1d1530-7c2c-4ff7-bfeb-70f80c8bc7ed
 X-Http-Debug-Api: /_profile/?id=
 ```
 
-3. Client make Debug-Request to Server:
+3. Client makes request to X-Http-Debug-Api url
 
-```text
-/_profile/?id=5b67d5...e09
+```
+https://example.com/_profile/?id=ae1d1530-7c2c-4ff7-bfeb-70f80c8bc7ed
 ```
 
-4. Server return Debug-Response:
+4. Application server return debug/profile information for first request
 
 ```json
 {
-    "id": "5b67d5...e09",
+    "id": "ae1d1530-7c2c-4ff7-bfeb-70f80c8bc7ed",
+    "version": 1,
     "request_in": 1547058561177,
     "response_out": 1547058622423,
     "controller": "MyController",
@@ -90,17 +65,4 @@ X-Http-Debug-Api: /_profile/?id=
 }
 ```
 
-## Application debug
-
-```text
-| HTTP CLIENT                                                      |
-+------------------------------------------------------------------+
-|  |1| REAL                             |3| DEBUG                  |
-|  +++ REQUEST           ^              +++ REQUEST            ^   |
-|   |                    |               |                     |   |
-|   |                    |               |                     |   |
-|   v              REAL +++              v              DEBUG +++  |
-|              RESPONSE |2|                          RESPONSE |4|  |
-+------------------------------------------------------------------+
-| APP.BACKEND                                                      |
-```
+@todo read more

@@ -1,19 +1,30 @@
 module.exports = {
+    base: '/web-debug-proto/',
     title: 'Web Debug Protocol',
     description: 'Union debug protocol for modern web applications. Any language, any framework.',
     markdown: {
-        lineNumbers: true,
+        lineNumbers: false,
         toc: {
             includeLevel: [1, 2, 3]
         }
     },
     themeConfig: {
+        repo: 'fe3dback/http-debug-tools',
+        repoLabel: 'HTTP Debug Client App',
+
+        docsRepo: 'fe3dback/web-debug-proto',
+        docsDir: '',
+        docsBranch: 'master',
+        editLinks: true,
+        editLinkText: 'Edit this page on github',
+
         nav: [
             { text: 'Home', link: '/' },
             { text: 'Docs', link: '/docs/' },
             { text: 'Implementations', link: '/implementations/' },
         ],
         displayAllHeaders: true,
+        sidebarDepth: 2,
         sidebar: {
             '/docs/': [
                 '',
@@ -21,18 +32,15 @@ module.exports = {
                     title: 'Scheme',
                     collapsable: false,
                     children: [
-                        '/docs/types/',
-                        '/docs/types/place',
-                        '/docs/types/guid',
+                        '/docs/scheme/',
+                        '/docs/scheme/types',
                     ]
                 },
             ],
 
-            '/': [
+            '/implementations/': [
                 '',
-                'docs',
-                'implementations'
-            ]
+            ],
         }
     }
 };
