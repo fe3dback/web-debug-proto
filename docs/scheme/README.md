@@ -14,34 +14,36 @@ You can read more about JSON here:
 
 | key | type | required | description |
 | --- | ---- | -------- | ----------- |
-| id | [guid](types.html#guid) | Y | unique request id |
+| id | [uuid](types.html#uuid) | Y | unique request id |
 | version | [int](types.html#int) | Y | schema version |
 | request_in | [ts_mili](types.html#ts-mili) | N | request in time |
 | response_out | [ts_mili](types.html#ts-mili) | N | response out time |
 | method | [method](types.html#method) | N | HTTP method |
 | uri | [uri](types.html#uri) | N | full request uri |
 | headers | [param[]](types.html#param) | N | list of request headers |
-| controller | [string](types.html#string) | N | custom controller name |
 | query_data | [param[]](types.html#param) | N | parsed query (GET) data |
 | post_data | [param[]](types.html#param) | N | parsed body (POST) data |
 | session | [param[]](types.html#param) | N | user session data |
 | user | [user](types.html#user) | N | current auth user |
+| controller | [string](types.html#string) | N | controller name/class |
+| action | [string](types.html#string) | N | controller action |
 | response_code | [int](types.html#int) | N | HTTP response code |
-| memory_usage_bytes | [int](types.html#int) | N | max/peak memory usage (in bytes) during request |
+| memory_usage_bytes | [byte](types.html#byte) | N | max/peak memory usage (in bytes) during request |
 | queries | [db_query[]](types.html#db-query) | N | database queries during request |
-| cache_total_count | [int](types.html#int) | N | cache read requests count |
-| cache_hits_count | [int](types.html#int) | N | cache hit requests count |
-| cache_writes_count | [int](types.html#int) | N | cache write requests count |
-| cache_deletes_count | [int](types.html#int) | N | cache delete requests count |
-| cache_duration | [duration_mili](types.html#duration-mili) | N | total cache io duration in ms |
+| cache | [cache_io[]](types.html#cache-io) | N | cache IO calls |
+| logs | [log[]](types.html#log) | N | written logs |
+| emails | [email[]](types.html#email) | N | n/a |
 | timeline | todo | N | n/a |
-| logs | todo | N | n/a |
 | events | todo | N | n/a |
 | routes | todo | N | n/a |
-| emails | todo | N | n/a |
-| views | todo | N | n/a |
+| templates | todo | N | n/a |
 | async_requests | todo | N | n/a |
 | sub_requests | todo | N | n/a |
+
+@todo:
+- cache_io
+- log
+- email
 
 #### Example of scheme
 
@@ -58,5 +60,4 @@ You can read more about JSON here:
 }
 ```
 
-user
-db_query
+

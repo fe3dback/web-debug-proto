@@ -22,22 +22,7 @@ quotes SHOULD be escaped
 "Hello \"good\" world"
 ```
 
-## model
-
-JSON: object
-
-Complex object with strong typed
-structure.
-
-```json
-{
-    "propName": "propValue",
-    "someInt": 1234,
-    "someString": "Hello world"
-}
-```
-
-## guid
+## uuid
 
 extends [string](#string)
 
@@ -69,6 +54,20 @@ time duration in milliseconds
 ```json
 140
 ```
+
+## byte
+
+extends [int](#int)
+
+size in bytes
+
+```json
+1024
+```
+
+::: tip example (1 MB)
+1000000
+:::
 
 ## method
 
@@ -108,13 +107,13 @@ extends [string](#string)
 "/src/renderer/main.js"
 ```
 
-#### Model rules (for server)
+#### Server rules
 
 - Should be relative to root project directory
 - file path SHOULD start with "/"
 - Directory separator SHOULD BE "/" on all operation systems
 
-#### Model rules (for client)
+#### Client rules
 
 - Replace "/" with directory separator for current operation system.
 "/" - for unix based, and "\\" - for Windows.
@@ -123,8 +122,6 @@ SHOULD be used only for file content loading (for code display purpose).
 - All GUI sections should display only relative path as defined.
 
 ## place
-
-extends [model](#model)
 
 Allows you to specify the exact link to the position in the project code
 
@@ -140,18 +137,12 @@ Allows you to specify the exact link to the position in the project code
 | key | type | required | description |
 | --- | ---- | :------: | ----------- |
 | file | [rel_path](#rel-path) | Y | relative path to project root |
-| line | [int](#int) | N | line in file |
-| pos | [int](#int) | N | cursor position in line (work only if "line" defined) |
-| pos_end | [int](#int) | N | cursor end position in line (work only if "pos" defined) |
+| line | [int](#int) || line in file |
+| pos | [int](#int) || cursor position in line (work only if "line" defined) |
+| pos_end | [int](#int) || cursor end position in line (work only if "pos" defined) |
 
-#### Model rules (for server)
+#### Client rules
 
-- Always use "/" as directory separator in all operation systems
-
-#### Model rules (for client)
-
-- Replace "/" with default separator for current operation system.
-"/" - for unix based, and "\\" - for Windows.
 - Prepend defined project root path to "rel_path"
 - Load file in Read-only mode and fetch +-3 lines from specified "line"
 - If no "line" specified, you should display only path to file
@@ -161,14 +152,12 @@ Allows you to specify the exact link to the position in the project code
 - If "pos" and "pos_end" specified, client application MUST highlight
 range between pos <= i && i <= pos_end.
 
-#### Model recommendations (for client)
+#### Client recommendations
 
 - Add button "load more" above and below loaded lines.
 - Use syntax highlighting based on file extension (without lint)
 
 ## param
-
-extends [model](#model)
 
 ```json
 {
@@ -185,8 +174,6 @@ extends [model](#model)
 
 
 ## user
-
-extends [model](#model)
 
 ```json
 {
@@ -216,14 +203,12 @@ extends [model](#model)
 | key | type | required | description |
 | --- | ---- | :------: | ----------- |
 | id | [string](#string) | Y | user id |
-| name | [string](#string) | N | user name/code/title |
-| email | [string](#string) | N | user email |
-| groups | [user_group[]](#user-group) | N | list of user groups |
+| name | [string](#string) || user name/code/title |
+| email | [string](#string) || user email |
+| groups | [user_group[]](#user-group) || list of user groups |
 
 
 ## user_group
-
-extends [model](#model)
 
 ```json
 {
@@ -252,14 +237,11 @@ extends [model](#model)
 | key | type | required | description |
 | --- | ---- | :------: | ----------- |
 | id | [string](#string) | Y | group id |
-| title | [string](#string) | N | group name/code/title |
-| perms | [param[]](#param) | N | list of perms |
-| props | [param[]](#param) | N | any additional custom props |
-
+| title | [string](#string) || group name/code/title |
+| perms | [param[]](#param) || list of perms |
+| props | [param[]](#param) || any additional custom props |
 
 ## db_query
-
-extends [model](#model)
 
 ```json
 {
@@ -301,14 +283,136 @@ extends [model](#model)
 | called_from | [place](#place) || code place where this query is called |
 | props | [param[]](#param) || any additional custom props |
 
-#### Model recommendations (for server)
+#### Server recommendations
 
 - If you want syntax highlighting, define "db_type" as one of:
     - mysql
     - postgres
 
-#### Model recommendations (for client)
+#### Client recommendations
 
 - Try to highlight sql code in mysql dialect from "db_type":
     - mysql
     - postgres
+
+## cache_io
+
+```json
+{
+    "type": "HIT",
+    "group": "articles",
+    "key": "octocats-in-space",
+    "storage": "redis",
+    "duration": 89,
+    "ttl": 60000,
+    "size": 1594,
+    "called_from": {
+        "file": "/src/Http/ArticlesController.php",
+        "line": 68
+    },
+    "tags": ["articles", "home_page", "author:32", "category:14,12"]
+}
+```
+
+::: tip ttl example
+60000 = current time + 60 sec.
+:::
+
+#### Model definition
+| key | type | required | description |
+| --- | ---- | :------: | ----------- |
+| type | [cache_type](#cache-type) | Y | cache IO record type |
+| key | [string](#string) | Y | cache key |
+| group | [string](#string) || cache group |
+| storage | [string](#string) || storage label, useful if you use several storage at once |
+| duration | [duration_mili](#duration-mili) || cache save/load time duration |
+| ttl | [duration_mili](#duration-mili) || cache time to live, relative to current time |
+| size | [byte](#byte) || cache body size in bytes |
+| called_from | [place](#place) || code place where this cache is called |
+| tags | [string[]](#string) || list of cache tags |
+
+## cache_type
+
+ENUM extends [string](#string)
+
+```json
+"HIT"
+```
+
+#### Enum values
+| key | description |
+| --- | ----------- |
+| HIT | Cache exist, data loaded from cache |
+| MISS | Cache is not exist |
+| WRITE | Create/Update data in cache |
+| DELETE | Deleting data from cache |
+
+`Total reads = (HIT + MISS)`
+
+`Total writes = (WRITE + DELETE)`
+
+`Total IO = (reads + writes)`
+
+::: tip Server Tip
+If you want to restore cache after MISS, you should add to cache
+two records MISS + WRITE
+:::
+
+#### Example
+
+```php
+// pseudocode
+
+function fetch(key: $name): return: CachedData
+{
+    if (Cache::keyExist(key: $name)) {
+        $profiler->cacheIO(type: 'HIT', key: $name);
+        return Cache::load(key: $name);
+    }
+
+    $profiler->cacheIO(type: 'MISS', key: $name);
+
+    // load from backend and put data to cache
+
+    $data = $backendApi->load(key: $name);
+    Cache::save(key: $name, data: $data);
+    $profiler->cacheIO(type: 'WRITE', key: $name);
+}
+```
+
+## log
+
+@todo
+
+```json
+{
+    "level": "warning",
+}
+```
+
+#### Model definition
+| key | type | required | description |
+| --- | ---- | :------: | ----------- |
+| level | [log_level](#log-level) | Y | log level |
+
+## log_level
+
+ENUM extends [string](#string)
+
+```json
+"warning"
+```
+
+#### Enum values
+| key | description |
+| --- | ----------- |
+| debug | Detailed debug information |
+| info | Interesting events. Examples: User logs in |
+| notice | Normal but significant events |
+| warning | Exceptional occurrences that are not errors. Examples: Use of deprecated APIs, poor use of an API, undesirable things that are not necessarily wrong |
+| error | Runtime errors that do not require immediate action but should typically be logged and monitored |
+| critical | Critical conditions. Example: Application component unavailable, unexpected exception |
+| alert | Action must be taken immediately. Example: Entire website down, database unavailable, etc. This should trigger the SMS alerts and wake you up |
+| emergency | Emergency: system is unusable |
+
+[read more in rfc5424](https://tools.ietf.org/html/rfc5424)

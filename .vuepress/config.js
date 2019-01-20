@@ -23,14 +23,14 @@ module.exports = {
             { text: 'Docs', link: '/docs/' },
             { text: 'Implementations', link: '/implementations/' },
         ],
-        displayAllHeaders: true,
+        displayAllHeaders: false,
         sidebarDepth: 2,
         sidebar: {
             '/docs/': [
                 '',
                 {
                     title: 'Scheme',
-                    collapsable: false,
+                    collapsable: true,
                     children: [
                         '/docs/scheme/',
                         '/docs/scheme/types',
