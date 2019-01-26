@@ -22,6 +22,16 @@ quotes SHOULD be escaped
 "Hello \"good\" world"
 ```
 
+## html
+
+extends [string](#string)
+
+Valid html in json string
+
+```json
+"Hello <b>world</b>"
+```
+
 ## uuid
 
 extends [string](#string)
@@ -277,6 +287,7 @@ range between pos <= i && i <= pos_end.
 | --- | ---- | :------: | ----------- |
 | query | [string](#string) | Y | query as defined in code |
 | parsed | [string](#string) || parsed query |
+| event_dt | [ts_mili](#ts-mili) || query exact start time |
 | db_type | [string](#string) || database type (mysql, postgres, etc..), useful only if application use many databased at once |
 | duration | [duration_mili](#duration-mili) || db request duration in milliseconds |
 | bindings | [param[]](#param) || ORM binding |
@@ -324,6 +335,7 @@ range between pos <= i && i <= pos_end.
 | type | [cache_type](#cache-type) | Y | cache IO record type |
 | key | [string](#string) | Y | cache key |
 | group | [string](#string) || cache group |
+| event_dt | [ts_mili](#ts-mili) || cache exact start time |
 | storage | [string](#string) || storage label, useful if you use several storage at once |
 | duration | [duration_mili](#duration-mili) || cache save/load time duration |
 | ttl | [duration_mili](#duration-mili) || cache time to live, relative to current time |
@@ -358,7 +370,7 @@ If you want to restore cache after MISS, you should add to cache
 two records MISS + WRITE
 :::
 
-#### Example
+#### Server Example
 
 ```php
 // pseudocode
@@ -382,11 +394,12 @@ function fetch(key: $name): return: CachedData
 
 ## log
 
-@todo
-
 ```json
 {
     "level": "warning",
+    "message": "User X is logged in admin panel",
+    "group": "php:app_03",
+    "context": "{\"user_id\": 12345}"
 }
 ```
 
@@ -394,6 +407,26 @@ function fetch(key: $name): return: CachedData
 | key | type | required | description |
 | --- | ---- | :------: | ----------- |
 | level | [log_level](#log-level) | Y | log level |
+| message | [string](#string) | Y | full log text |
+| group | [string](#string) || group title, for example server name, instance id, user ip, component, etc..  |
+| event_dt | [ts_mili](#ts-mili) || exact log time |
+| context | [string](#string) || additional log context, should be free-form json in string |
+
+#### Server recommendations
+
+- DO NOT add date-time to message prefix. For example "`[14:12:20] Hello world`".
+
+#### Client rules
+
+- Use different colors for different log levels, for example red for "errors", blue for "info", etc..
+- Display log context in read-only text field
+
+#### Client recommendations
+
+- Highlight context field as JSON
+- Hide context by default and show only after user click on log
+- Show context string length near log, if length > 0
+- Hide log event_dt by default
 
 ## log_level
 
@@ -416,3 +449,76 @@ ENUM extends [string](#string)
 | emergency | Emergency: system is unusable |
 
 [read more in rfc5424](https://tools.ietf.org/html/rfc5424)
+
+## email
+
+```json
+{
+    "subject": "Welcome to our forum",
+    "body": "<h1>Hello John</h1> <p>Now you are member of our great C++ community!</p>",
+    "from": "welcome@example.com",
+    "to": "john_doe@example.com",
+    "reply_to": "contact@forum.example.com"
+}
+```
+
+#### Model definition
+| key | type | required | description |
+| --- | ---- | :------: | ----------- |
+| subject | [string](#string) | Y | mail subject (title) |
+| body | [html](#html) | Y | email content (html or plain text) |
+| from | [string](#string) | Y | sender email address |
+| to | [string[]](#string) | Y | to email addresses |
+| cc | [string[]](#string) || [CC](https://en.wikipedia.org/wiki/Carbon_copy) addresses |
+| bcc | [string[]](#string) || [BCC](https://en.wikipedia.org/wiki/Blind_carbon_copy) addresses |
+| reply_to | [string](#string) || reply-to target email address |
+| attachments | [string[]](#string) || list of attachment file names (without actual content) |
+| event_dt | [ts_mili](#ts-mili) || mail sending start time |
+
+#### Client recommendations
+
+- Use editor with html syntax highlight for body
+- If possible add preview mode for body with rendered html
+
+## route
+
+@todo
+
+```json
+{
+
+}
+```
+
+#### Model definition
+| key | type | required | description |
+| --- | ---- | :------: | ----------- |
+
+
+## template
+
+@todo
+
+```json
+{
+
+}
+```
+
+#### Model definition
+| key | type | required | description |
+| --- | ---- | :------: | ----------- |
+
+## event
+
+@todo
+
+```json
+{
+
+}
+```
+
+#### Model definition
+| key | type | required | description |
+| --- | ---- | :------: | ----------- |
