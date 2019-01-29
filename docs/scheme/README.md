@@ -3,6 +3,19 @@ title: Version 1
 lang: en-US
 ---
 
+## custom components tests
+
+@todo remove this block
+
+<test>
+{
+    "test": 123452,
+    "model-x": %user%,
+    "model-y": %user%
+}
+</test>
+
+
 #### JSON
 
 Scheme should be described in JSON
@@ -30,12 +43,13 @@ You can read more about JSON here:
 | response_code | [int](types.html#int) || HTTP response code |
 | memory_usage_bytes | [byte](types.html#byte) || max/peak memory usage (in bytes) during request |
 | queries | [db_query[]](types.html#db-query) || database queries during request |
-| cache | [cache_io[]](types.html#cache-io) || cache IO calls |
+| cache | [cache_query[]](types.html#cache-query) || cache queries during request |
 | logs | [log[]](types.html#log) || application logs |
 | emails | [email[]](types.html#email) || sent emails |
 | routes | [route[]](types.html#route) || checked and matched uri routes |
 | templates | [template[]](types.html#template) || rendered templates |
 | events | [event[]](types.html#event) || triggered events |
+| acl | [access_check[]](types.html#access-check) || checked permissions and auth during request |
 
 #### Example of scheme
 

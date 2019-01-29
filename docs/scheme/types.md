@@ -92,6 +92,7 @@ HTTP Method (uppercase)
 - PATCH
 - DELETE
 - OPTIONS
+- ANY
 - *or custom*
 
 ```json
@@ -105,8 +106,14 @@ extends [string](#string)
 Read more about uri in
 [wiki](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
 
+Full:
 ```json
 "https://example.com:443/api/hello?foo=bar"
+```
+
+Relative:
+```json
+"/api/hello?foo=bar"
 ```
 
 ## rel_path
@@ -306,7 +313,7 @@ range between pos <= i && i <= pos_end.
     - mysql
     - postgres
 
-## cache_io
+## cache_query
 
 ```json
 {
@@ -399,7 +406,11 @@ function fetch(key: $name): return: CachedData
     "level": "warning",
     "message": "User X is logged in admin panel",
     "group": "php:app_03",
-    "context": "{\"user_id\": 12345}"
+    "context": "{\"user_id\": 12345}",
+    "called_from": {
+        "file": "/src/Http/ArticlesController.php",
+        "line": 68
+    },
 }
 ```
 
@@ -409,8 +420,9 @@ function fetch(key: $name): return: CachedData
 | level | [log_level](#log-level) | Y | log level |
 | message | [string](#string) | Y | full log text |
 | group | [string](#string) || group title, for example server name, instance id, user ip, component, etc..  |
-| event_dt | [ts_mili](#ts-mili) || exact log time |
 | context | [string](#string) || additional log context, should be free-form json in string |
+| event_dt | [ts_mili](#ts-mili) || exact log time |
+| called_from | [place](#place) || code place where this logged |
 
 #### Server recommendations
 
@@ -474,6 +486,7 @@ ENUM extends [string](#string)
 | reply_to | [string](#string) || reply-to target email address |
 | attachments | [string[]](#string) || list of attachment file names (without actual content) |
 | event_dt | [ts_mili](#ts-mili) || mail sending start time |
+| called_from | [place](#place) || where email is sent from |
 
 #### Client recommendations
 
@@ -493,7 +506,7 @@ ENUM extends [string](#string)
 #### Model definition
 | key | type | required | description |
 | --- | ---- | :------: | ----------- |
-
+| uri | [string](#string) | Y | mail subject (title) |
 
 ## template
 
@@ -510,6 +523,20 @@ ENUM extends [string](#string)
 | --- | ---- | :------: | ----------- |
 
 ## event
+
+@todo
+
+```json
+{
+
+}
+```
+
+#### Model definition
+| key | type | required | description |
+| --- | ---- | :------: | ----------- |
+
+## access_check
 
 @todo
 
