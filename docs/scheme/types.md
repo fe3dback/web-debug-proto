@@ -1,5 +1,5 @@
 ---
-title: Scheme Types
+title: Types
 lang: en-US
 ---
 
@@ -139,6 +139,8 @@ SHOULD be used only for file content loading (for code display purpose).
 - All GUI sections should display only relative path as defined.
 
 ## place
+
+@todo rename to "location"
 
 Allows you to specify the exact link to the position in the project code
 
@@ -495,18 +497,62 @@ ENUM extends [string](#string)
 
 ## route
 
-@todo
-
 ```json
 {
-
+    "name": "admin_articles_edit",
+    "resource": "App\Http\Admin\ArticlesController@edit",
+    "name_space": "/admin",
+    "url_template": "/articles/edit/{{id}}",
+    "allowed_methods": ["GET", "PATCH", "DELETE"],
+    "type": "controller",
+    "resource_loc": {
+        "file": "/src/App/Http/Admin/ArticlesController.php",
+        "line": 120
+    },
+    "defined_in": {
+        "file": "/resources/routes/admin/articles.yaml",
+        "line": 86
+    }
 }
 ```
 
 #### Model definition
 | key | type | required | description |
 | --- | ---- | :------: | ----------- |
-| uri | [string](#string) | Y | mail subject (title) |
+| url_template | [string](#string) | Y | Url template with placeholders |
+| name | [string](#string) || Unique route name (id) |
+| resource | [string](#string) || route target, this can be controller, action or view name |
+| resource_loc | [place](#place) || where is target resource located |
+| name_space | [string](#string) || Namespace or group, usually this is prefix |
+| allowed_methods | [method[]](#method) || list of allowed request methods for this route |
+| type | [string](#string) || helpful if you have many route types (api based, controllers, callbacks, views, etc..) |
+| defined_in | [place](#place) || where is this route defined |
+
+## middleware
+
+```json
+{
+    "name": "\Illuminate\Routing\Middleware\ThrottleRequests",
+    "group": "System",
+    "duration": 16,
+    "defined_in": {
+        "file": "/vendor/illuminate/src/Routing/Middleware/ThrottleRequests.php"
+    },
+    "called_from": {
+        "file": "/app/Http/Kernel.php",
+        "line": 75
+    },
+}
+```
+
+#### Model definition
+| key | type | required | description |
+| --- | ---- | :------: | ----------- |
+| name | [string](#string) | Y | Middleware name |
+| group | [string](#string) || Helpful if you have lot of middleware (validation, auth, fetch, etc..) |
+| duration | [duration_mili](#duration-mili) || middleware execute duration |
+| defined_in | [place](#place) || where is this middleware defined |
+| called_from | [place](#place) || where was middleware called |
 
 ## template
 

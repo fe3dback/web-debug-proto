@@ -1,5 +1,6 @@
 ---
 home: true
+heroImage: /hero.png
 title: Documentation
 lang: en-US
 actionText: Get Started
@@ -22,7 +23,7 @@ footer: MIT Licensed | Copyright © 2019 Perov Konstantin (fe3dback@yandex.ru)
 
 ## How it works
 
-<Badge text="draft v0.1" type="warn" />
+<Badge text="draft v0.2" type="warn" />
 
 1. Client makes Request to Application:
 
@@ -65,4 +66,5 @@ https://example.com/_profile/?id=ae1d1530-7c2c-4ff7-bfeb-70f80c8bc7ed
 }
 ```
 
-@todo read more
+- @todo read more button here
+- @todo change image placeholder to detail view of profile client

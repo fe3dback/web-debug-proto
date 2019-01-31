@@ -8,6 +8,13 @@ module.exports = {
             includeLevel: [1, 2, 3]
         }
     },
+    configureWebpack: {
+        resolve: {
+            alias: {
+                '@img': 'images'
+            }
+        }
+    },
     themeConfig: {
         repo: 'fe3dback/http-debug-tools',
         repoLabel: 'HTTP Debug Client App',
@@ -22,15 +29,23 @@ module.exports = {
             { text: 'Home', link: '/' },
             { text: 'Docs', link: '/docs/' },
             { text: 'Implementations', link: '/implementations/' },
+            { text: 'License', link: '/license/' },
         ],
         displayAllHeaders: false,
         sidebarDepth: 2,
         sidebar: {
             '/docs/': [
-                '',
+                './specification/',
                 {
-                    title: 'Scheme',
-                    collapsable: true,
+                    title: 'Server side',
+                    collapsable: false,
+                    children: [
+                        '',
+                    ]
+                },
+                {
+                    title: 'Latest Scheme (0.2)',
+                    collapsable: false,
                     children: [
                         '/docs/scheme/',
                         '/docs/scheme/types',

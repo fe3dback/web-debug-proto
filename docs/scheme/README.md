@@ -1,20 +1,7 @@
 ---
-title: Version 1
+title: Scheme
 lang: en-US
 ---
-
-## custom components tests
-
-@todo remove this block
-
-<test>
-{
-    "test": 123452,
-    "model-x": %user%,
-    "model-y": %user%
-}
-</test>
-
 
 #### JSON
 
@@ -46,7 +33,8 @@ You can read more about JSON here:
 | cache | [cache_query[]](types.html#cache-query) || cache queries during request |
 | logs | [log[]](types.html#log) || application logs |
 | emails | [email[]](types.html#email) || sent emails |
-| routes | [route[]](types.html#route) || checked and matched uri routes |
+| route | [route](types.html#route) || matched route |
+| middleware | [middleware[]](types.html#middleware) || list of executed middleware |
 | templates | [template[]](types.html#template) || rendered templates |
 | events | [event[]](types.html#event) || triggered events |
 | acl | [access_check[]](types.html#access-check) || checked permissions and auth during request |
@@ -83,3 +71,4 @@ You can read more about JSON here:
 | timeline | @todo || profile date for waterfall, all executed code methods with duration |
 | async_requests | @todo || not blocking HTTP request (also support debug) |
 | sub_requests | @todo || nested, blocking HTTP request (also support debug) |
+| custom | @todo || custom tables, view, widgets.. |
