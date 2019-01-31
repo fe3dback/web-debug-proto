@@ -15,6 +15,14 @@ module.exports = {
             }
         }
     },
+    plugins: [
+        [
+            '@vuepress/google-analytics',
+            {
+                'ga': 'UA-133622526-1'
+            }
+        ]
+    ],
     themeConfig: {
         repo: 'fe3dback/http-debug-tools',
         repoLabel: 'HTTP Debug Client App',
