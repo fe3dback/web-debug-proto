@@ -556,42 +556,137 @@ ENUM extends [string](#string)
 
 ## template
 
-@todo
-
 ```json
 {
-
+    "name": "alert-telegram-prod",
+    "render_time": 2,
+    "params": [
+        {
+            "key": "title",
+            "value": "Oh, something is wrong!"
+        },
+        {
+            "key": "level",
+            "value": "warning"
+        }
+    ],
+    "defined_in": {
+        "file": "/resources/templates/alerts/alert-telegram-prod.twig"
+    },
+    "called_from": {
+        "file": "/app/Libs/Telegram/APIWrapper.php",
+        "line": 142
+    },
 }
 ```
 
 #### Model definition
 | key | type | required | description |
 | --- | ---- | :------: | ----------- |
+| name | [string](#string) | Y | Template name |
+| render_time | [duration_mili](#duration-mili) || template render duration |
+| params | [param[]](#param) || params given to template |
+| defined_in | [place](#place) || where is this template file stored |
+| called_from | [place](#place) || where was template called |
 
 ## event
 
-@todo
-
 ```json
 {
-
+    "name": "ConsoleHandler::onCommand",
+    "group": "kernel",
+    "duration": 3,
+    "defined_in": {
+        "file": "/vendor/Symfony/Bridge/src/Monolog/Handler/ConsoleHandler.php"
+    },
+    "called_from": {
+        "file": "/app/Http/Kernel.php",
+        "line": 75
+    },
 }
 ```
 
 #### Model definition
 | key | type | required | description |
 | --- | ---- | :------: | ----------- |
+| name | [string](#string) | Y | Called event name (listener class, id, etc..) |
+| group | [string](#string) || Helpful if you want split event by logic groups (kernel, loader, app, etc..) |
+| duration | [duration_mili](#duration-mili) || Event execute duration |
+| defined_in | [place](#place) || where is this event defined |
+| called_from | [place](#place) || where was event called |
 
 ## access_check
 
-@todo
-
 ```json
 {
-
+    "request": "authrorizedUser",
+    "control": "post:42",
+    "action": "view",
+    "vote": "GRANT",
+    "group": "ui",
+    "checked_in": {
+        "file": "/src/Controller/PostController.php",
+        "line": 15
+    }
 }
 ```
 
 #### Model definition
 | key | type | required | description |
 | --- | ---- | :------: | ----------- |
+| request | [string](#string) | Y | Access Request Object (username, api token, etc..) |
+| control | [string](#string) || Access Control Object (article, admin panel, secure page, etc..) |
+| action | [string](#string) || Access eXtension Object (read, edit, delete, etc..) |
+| vote | [acl_vote](#acl-vote) | Y | ACL Resolution (allow, denied) |
+| group | [string](#string) || Helpful if you want split access checks by logic groups (db, ui, user, api, etc..) |
+| checked_in | [place](#place) || where this access is checked |
+
+Abstract ACL check.
+
+:::tip example (voters)
+If you use voters, define each vote as acl, for example:
+```php
+$this->denyAccessUnlessGranted('view', $post);
+```
+```json
+{
+    "request": "authrorizedUser",
+    "control": "post:42",
+    "action": "view",
+    "vote": "GRANT"
+}
+```
+:::
+
+:::tip classic ACL tables
+```text{4}
+Root
+|- Staff            ( ALLOW [View Own - Projects], ALLOW [Add - Projects], ALLOW [Edit Own - Projects] )
+|  |- Facilitators  ( DENY  [Add - Projects] )
+|  |- Managers      ( ALLOW [Edit - Projects] )
+|  '- Executives    ( ALLOW [Edit - Projects], ALLOW [Delete - Projects] )
+```
+
+```json
+{
+    "request": "Managers",
+    "control": "Projects",
+    "action": "Edit",
+    "vote": "ALLOW"
+}
+```
+:::
+
+## acl_vote
+
+ENUM extends [string](#string)
+
+```json
+"GRANT"
+```
+
+#### Enum values
+| key | description |
+| --- | ----------- |
+| GRANT | access is allowed for this check (vote for grant access) |
+| DENIED | access is not allowed for this check (vote for denied access) |

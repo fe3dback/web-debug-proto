@@ -4,7 +4,7 @@ lang: en-US
 ---
 
 ::: warning
-Web Application Debug protocol currently in draft. <Badge text="v0.1" type="warn" />
+Web Application Debug protocol currently in draft.
 
 All scheme, types, fields can be changed before release.
 

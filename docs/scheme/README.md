@@ -64,7 +64,7 @@ You can read more about JSON here:
 }
 ```
 
-#### Future fields proposal for v2
+#### Future fields proposal for next version
 
 | key | type | required | description |
 | --- | ---- | -------- | ----------- |
