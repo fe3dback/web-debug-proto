@@ -71,6 +71,12 @@ https://example.com/_profile/?id=ae1d1530-7c2c-4ff7-bfeb-70f80c8bc7ed
             "key": "id",
             "value": "2"
         }]
+    }],
+    "logs": [{
+        "level": "warning",
+        "message": "User X is logged in admin panel",
+        "group": "php:app_03",
+        "context": "{\"user_id\": 12345}"
     }]
     ...
 }

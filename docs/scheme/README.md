@@ -42,24 +42,37 @@ You can read more about JSON here:
 
 ```json
 {
-    "id": "ef95a542-25a3-4f71-a0e9-640c92f43813",
+    "id": "ae1d1530-7c2c-4ff7-bfeb-70f80c8bc7ed",
     "version": 1,
-    "controller": "ArticlesController",
-    "queries": [
-        {
-            "db_type": "postgres",
-            "query": "SELECT * FROM articles LIMIT 1",
-            "duration": 4
+    "request_at": 1547058561177,
+    "response_at": 1547058622423,
+    "route": {
+        "name": "admin_articles_edit",
+        "resource": "App\Http\Admin\ArticlesController@edit",
+        "url_template": "/articles/edit/{{id}}",
+        "type": "controller",
+        "resource_loc": {
+            "file": "/src/App/Http/Admin/ArticlesController.php",
+            "line": 120
         }
-    ],
-    "logs": [
-        {
-            "level": "warning",
-            "message": "User X is logged in admin panel",
-            "group": "php:app_03",
-            "context": "{\"user_id\": 12345}"
-        }
-    ]
+    },
+    "db_queries": [{
+        "db_type": "mysql",
+        "query": "SELECT * FROM articles WHERE ID = ?id",
+        "parsed": "SELECT * FROM articles WHERE ID = 1;",
+        "duration": 15,
+        "bindings": [{
+            "key": "id",
+            "value": "2"
+        }]
+    }],
+    "logs": [{
+        "level": "warning",
+        "message": "User X is logged in admin panel",
+        "group": "php:app_03",
+        "context": "{\"user_id\": 12345}"
+    }]
+    ...
 }
 ```
 
