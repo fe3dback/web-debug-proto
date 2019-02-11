@@ -138,9 +138,7 @@ extends [string](#string)
 SHOULD be used only for file content loading (for code display purpose).
 - All GUI sections should display only relative path as defined.
 
-## place
-
-@todo rename to "location"
+## location
 
 Allows you to specify the exact link to the position in the project code
 
@@ -300,7 +298,7 @@ range between pos <= i && i <= pos_end.
 | db_type | [string](#string) || database type (mysql, postgres, etc..), useful only if application use many databased at once |
 | duration | [duration_mili](#duration-mili) || db request duration in milliseconds |
 | bindings | [param[]](#param) || ORM binding |
-| called_from | [place](#place) || code place where this query is called |
+| called_from | [location](#location) || code location where this query is called |
 | props | [param[]](#param) || any additional custom props |
 
 #### Server recommendations
@@ -349,7 +347,7 @@ range between pos <= i && i <= pos_end.
 | duration | [duration_mili](#duration-mili) || cache save/load time duration |
 | ttl | [duration_mili](#duration-mili) || cache time to live, relative to current time |
 | size | [byte](#byte) || cache body size in bytes |
-| called_from | [place](#place) || code place where this cache is called |
+| called_from | [location](#location) || code location where this cache is called |
 | tags | [string[]](#string) || list of cache tags |
 
 ## cache_type
@@ -424,7 +422,7 @@ function fetch(key: $name): return: CachedData
 | group | [string](#string) || group title, for example server name, instance id, user ip, component, etc..  |
 | context | [string](#string) || additional log context, should be free-form json in string |
 | event_dt | [ts_mili](#ts-mili) || exact log time |
-| called_from | [place](#place) || code place where this logged |
+| called_from | [location](#location) || code location where this logged |
 
 #### Server recommendations
 
@@ -488,7 +486,7 @@ ENUM extends [string](#string)
 | reply_to | [string](#string) || reply-to target email address |
 | attachments | [string[]](#string) || list of attachment file names (without actual content) |
 | event_dt | [ts_mili](#ts-mili) || mail sending start time |
-| called_from | [place](#place) || where email is sent from |
+| called_from | [location](#location) || where email is sent from |
 
 #### Client recommendations
 
@@ -522,11 +520,11 @@ ENUM extends [string](#string)
 | url_template | [string](#string) | Y | Url template with placeholders |
 | name | [string](#string) || Unique route name (id) |
 | resource | [string](#string) || route target, this can be controller, action or view name |
-| resource_loc | [place](#place) || where is target resource located |
+| resource_loc | [location](#location) || where is target resource located |
 | name_space | [string](#string) || Namespace or group, usually this is prefix |
 | allowed_methods | [method[]](#method) || list of allowed request methods for this route |
 | type | [string](#string) || helpful if you have many route types (api based, controllers, callbacks, views, etc..) |
-| defined_in | [place](#place) || where is this route defined |
+| defined_in | [location](#location) || where is this route defined |
 
 ## middleware
 
@@ -551,8 +549,8 @@ ENUM extends [string](#string)
 | name | [string](#string) | Y | Middleware name |
 | group | [string](#string) || Helpful if you have lot of middleware (validation, auth, fetch, etc..) |
 | duration | [duration_mili](#duration-mili) || middleware execute duration |
-| defined_in | [place](#place) || where is this middleware defined |
-| called_from | [place](#place) || where was middleware called |
+| defined_in | [location](#location) || where is this middleware defined |
+| called_from | [location](#location) || where was middleware called |
 
 ## template
 
@@ -586,8 +584,8 @@ ENUM extends [string](#string)
 | name | [string](#string) | Y | Template name |
 | render_time | [duration_mili](#duration-mili) || template render duration |
 | params | [param[]](#param) || params given to template |
-| defined_in | [place](#place) || where is this template file stored |
-| called_from | [place](#place) || where was template called |
+| defined_in | [location](#location) || where is this template file stored |
+| called_from | [location](#location) || where was template called |
 
 ## event
 
@@ -612,8 +610,8 @@ ENUM extends [string](#string)
 | name | [string](#string) | Y | Called event name (listener class, id, etc..) |
 | group | [string](#string) || Helpful if you want split event by logic groups (kernel, loader, app, etc..) |
 | duration | [duration_mili](#duration-mili) || Event execute duration |
-| defined_in | [place](#place) || where is this event defined |
-| called_from | [place](#place) || where was event called |
+| defined_in | [location](#location) || where is this event defined |
+| called_from | [location](#location) || where was event called |
 
 ## access_check
 
@@ -639,7 +637,7 @@ ENUM extends [string](#string)
 | action | [string](#string) || Access eXtension Object (read, edit, delete, etc..) |
 | vote | [acl_vote](#acl-vote) | Y | ACL Resolution (allow, denied) |
 | group | [string](#string) || Helpful if you want split access checks by logic groups (db, ui, user, api, etc..) |
-| checked_in | [place](#place) || where this access is checked |
+| checked_in | [location](#location) || where this access is checked |
 
 Abstract ACL check.
 

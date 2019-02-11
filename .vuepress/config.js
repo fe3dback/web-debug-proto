@@ -8,13 +8,6 @@ module.exports = {
             includeLevel: [1, 2, 3]
         }
     },
-    configureWebpack: {
-        resolve: {
-            alias: {
-                '@img': 'images'
-            }
-        }
-    },
     plugins: [
         [
             '@vuepress/google-analytics',
@@ -43,20 +36,21 @@ module.exports = {
         sidebarDepth: 2,
         sidebar: {
             '/docs/': [
+                '',
                 './specification/',
                 {
-                    title: 'Server side',
-                    collapsable: false,
-                    children: [
-                        '',
-                    ]
-                },
-                {
-                    title: 'Latest Scheme (0.2)',
+                    title: 'Latest Scheme (0.0.A)',
                     collapsable: false,
                     children: [
                         '/docs/scheme/',
                         '/docs/scheme/types',
+                    ]
+                },
+                {
+                    title: 'Guides',
+                    collapsable: false,
+                    children: [
+                        './server-side/',
                     ]
                 },
             ],

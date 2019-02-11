@@ -8,22 +8,22 @@ actionLink: /docs/
 features:
 - title: Any language
   details: Protocol can be implemented on any programming language
-- title: Framework integration
-  details: Install bundle for your favorite framework and start debug
-- title: Client-side
+- title: Framework plug and play
+  details: Install bundle for your favorite web framework and its done
+- title: Any client
   details: Working in browser dev-tools, API clients like "postman", console utils like curl, etc..
 - title: Open source and free
   details: This is open source protocol with MIT license
-- title: Easy
-  details: You can implement it in super custom backend app in hour
+- title: From scratch..
+  details: ..can be implemented in hour. Easy as like falling off a log
 - title: Scalable
-  details: Clients can debug nested requests from all backends
+  details: Microservice ready, you can debug nested requests
 footer: MIT Licensed | Copyright © 2019 Perov Konstantin (fe3dback@yandex.ru)
 ---
 
 ## How it works
 
-<Badge text="draft v0.2" type="warn" />
+<img-centered uri="/debug-flow-preview.png" alt="Client-Server debug request"></img-centered>
 
 1. Client makes Request to Application:
 
@@ -50,21 +50,30 @@ https://example.com/_profile/?id=ae1d1530-7c2c-4ff7-bfeb-70f80c8bc7ed
 {
     "id": "ae1d1530-7c2c-4ff7-bfeb-70f80c8bc7ed",
     "version": 1,
-    "request_in": 1547058561177,
-    "response_out": 1547058622423,
-    "controller": "MyController",
-    "cache_hits_count": 14,
-    "queries": [
-        {
-            "db_type": "mysql",
-            "query": "SELECT * FROM articles WHERE ID = ?id",
-            "parsed": "SELECT * FROM articles WHERE ID = 1;",
-            "duration": 15,
+    "request_at": 1547058561177,
+    "response_at": 1547058622423,
+    "route": {
+        "name": "admin_articles_edit",
+        "resource": "App\Http\Admin\ArticlesController@edit",
+        "url_template": "/articles/edit/{{id}}",
+        "type": "controller",
+        "resource_loc": {
+            "file": "/src/App/Http/Admin/ArticlesController.php",
+            "line": 120
         }
-    ]
+    },
+    "db_queries": [{
+        "db_type": "mysql",
+        "query": "SELECT * FROM articles WHERE ID = ?id",
+        "parsed": "SELECT * FROM articles WHERE ID = 1;",
+        "duration": 15,
+        "bindings": [{
+            "key": "id",
+            "value": "2"
+        }]
+    }]
     ...
 }
 ```
 
-- @todo read more button here
-- @todo change image placeholder to detail view of profile client
+<primary-link target="/docs/scheme/" title="View scheme"/>

@@ -16,28 +16,27 @@ You can read more about JSON here:
 | --- | ---- | -------- | ----------- |
 | id | [uuid](types.html#uuid) | Y | unique request id |
 | version | [int](types.html#int) | Y | schema version |
-| request_in | [ts_mili](types.html#ts-mili) || request in time |
-| response_out | [ts_mili](types.html#ts-mili) || response out time |
-| method | [method](types.html#method) || HTTP method |
-| uri | [uri](types.html#uri) || full request uri |
-| headers | [param[]](types.html#param) || list of request headers |
-| query_data | [param[]](types.html#param) || parsed query (GET) data |
-| post_data | [param[]](types.html#param) || parsed body (POST) data |
-| session | [param[]](types.html#param) || user session data |
+| request_at | [ts_mili](types.html#ts-mili) || request received at |
+| request_method | [method](types.html#method) || request HTTP method |
+| request_uri | [uri](types.html#uri) || full request uri |
+| request_headers | [param[]](types.html#param) || list of received request headers |
+| request_query | [param[]](types.html#param) || list of received request query (GET) params |
+| request_body | [param[]](types.html#param) || list of received request body (POST) params |
+| request_cookies | [param[]](types.html#param) || list of received request cookies |
+| session_params | [param[]](types.html#param) || loaded session params |
+| route | [route](types.html#route) || matched route controller |
+| middleware | [middleware[]](types.html#middleware) || list of executed middleware |
+| memory_peak | [byte](types.html#byte) || max/peak memory usage (in bytes) during request |
 | user | [user](types.html#user) || current auth user |
-| controller | [string](types.html#string) || controller name/class |
-| action | [string](types.html#string) || controller action |
-| response_code | [int](types.html#int) || HTTP response code |
-| memory_usage_bytes | [byte](types.html#byte) || max/peak memory usage (in bytes) during request |
-| queries | [db_query[]](types.html#db-query) || database queries during request |
-| cache | [cache_query[]](types.html#cache-query) || cache queries during request |
+| acl | [access_check[]](types.html#access-check) || checked permissions and auth during request |
+| db_queries | [db_query[]](types.html#db-query) || database queries during request |
+| cache_queries | [cache_query[]](types.html#cache-query) || cache queries during request |
 | logs | [log[]](types.html#log) || application logs |
 | emails | [email[]](types.html#email) || sent emails |
-| route | [route](types.html#route) || matched route |
-| middleware | [middleware[]](types.html#middleware) || list of executed middleware |
 | templates | [template[]](types.html#template) || rendered templates |
 | events | [event[]](types.html#event) || triggered events |
-| acl | [access_check[]](types.html#access-check) || checked permissions and auth during request |
+| response_at | [ts_mili](types.html#ts-mili) || response generated at |
+| response_code | [int](types.html#int) || response HTTP code |
 
 #### Example of scheme
 
