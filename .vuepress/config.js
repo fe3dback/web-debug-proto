@@ -30,6 +30,7 @@ module.exports = {
             { text: 'Home', link: '/' },
             { text: 'Docs', link: '/docs/' },
             { text: 'Implementations', link: '/implementations/' },
+            { text: 'Contact', link: '/contact/' },
             { text: 'License', link: '/license/' },
         ],
         displayAllHeaders: false,
