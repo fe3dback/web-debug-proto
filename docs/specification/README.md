@@ -3,9 +3,7 @@ title: Specification
 lang: en-US
 ---
 
-## Server Side
-
-### Terms
+## Terms
 
 #### UUID
 Universe unique id
@@ -41,84 +39,83 @@ HTTP Request to your `Server`
 #### Response
 HTTP Response for `Request`
 
-#### Profile API
 
-Working debug/profile API in your `Server`.
+## Transports overview
 
-This API take `UUID` as input and *SHOULD*
-return all debug information about `Request`
+### Headers+api
 
-read more in *Rules* section.
+Server return only debug UUID and api endpoint.
+Client make request to api endpoint and load all debug data.
 
-#### Debug headers
+[read specification](transport/headers-request)
 
-This is HTTP headers in `Response`:
+:::tip pros
++ universal transport, working everywhere
++ not increase response time, body size
++ nested requests can be easy handled in backend
+:::
 
-```
-X-Http-Debug-Id: uuid
-X-Http-Debug-Api: profileEndPoint
-```
+:::danger cons
+- persistent storage on server
+- O(n) round trips, where n = count of nested requests + 1
+- need to maintain special api (used for fetch debug data by UUID)
+:::
 
-- where *uuid* is `Request` `UUID`.
-- where *profileEndPoint* is uri of `Profile API`.
 
-Example of valid headers:
-```
-X-Http-Debug-Id: ef95a542-25a3-4f71-a0e9-640c92f43813
-X-Http-Debug-Api: /_profile/?id=
-```
+### json response
 
-`Profile Client` will concat headers and make request to this url:
-```
-https://app.example.com/_profile/?id=ef95a542-25a3-4f71-a0e9-640c92f43813
-```
+All debug data injected to normal application json response (in special
+json key)
 
-- where `https://app.example.com/` is HTTP protocol and hostname from `Request`
+[read specification](transport/json-response)
 
-### Rules
+:::tip pros
++ server does not store anything
++ no additional round trips (all debug data already in response)
+:::
 
-- `Server` *MAY* add `debug headers` to HTTP `Responses`
-- `Profile API` *SHOULD* return one of described HTTP Responses ordered by priority:
-    - **case 1:** Found debug information by `UUID`:
-    ```
-    * Status    = 200 OK
-    * Headers   = ANY + Content-Type: application/json
-    * Body      = `JSON` with debug information
-    ```
-    Body `JSON` *SHOULD* use valid `scheme` described in [Scheme](/docs/scheme/) section.
-    ::: tip example of body
-    ```json
-    {
-        "id": "ef95a542-25a3-4f71-a0e9-640c92f43813",
-        "version": 1,
-        "uri": "/articles/",
-        "queries": [
-            "db_type": "postgres",
-            "query": "SELECT * FROM articles LIMIT 1",
-            "duration": 4
-        ]
-    }
-    ```
-    :::
-    - **case 2:** Not allowed (usually on production):
-    ```
-    * Status    = 403 Forbidden
-    * Headers   = ANY
-    * Body      = ANY
-    ```
-    - **case 3:** Not found debug information by `UUID`, but profiling is allowed:
-    ```
-    * Status    = 404 Not Found
-    * Headers   = ANY
-    * Body      = ANY
-    ```
-    - **case 4:** Any other situation (profiler will not work):
-    ```
-    * Status    = ANY
-    * Headers   = ANY
-    * Body      = ANY
-    ```
+:::danger cons
+- working only with json responses
+- custom backend logic with json output
+- increase body size and request time
+- application client should ignore custom fields in response
+- http server should be properly configured (cache, ttl, etc..)
+:::
 
-## Client Side
 
-@todo
+### html meta
+
+All debug data injected to header meta tag with special id.
+
+[read specification](transport/html-meta)
+
+:::tip pros
++ server does not store anything
++ no additional round trips (all debug data already in response)
++ working with custom js clients (html app)
+:::
+
+:::danger cons
+- working only with html pages
+- increase body size and request time
+- client should get json by xpath and parse it from string
+:::
+
+## Implementations
+
+#### Server side
+
+Server application CAN implement one or more transports at
+same time.
+
+#### Client side
+
+Client SHOULD load debug data from transports by priority:
+- html meta
+    - if Content-Type is html, 
+    - if HTML contains meta tag with id `id="x-http-debug"` and json
+- json response
+    - if Content-Type is application/json
+    - if json body contains key `"_x_http_debug": "{..}"`
+- Headers+api
+    - if Response Headers contain `X-Http-Debug-Id`

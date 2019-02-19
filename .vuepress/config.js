@@ -38,13 +38,22 @@ module.exports = {
         sidebar: {
             '/docs/': [
                 '',
-                './specification/',
+                {
+                    title: 'Specifications',
+                    collapsable: false,
+                    children: [
+                        './specification/',
+                        './specification/transport/headers-request',
+                        './specification/transport/json-response',
+                        './specification/transport/html-meta',
+                    ]
+                },
                 {
                     title: 'Latest Scheme (0.0.A)',
                     collapsable: false,
                     children: [
-                        '/docs/scheme/',
-                        '/docs/scheme/types',
+                        './scheme/',
+                        './scheme/types',
                     ]
                 },
                 {
