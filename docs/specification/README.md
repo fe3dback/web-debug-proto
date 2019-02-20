@@ -40,7 +40,7 @@ HTTP Request to your `Server`
 HTTP Response for `Request`
 
 
-## Transports overview
+## Supported transports
 
 ### Headers+api
 
@@ -51,7 +51,7 @@ Client make request to api endpoint and load all debug data.
 
 :::tip pros
 + universal transport, working everywhere
-+ not increase response time, body size
++ not increase response time and body size
 + nested requests can be easy handled in backend
 :::
 
@@ -61,8 +61,17 @@ Client make request to api endpoint and load all debug data.
 - need to maintain special api (used for fetch debug data by UUID)
 :::
 
+:::warning saas (currently no saas available yet)
+- external saas can fix all cons for you
+:::
 
-### json response
+## Proposal transports
+
+:::danger
+This transports currently is not supported
+:::
+
+### json response (injected)
 
 All debug data injected to normal application json response (in special
 json key)
@@ -80,10 +89,11 @@ json key)
 - increase body size and request time
 - application client should ignore custom fields in response
 - http server should be properly configured (cache, ttl, etc..)
+- server should implement client logic for handling nested requests
 :::
 
 
-### html meta
+### html meta (injected)
 
 All debug data injected to header meta tag with special id.
 
@@ -98,7 +108,8 @@ All debug data injected to header meta tag with special id.
 :::danger cons
 - working only with html pages
 - increase body size and request time
-- client should get json by xpath and parse it from string
+- client should get json by xpath and parse it from string (not all clients can do this)
+- server should implement client logic for handling nested requests
 :::
 
 ## Implementations
@@ -111,11 +122,17 @@ same time.
 #### Client side
 
 Client SHOULD load debug data from transports by priority:
+- Headers+api
+    - if Response Headers contain `X-Http-Debug-Id`
+
+
+:::warning proposal additional transport priorities
+
 - html meta
     - if Content-Type is html, 
     - if HTML contains meta tag with id `id="x-http-debug"` and json
 - json response
     - if Content-Type is application/json
     - if json body contains key `"_x_http_debug": "{..}"`
-- Headers+api
-    - if Response Headers contain `X-Http-Debug-Id`
+
+:::

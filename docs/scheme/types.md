@@ -3,6 +3,14 @@ title: Types
 lang: en-US
 ---
 
+## bool
+
+JSON: boolean (true / false)
+
+```json
+true
+```
+
 ## int
 
 JSON: number (int)
@@ -192,6 +200,12 @@ range between pos <= i && i <= pos_end.
 
 ## user
 
+:::warning
+ In development
+
+@todo convert this model to event (and merge with acl?)
+:::
+
 ```json
 {
     "id": "12345",
@@ -227,6 +241,12 @@ range between pos <= i && i <= pos_end.
 
 ## user_group
 
+:::warning
+ In development
+
+@todo convert this model to event (and merge with acl?)
+:::
+
 ```json
 {
     "id": "42",
@@ -259,6 +279,12 @@ range between pos <= i && i <= pos_end.
 | props | [param[]](#param) || any additional custom props |
 
 ## db_query
+
+:::warning
+ In development
+
+@todo rename to query and merge with other query times (cache, io, etc..)
+:::
 
 ```json
 {
@@ -314,6 +340,12 @@ range between pos <= i && i <= pos_end.
     - postgres
 
 ## cache_query
+
+:::warning
+ In development
+
+@todo rename to query and merge with other query times (cache, io, etc..)
+:::
 
 ```json
 {
@@ -400,6 +432,12 @@ function fetch(key: $name): return: CachedData
 ```
 
 ## log
+
+:::warning
+ In development
+
+@todo level to importance of event
+:::
 
 ```json
 {
@@ -495,6 +533,12 @@ ENUM extends [string](#string)
 
 ## route
 
+:::warning
+ In development
+
+@todo
+:::
+
 ```json
 {
     "name": "admin_articles_edit",
@@ -528,6 +572,12 @@ ENUM extends [string](#string)
 
 ## middleware
 
+:::warning
+ In development
+
+@todo
+:::
+
 ```json
 {
     "name": "\Illuminate\Routing\Middleware\ThrottleRequests",
@@ -553,6 +603,12 @@ ENUM extends [string](#string)
 | called_from | [location](#location) || where was middleware called |
 
 ## template
+
+:::warning
+ In development
+
+@todo
+:::
 
 ```json
 {
@@ -589,6 +645,12 @@ ENUM extends [string](#string)
 
 ## event
 
+:::warning
+ In development
+
+@todo not needed anymore
+:::
+
 ```json
 {
     "name": "ConsoleHandler::onCommand",
@@ -614,6 +676,12 @@ ENUM extends [string](#string)
 | called_from | [location](#location) || where was event called |
 
 ## access_check
+
+:::warning
+ In development
+
+@todo
+:::
 
 ```json
 {

@@ -10,15 +10,18 @@ and return to client
 
 ## Server side
 
+Only `UUID` and `debug API endpoint` is returned with Response.
+
 ### Part 1 - save scheme to persistent storage
 
-During request backend should store all scheme
-to some persistent storage (db, file, etc..).
+During request backend should store all debug data (scheme)
+to some persistent storage (db, files, memcached, etc..).
 
+:::tip
+Recommended ttl - 10 min
+:::
 
-In response only uuid and api endpoint is returned
-
-Backend MUST add custom headers to Response:
+Backend CAN add custom headers to Response:
 
 ```
 X-Http-Debug-Id: uuid
@@ -26,7 +29,7 @@ X-Http-Debug-Api: profileEndPoint
 ```
 
 - where *uuid* is `Request` `UUID`.
-- where *profileEndPoint* is uri of `Profile API`.
+- where *profileEndPoint* is uri of `debug API endpoint`.
 
 :::tip example
 Example of valid headers:
@@ -47,10 +50,10 @@ https://app.example.com/_profile/?id=ef95a542-25a3-4f71-a0e9-640c92f43813
 /_profile/?id=<UUID>
 ```
 
-This api should return all debug information, loaded by UUID
+This api should return all debug data, loaded by UUID
 from persistent storage
 
-- `Profile API` *SHOULD* return one of described HTTP Responses ordered by priority:
+- `debug API endpoint` *SHOULD* return one of described HTTP Responses ordered by priority:
     
     - **case 1:** Found debug information by `UUID`:
     ```
@@ -62,17 +65,10 @@ from persistent storage
     Body `JSON` *SHOULD* use valid `scheme` described in [Scheme](/docs/scheme/) section.
     
     ::: tip example of body
+    
+    @todo example of returned json
     ```json
-    {
-        "id": "ef95a542-25a3-4f71-a0e9-640c92f43813",
-        "version": 1,
-        "uri": "/articles/",
-        "queries": [
-            "db_type": "postgres",
-            "query": "SELECT * FROM articles LIMIT 1",
-            "duration": 4
-        ]
-    }
+    { ... }
     ```
     :::
     

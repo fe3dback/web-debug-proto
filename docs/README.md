@@ -11,14 +11,13 @@ All scheme, types, fields can be changed before release.
 @todo remove warning
 :::
 
-
-<img-centered uri="/debug-flow-preview.png" alt="Client-Server debug request"></img-centered>
-
 ::: tip @todo
 introduction text here :]
+
+<primary-link target="scheme/" title="View scheme"/>
 :::
 
 Currently you can read:
-- [specification](specification/)
 - [scheme](scheme/)
+- [specification](specification/)
 - [guides](server-side/)
