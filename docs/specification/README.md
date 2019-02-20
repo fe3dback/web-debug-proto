@@ -59,10 +59,42 @@ Client make request to api endpoint and load all debug data.
 - persistent storage on server
 - O(n) round trips, where n = count of nested requests + 1
 - need to maintain special api (used for fetch debug data by UUID)
+- nested micro-services cant by debugged if server behind firewall or not accessible from internet and local network
+
+```
+
+                           .-,(  ),-.                            Client
+                        .-(          )-.                          __  _ 
+                       (    network     )<#######################[__]|=|
+                        '-(          ).-'                        /::/|_|
+                            '-.( ).-'                               #
+                                #                                   #
+  Headers + API transport       v                                   #
+ -------------------------   ______                                 #
+ Only this server           [.....°]  Main app server               #
+ can by debugged            [.....°]   https://example.com/         #
+ without saas               [|||||°]                                v
+                        .---[|||||°]----.              .----------------------.
+                       /    [_____°]     \             | not accessible       |
+                      /     [_____°]      \            | by direct connection |
+                     /      [_____°]       \           '----------------------'
+                    /                       \                      .
+                   '                         '                     .
+                ______                    ______                   .
+               [.....°] microservice A   [.....°] microservice B   .
+               [.....°]  localhost:1337  [.....°]  127.0.0.1:8080  .
+               [|||||°]                  [|||||°]                  .
+               [|||||°]                  [|||||°] <................'
+               [_____°]                  [_____°]
+               [_____°]                  [_____°]
+               [_____°]                  [_____°]
+
+```
 :::
 
-:::warning saas (currently no saas available yet)
+:::warning SAAS
 - external saas can fix all cons for you
+- currently no saas available yet
 :::
 
 ## Proposal transports

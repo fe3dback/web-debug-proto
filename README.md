@@ -24,7 +24,7 @@ footer: MIT Licensed | Copyright © 2019 Perov Konstantin (fe3dback@yandex.ru)
 :::danger work in progress
 Protocol, scheme, documentation and transports currently in draft
 
-See contact page for any issued, ideas, proposal, etc..
+See contact page for any issues, ideas, proposal, etc..
 :::
 
 ## How it works
