@@ -6,12 +6,14 @@
             <div class="btn" :class="{'btn-active': isModeExample}" @click="setMode('example')">Example</div>
         </div>
 
-        <div v-if="isModeExample">
-            <x-code-preview :code=codeExample></x-code-preview>
-        </div>
-        <div v-if="isModePayload">
-            <x-code-preview :code=codePayload></x-code-preview>
-        </div>
+        <ClientOnly>
+            <div v-if="isModeExample">
+                <x-code-preview :code=codeExample></x-code-preview>
+            </div>
+            <div v-if="isModePayload">
+                <x-code-preview :code=codePayload></x-code-preview>
+            </div>
+        </ClientOnly>
 
         <h4>Payload definition</h4>
         <table>
