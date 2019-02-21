@@ -17,8 +17,8 @@ module.exports = {
         ]
     ],
     themeConfig: {
-        repo: 'fe3dback/http-debug-tools',
-        repoLabel: 'HTTP Debug Client App',
+        repo: 'fe3dback/web-debug-proto/issues',
+        repoLabel: 'github issues',
 
         docsRepo: 'fe3dback/web-debug-proto',
         docsDir: '',

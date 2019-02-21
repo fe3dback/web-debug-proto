@@ -66,10 +66,8 @@ from persistent storage
     
     ::: tip example of body
     
-    @todo example of returned json
-    ```json
-    { ... }
-    ```
+    <<< @/examples/scheme_v1_short.json
+    
     :::
     
     - **case 2:** Not allowed (usually on production):
