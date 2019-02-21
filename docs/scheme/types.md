@@ -53,6 +53,107 @@ Recommended to use 4 version of UUID (random)
 "5b67d5ef-b9cc-4a3e-896d-93e5f4500e09"
 ```
 
+## importance
+
+extends [int](#int)
+
+Importance is int from 1 to 8, used for filtering in client
+
+All standart log levels should be mapped on `server` to int by this table:
+
+| level | importance | description |
+| --- | ----------------- | ----------- |
+| debug | 1 | Detailed debug information |
+| info | 2 | Interesting events. Examples: User logs in |
+| notice | 3 |  Normal but significant events |
+| warning | 4 | Exceptional occurrences that are not errors. Examples: Use of deprecated APIs, poor use of an API, undesirable things that are not necessarily wrong |
+| error | 5 | Runtime errors that do not require immediate action but should typically be logged and monitored |
+| critical | 6 | Critical conditions. Example: Application component unavailable, unexpected exception |
+| alert | 7 | Action must be taken immediately. Example: Entire website down, database unavailable, etc. This should trigger the SMS alerts and wake you up |
+| emergency | 8 | Emergency: system is unusable |
+
+
+#### Client recommendations
+
+- Use range widget for fast filtering by importance
+
+Example of UI with filters:
+
+```text
+
+    Importance:
+
+     1            4            8 
+    '--------------------------'
+                         ^ 
+```
+
+## tag
+
+extends [string](#string)
+
+Tag is string, can be separated with colon `:`.
+
+Used for filtering events in client.
+
+#### Multipart filter
+If tag contain one colon, then:
+- **left** part is `filter name`
+- **right** part is `filter value`
+
+```json
+"name:value"
+```
+```json
+"scope:kernel"
+```
+```json
+"db:mysql"
+```
+```json
+"db:mongo"
+```
+
+#### Flag
+All tags without colon is `flag` (true / false)
+
+```json
+"is_production"
+```
+```json
+"need_refactoring"
+```
+
+#### Client rules
+
+- Get all tags from all events and build filters
+- If tag is `Multipart filter`, display it like `multiple select`
+- If tag is `Flag`, display it like `checkbox`
+- Filters should be sorted by alphabet (ascending order from a-z)
+
+Example of UI with filters:
+
+```text
+
+    Event filters:
+    .-----------..---------..--------.
+    |   db ▲    || scope ▼ || name ▼ |  [x] is_production
+    |-----------|'---------''--------'  [ ] need_refactoring
+    | [v] mysql |
+    | [ ] mongo |
+    '-----------'
+    .--------------------------------------------------------.
+    |                           ..                           |
+    '--------------------------------------------------------'
+    .--------------------------------------------------------.
+    |                           ..                           |
+    '--------------------------------------------------------'
+    .--------------------------------------------------------.
+    |                           ..                           |
+    '--------------------------------------------------------'
+
+```
+
 ## ts_mili
 
 extends [int](#int)
@@ -182,7 +283,20 @@ range between pos <= i && i <= pos_end.
 - Add button "load more" above and below loaded lines.
 - Use syntax highlighting based on file extension (without lint)
 
+## >>>> Development line <<<<
+:::danger
+// ------------------------------------------------------
+
+// @todo: In development below this line
+
+// ------------------------------------------------------
+:::
+
 ## param
+
+:::danger
+@todo will be removed
+:::
 
 ```json
 {
@@ -200,17 +314,15 @@ range between pos <= i && i <= pos_end.
 
 ## user
 
-:::warning
- In development
-
-@todo convert this model to event (and merge with acl?)
+:::danger
+@todo will be removed
 :::
 
 ```json
 {
     "id": "12345",
     "name": "admin",
-    "email": "admin@example.com"
+    "email": "admin@example.com",
     "groups": [
         {
             "id": "42",
@@ -241,10 +353,8 @@ range between pos <= i && i <= pos_end.
 
 ## user_group
 
-:::warning
- In development
-
-@todo convert this model to event (and merge with acl?)
+:::danger
+@todo will be removed
 :::
 
 ```json
@@ -280,10 +390,8 @@ range between pos <= i && i <= pos_end.
 
 ## db_query
 
-:::warning
- In development
-
-@todo rename to query and merge with other query times (cache, io, etc..)
+:::danger
+@todo will be removed
 :::
 
 ```json
@@ -341,10 +449,8 @@ range between pos <= i && i <= pos_end.
 
 ## cache_query
 
-:::warning
- In development
-
-@todo rename to query and merge with other query times (cache, io, etc..)
+:::danger
+@todo will be removed
 :::
 
 ```json
@@ -431,76 +537,11 @@ function fetch(key: $name): return: CachedData
 }
 ```
 
-## log
-
-:::warning
- In development
-
-@todo level to importance of event
-:::
-
-```json
-{
-    "level": "warning",
-    "message": "User X is logged in admin panel",
-    "group": "php:app_03",
-    "context": "{\"user_id\": 12345}",
-    "called_from": {
-        "file": "/src/Http/ArticlesController.php",
-        "line": 68
-    },
-}
-```
-
-#### Model definition
-| key | type | required | description |
-| --- | ---- | :------: | ----------- |
-| level | [log_level](#log-level) | Y | log level |
-| message | [string](#string) | Y | full log text |
-| group | [string](#string) || group title, for example server name, instance id, user ip, component, etc..  |
-| context | [string](#string) || additional log context, should be free-form json in string |
-| event_dt | [ts_mili](#ts-mili) || exact log time |
-| called_from | [location](#location) || code location where this logged |
-
-#### Server recommendations
-
-- DO NOT add date-time to message prefix. For example "`[14:12:20] Hello world`".
-
-#### Client rules
-
-- Use different colors for different log levels, for example red for "errors", blue for "info", etc..
-- Display log context in read-only text field
-
-#### Client recommendations
-
-- Highlight context field as JSON
-- Hide context by default and show only after user click on log
-- Show context string length near log, if length > 0
-- Hide log event_dt by default
-
-## log_level
-
-ENUM extends [string](#string)
-
-```json
-"warning"
-```
-
-#### Enum values
-| key | description |
-| --- | ----------- |
-| debug | Detailed debug information |
-| info | Interesting events. Examples: User logs in |
-| notice | Normal but significant events |
-| warning | Exceptional occurrences that are not errors. Examples: Use of deprecated APIs, poor use of an API, undesirable things that are not necessarily wrong |
-| error | Runtime errors that do not require immediate action but should typically be logged and monitored |
-| critical | Critical conditions. Example: Application component unavailable, unexpected exception |
-| alert | Action must be taken immediately. Example: Entire website down, database unavailable, etc. This should trigger the SMS alerts and wake you up |
-| emergency | Emergency: system is unusable |
-
-[read more in rfc5424](https://tools.ietf.org/html/rfc5424)
-
 ## email
+
+:::danger
+@todo will be removed
+:::
 
 ```json
 {
@@ -533,10 +574,8 @@ ENUM extends [string](#string)
 
 ## route
 
-:::warning
- In development
-
-@todo
+:::danger
+@todo will be removed
 :::
 
 ```json
@@ -572,10 +611,8 @@ ENUM extends [string](#string)
 
 ## middleware
 
-:::warning
- In development
-
-@todo
+:::danger
+@todo will be removed
 :::
 
 ```json
@@ -604,10 +641,8 @@ ENUM extends [string](#string)
 
 ## template
 
-:::warning
- In development
-
-@todo
+:::danger
+@todo will be removed
 :::
 
 ```json
@@ -645,10 +680,8 @@ ENUM extends [string](#string)
 
 ## event
 
-:::warning
- In development
-
-@todo not needed anymore
+:::danger
+@todo will be removed
 :::
 
 ```json
@@ -677,10 +710,8 @@ ENUM extends [string](#string)
 
 ## access_check
 
-:::warning
- In development
-
-@todo
+:::danger
+@todo will be removed
 :::
 
 ```json

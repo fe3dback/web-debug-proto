@@ -48,6 +48,11 @@
 </template>
 
 <script>
+// disable highlight all blocks by default
+window.Prism = {
+  manual: true
+};
+
 import Home from '../components/Home.vue'
 import Navbar from '../components/Navbar.vue'
 import Page from '../components/Page.vue'

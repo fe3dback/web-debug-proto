@@ -53,6 +53,7 @@ module.exports = {
                     collapsable: false,
                     children: [
                         './scheme/',
+                        './scheme/events',
                         './scheme/types',
                     ]
                 },

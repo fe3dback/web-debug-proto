@@ -26,18 +26,18 @@ You can read more about JSON here:
 :::
 
 ### Event properties
-| name | type | required | description | example |
-| ---- | ---- | -------- | ----------- | ------- |
-| type | [Event types](#event-types) | Y | event type define object properties of `payload` | `"request"` |
-| payload | object | Y | event details (context), available properties depend on `type` | `{ .. }` |
-| tags | [string[]](types.html#string) | | tags used for filtering events in `client` | `["db","mysql"]` |
-| importance | [int (1-8) or rfc5424 levels](types.html#importance) | | used for filtering in `client` | `5` |
-| time | [ts_mili](types.html#ts-mili) | | event timestamp in ms | `1547058563454` |
-| duration | [duration_mili](types.html#duration-mili) | | event duration in ms | `4` |
-| success | [bool](types.html#bool) | | `false` in case of error / alarm. Will be highlighted in `client` | `false` |
-| called_from | [location](types.html#location) | | code location, where this event is called from (ex. where template is rendered) | `{ .. }` |
-| defined_in | [location](types.html#location) | | code location, where this event is called from (ex. where template is rendered) | `{ .. }` |
-| nested | [`Scheme`](#scheme-definition) | | recursion to `Scheme`. Can contains other nested `Events` | `{ .. }` |
+| name | type | required | description |
+| ---- | ---- | -------- | ----------- |
+| type | [Event types](#event-types) | Y | event type define object properties of `payload` |
+| payload | object | Y | event details (context), available properties depend on `type` |
+| tags | [tag[]](types.html#tag) | | tags used for filtering events in `client` |
+| importance | [importance](types.html#importance) | | used for filtering in `client` |
+| time | [ts_mili](types.html#ts-mili) | | event timestamp in ms |
+| duration | [duration_mili](types.html#duration-mili) | | event duration in ms |
+| success | [bool](types.html#bool) | | `false` in case of error / alarm. Will be highlighted in `client` |
+| called_from | [location](types.html#location) | | code location, where this event is called from (ex. where template is rendered) |
+| defined_in | [location](types.html#location) | | code location, where this event is called from (ex. where template is rendered) |
+| nested | [`Scheme`](#scheme-definition) | | recursion to `Scheme`. Can contains other nested `Events` |
 
 ### Event types
 
@@ -45,29 +45,14 @@ This is known list of event types, but you can use any own types
 
 | type | event description |
 | --- | ----------- |
-| [income_request](types.html#income-request) | request received event, payload contain all request props (method, uri, cookies, params, etc..) |
-| [middleware](types.html#middleware) | middleware triggered event |
-| [access_check](types.html#access-check) | checked permissions and auth during request |
-| [query](types.html#query) | database, io, cache queries during request |
-| [log](types.html#log) | application logs |
-| [email](types.html#email) | sent email events |
-| [template](types.html#template) | rendered templates |
-| [response](types.html#template) | response event before output, payload contain response properties (status code, total duration, etc..) |
-
-### importance map table (mapped level to int)
-
-property `importance` can by `int` `[from 1 to 8]`, or mapped level `string` in `enum list`:
-
-| level | importance | description |
-| --- | ----------------- | ----------- |
-| debug | 1 | Detailed debug information |
-| info | 2 | Interesting events. Examples: User logs in |
-| notice | 3 |  Normal but significant events |
-| warning | 4 | Exceptional occurrences that are not errors. Examples: Use of deprecated APIs, poor use of an API, undesirable things that are not necessarily wrong |
-| error | 5 | Runtime errors that do not require immediate action but should typically be logged and monitored |
-| critical | 6 | Critical conditions. Example: Application component unavailable, unexpected exception |
-| alert | 7 | Action must be taken immediately. Example: Entire website down, database unavailable, etc. This should trigger the SMS alerts and wake you up |
-| emergency | 8 | Emergency: system is unusable |
+| [log](events.html#log) | application logs |
+| [income_request](events.html#income-request) | request received event, payload contain all request props (method, uri, cookies, params, etc..) |
+| [middleware](events.html#middleware) | middleware triggered event |
+| [access_check](events.html#access-check) | checked permissions and auth during request |
+| [query](events.html#query) | database, io, cache queries during request |
+| [email](events.html#email) | sent email events |
+| [template](events.html#template) | rendered templates |
+| [response](events.html#template) | response event before output, payload contain response properties (status code, total duration, etc..) |
 
 ### Example of scheme tree
 
