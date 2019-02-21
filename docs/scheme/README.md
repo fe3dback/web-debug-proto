@@ -56,6 +56,10 @@ This is known list of event types, but you can use any own types
 
 ### Example of scheme tree
 
+:::warning
+@todo redraw this
+:::
+
 ```text
 
                                     .---------------------------.
@@ -99,14 +103,6 @@ this is old stuff, please ignore all below
 | --- | ---- | -------- | ----------- |
 | id | [uuid](types.html#uuid) | Y | unique request id |
 | version | [int](types.html#int) | Y | schema version |
-| request_at | [ts_mili](types.html#ts-mili) || request received at |
-| request_method | [method](types.html#method) || request HTTP method |
-| request_uri | [uri](types.html#uri) || full request uri |
-| request_headers | [param[]](types.html#param) || list of received request headers |
-| request_query | [param[]](types.html#param) || list of received request query (GET) params |
-| request_body | [param[]](types.html#param) || list of received request body (POST) params |
-| request_cookies | [param[]](types.html#param) || list of received request cookies |
-| session_params | [param[]](types.html#param) || loaded session params |
 | route | [route](types.html#route) || matched route controller |
 | middleware | [middleware[]](types.html#middleware) || list of executed middleware |
 | memory_peak | [byte](types.html#byte) || max/peak memory usage (in bytes) during request |
@@ -114,7 +110,6 @@ this is old stuff, please ignore all below
 | acl | [access_check[]](types.html#access-check) || checked permissions and auth during request |
 | db_queries | [db_query[]](types.html#db-query) || database queries during request |
 | cache_queries | [cache_query[]](types.html#cache-query) || cache queries during request |
-| logs | [log[]](types.html#log) || application logs |
 | emails | [email[]](types.html#email) || sent emails |
 | templates | [template[]](types.html#template) || rendered templates |
 | events | [event[]](types.html#event) || triggered events |

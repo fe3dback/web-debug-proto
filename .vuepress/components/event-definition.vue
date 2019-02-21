@@ -1,101 +1,10 @@
-<template>
-    <div>
-        <h4>Preview</h4>
-        <div class="btn-group">
-            <div class="btn" :class="{'btn-active': isModePayload}" @click="setMode('payload')">Only payload</div>
-            <div class="btn" :class="{'btn-active': isModeExample}" @click="setMode('example')">Example</div>
-        </div>
-
-        <div v-if="isModeExample">
-            <x-code-preview :code=codeExample></x-code-preview>
-        </div>
-        <div v-if="isModePayload">
-            <x-code-preview :code=codePayload></x-code-preview>
-        </div>
-
-        <h4>Payload definition</h4>
-        <table>
-            <thead>
-                <tr>
-                    <th>key</th>
-                    <th>type</th>
-                    <th>required</th>
-                    <th>description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="prop in this.payload">
-                    <td>{{prop.key}}</td>
-                    <td>{{prop.type}}</td>
-                    <td style="text-align: center;">
-                        <span v-if="prop.required">Y</span>
-                    </td>
-                    <td>{{prop.description}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</template>
-
-<style lang="stylus">
-    .btn-group {
-        display: block;
-        margin-bottom: 5px;
-        width: 100%;
-        border-bottom: 1px solid $arrowBgColor;
-    }
-    .btn {
-        cursor: pointer;
-        text-align: center;
-        font-size: 12px;
-        line-height: 14px;
-        display: inline-block;
-        width: 100px;
-        border: 1px solid $arrowBgColor;
-        border-bottom: none;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        padding: 5px 10px;
-        margin: 0;
-        color: $textColor;
-    }
-    .btn-active {
-        background-color: $accentColor;
-        color: white;
-    }
-</style>
-
 <script>
     export default {
         props: {
+            payload: Array,
             type: {
                 type: String,
                 required: true
-            },
-            payload: {
-                type: Array,
-                required: true,
-                validator(list) {
-                    list.forEach((v) => {
-                        if (typeof v.key === 'undefined') {
-                            return false;
-                        }
-                        if (typeof v.type === "undefined") {
-                            return false;
-                        }
-                        if (typeof v.required === "undefined") {
-                            return false;
-                        }
-                        if (typeof v.description === "undefined") {
-                            return false;
-                        }
-                        if (typeof v.example === "undefined") {
-                            return false;
-                        }
-                    });
-
-                    return typeof list === 'object';
-                }
             },
             tags: {
                 type: Array,
@@ -202,7 +111,60 @@
         methods: {
             setMode(mode) {
                 this.mode = mode
-            },
+            }
         }
     }
 </script>
+
+<template>
+    <div>
+        <h4>Payload definition</h4>
+        <props-table :payload="payload"></props-table>
+
+        <h4>Preview</h4>
+        <div class="btn-group">
+            <div class="btn" :class="{'btn-active': isModePayload}" @click="setMode('payload')">Only payload</div>
+            <div class="btn" :class="{'btn-active': isModeExample}" @click="setMode('example')">Example</div>
+        </div>
+
+        <div v-if="isModeExample">
+            <x-code-preview :code=codeExample :isStacked=true></x-code-preview>
+        </div>
+        <div v-if="isModePayload">
+            <x-code-preview :code=codePayload :isStacked=true></x-code-preview>
+        </div>
+    </div>
+</template>
+
+<style lang="stylus">
+    .btn-group {
+        display: block;
+        max-width: 100%;
+        padding: 5px 0 0 10px;
+        height: 25px;
+        background-color: #f1f1f1;
+    }
+    .btn {
+        cursor: pointer;
+        text-align: center;
+        font-size: 12px;
+        line-height: 14px;
+        display: inline-block;
+        min-width: 100px;
+        border: 1px solid #c2c2c2;
+        border-bottom: none;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        padding: 5px 10px;
+        margin: 0;
+        color: $textColor;
+        background-color: white;
+        height: 25px;
+        box-sizing: border-box;
+    }
+    .btn-active {
+        background-color: #212121;
+        color: #e7c000;
+        border-color: #e7c000;
+    }
+</style>

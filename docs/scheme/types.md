@@ -83,9 +83,9 @@ Example of UI with filters:
 
     Importance:
 
-     1            4            8 
+     1            4            8
     '--------------------------'
-                         ^ 
+                         ^
 ```
 
 ## tag
@@ -251,21 +251,41 @@ SHOULD be used only for file content loading (for code display purpose).
 
 Allows you to specify the exact link to the position in the project code
 
-```json
-{
-   "file": "/src/renderer/main.js",
-   "line": 123,
-   "pos": 56
-}
-```
+<type-definition :payload='[
 
-#### Model definition
-| key | type | required | description |
-| --- | ---- | :------: | ----------- |
-| file | [rel_path](#rel-path) | Y | relative path to project root |
-| line | [int](#int) || line in file |
-| pos | [int](#int) || cursor position in line (work only if "line" defined) |
-| pos_end | [int](#int) || cursor end position in line (work only if "pos" defined) |
+    {
+        key: "file",
+        type: "rel_path",
+        required: true,
+        description: "relative path to project root",
+        example: "\"/src/renderer/main.js\""
+    },
+
+    {
+        key: "line",
+        type: "int",
+        required: false,
+        description: "line in file",
+        example: "123"
+    },
+
+    {
+        key: "pos",
+        type: "int",
+        required: false,
+        description: "cursor position in line (work only if \"line\" defined)",
+        example: "56"
+    },
+
+    {
+        key: "pos_end",
+        type: "int",
+        required: false,
+        description: "cursor end position in line (work only if \"pos\" defined)",
+        example: "56"
+    },
+
+]' />
 
 #### Client rules
 
@@ -283,6 +303,29 @@ range between pos <= i && i <= pos_end.
 - Add button "load more" above and below loaded lines.
 - Use syntax highlighting based on file extension (without lint)
 
+
+## param
+
+<type-definition :payload='[
+
+    {
+        key: "key",
+        type: "string",
+        required: true,
+        description: "param title/code/name",
+        example: "\"title\""
+    },
+
+    {
+        key: "value",
+        type: "string",
+        required: true,
+        description: "param value",
+        example: "\"hello world\""
+    },
+
+]' />
+
 ## >>>> Development line <<<<
 :::danger
 // ------------------------------------------------------
@@ -291,26 +334,6 @@ range between pos <= i && i <= pos_end.
 
 // ------------------------------------------------------
 :::
-
-## param
-
-:::danger
-@todo will be removed
-:::
-
-```json
-{
-    "key": "title",
-    "value": "hello world"
-}
-```
-
-#### Model definition
-| key | type | required | description |
-| --- | ---- | :------: | ----------- |
-| key | [string](#string) | Y | param title/code/name |
-| value | [string](#string) | Y | param value |
-
 
 ## user
 

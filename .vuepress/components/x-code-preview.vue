@@ -1,5 +1,5 @@
 <template>
-    <pre><code v-html="codeHighlighted()"></code></pre>
+    <pre :class="{'stacked-code-block': isStacked}"><code v-html="codeHighlighted()"></code></pre>
 </template>
 
 <script>
@@ -29,7 +29,8 @@
             })
         },
         props: {
-            code: String
+            code: String,
+            isStacked: Boolean,
         },
         methods: {
             codeHighlighted() {
@@ -42,3 +43,11 @@
         }
     }
 </script>
+
+<style>
+    .stacked-code-block {
+        margin: 0 !important;
+        border-top-left-radius: 0 !important;
+        border-top-right-radius: 0  !important;
+    }
+</style>

@@ -22,7 +22,7 @@ lang: en-US
         description: "additional log context, should be free-form json in string",
         example: "\"{\\\"user_id\\\": 12345}\""
     },
-    
+
 ]' />
 
 #### Server recommendations
@@ -58,9 +58,66 @@ property `importance` can by `int` `[from 1 to 8]`, so you need to map `log leve
 
 ## Income Request
 
-:::warning
-@todo
-:::
+<event-definition type="income_request" :time=1547058563454 :defined_in=null :payload='[
+
+    {
+        key: "method",
+        type: "method",
+        required: false,
+        description: "request HTTP method",
+        example: "\"POST\""
+    },
+
+    {
+        key: "uri",
+        type: "uri",
+        required: false,
+        description: "full request uri",
+        example: "\"/api/hello?foo=bar\""
+    },
+
+    {
+        key: "headers",
+        type: "param[]",
+        required: false,
+        description: "list of received request headers",
+        example: "[{\"key\": \"accept\", \"value\": \"text/html\"}, {\"key\": \"cache-control\", \"value\": \"no-cache\"}]"
+    },
+
+    {
+        key: "query",
+        type: "param[]",
+        required: false,
+        description: "list of received request query (GET) params",
+        example: "[{\"key\": \"foo\", \"value\": \"bar\"}]"
+    },
+
+    {
+        key: "body",
+        type: "param[]",
+        required: false,
+        description: "list of received request body (POST) params",
+        example: "[{\"key\": \"foo\", \"value\": \"bar\"}]"
+    },
+
+    {
+        key: "cookies",
+        type: "param[]",
+        required: false,
+        description: "list of received request cookies",
+        example: "[{\"key\": \"PHPSESS\", \"value\": \"l6q632qbzua97o3p2p71biefbkrijbil\"}, {\"key\": \"_ym_uid\", \"value\": \"15356948596\"}]"
+    },
+
+    {
+        key: "session",
+        type: "param[]",
+        required: false,
+        description: "loaded session params",
+        example: "[{\"key\": \"userid\", \"value\": 21114}, {\"key\": \"views_count\", \"value\": 23}]"
+    },
+
+]' />
+
 
 ## Middleware
 
