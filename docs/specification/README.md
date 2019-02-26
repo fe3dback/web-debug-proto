@@ -64,7 +64,7 @@ Client make request to api endpoint and load all debug data.
 ```
 
                            .-,(  ),-.                            Client
-                        .-(          )-.                          __  _ 
+                        .-(          )-.                          __  _
                        (    network     )<#######################[__]|=|
                         '-(          ).-'                        /::/|_|
                             '-.( ).-'                               #
@@ -92,9 +92,9 @@ Client make request to api endpoint and load all debug data.
 ```
 :::
 
-:::warning SAAS
-- external saas can fix all cons for you
-- currently no saas available yet
+:::warning IAAS
+- external IAAS can fix all cons for you
+- currently no IAAS available yet
 :::
 
 ## Proposal transports
@@ -161,7 +161,7 @@ Client SHOULD load debug data from transports by priority:
 :::warning proposal additional transport priorities
 
 - html meta
-    - if Content-Type is html, 
+    - if Content-Type is html,
     - if HTML contains meta tag with id `id="x-http-debug"` and json
 - json response
     - if Content-Type is application/json

@@ -18,15 +18,15 @@
             },
             time: {
                 type: [Number],
-                default: null
+                default: 1547058563454
             },
             duration: {
                 type: [Number],
-                default: null
+                default: 14
             },
             success: {
                 type: [Boolean],
-                default: null
+                default: true
             },
             defined_in: {
                 type: [Object],
@@ -161,6 +161,7 @@
         background-color: white;
         height: 25px;
         box-sizing: border-box;
+        font-weight: bold;
     }
     .btn-active {
         background-color: #212121;

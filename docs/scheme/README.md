@@ -12,18 +12,26 @@ You can read more about JSON here:
 
 ## Scheme definition
 
-- `Scheme` is list of `Events`
-- each `Event` is json object with [properties](#event-properties)
-- each `Event` has `type`, `payload` and other not required properties
+- `Scheme` = `id` + `version` + `Event[]`
+- `id` = unique request id (uuid)
+- `version` = scheme version (unsigned int)
+- each `Event` is object
+- each `Event` has `type`, `payload` and other not required [properties](#event-properties)
 - `Event` `payload` object scheme depend on `Event` `type`
 - `Event` `type` is enum, but can by any custom type. `client` will display `payload` as raw json if type is not known
 - `Event` can contains nested `Scheme` with another `events`
 
-:::tip
+:::tip example of minimal scheme markup
+<<< @/examples/scheme_definition.json
+:::
+
+<note title="Note">
+
 - Scheme is sort of logs (events) list with context (payload).
 - Scheme can by recursive (Tree structure)
 - Events in scheme will be sorted from oldest to newest
-:::
+
+</note>
 
 ### Event properties
 | name | type | required | description |
@@ -101,16 +109,12 @@ this is old stuff, please ignore all below
 
 | key | type | required | description |
 | --- | ---- | -------- | ----------- |
-| id | [uuid](types.html#uuid) | Y | unique request id |
-| version | [int](types.html#int) | Y | schema version |
 | route | [route](types.html#route) || matched route controller |
-| middleware | [middleware[]](types.html#middleware) || list of executed middleware |
 | memory_peak | [byte](types.html#byte) || max/peak memory usage (in bytes) during request |
 | user | [user](types.html#user) || current auth user |
 | acl | [access_check[]](types.html#access-check) || checked permissions and auth during request |
 | db_queries | [db_query[]](types.html#db-query) || database queries during request |
 | cache_queries | [cache_query[]](types.html#cache-query) || cache queries during request |
-| emails | [email[]](types.html#email) || sent emails |
 | templates | [template[]](types.html#template) || rendered templates |
 | events | [event[]](types.html#event) || triggered events |
 | response_at | [ts_mili](types.html#ts-mili) || response generated at |

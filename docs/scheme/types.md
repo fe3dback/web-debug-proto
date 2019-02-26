@@ -560,41 +560,6 @@ function fetch(key: $name): return: CachedData
 }
 ```
 
-## email
-
-:::danger
-@todo will be removed
-:::
-
-```json
-{
-    "subject": "Welcome to our forum",
-    "body": "<h1>Hello John</h1> <p>Now you are member of our great C++ community!</p>",
-    "from": "welcome@example.com",
-    "to": "john_doe@example.com",
-    "reply_to": "contact@forum.example.com"
-}
-```
-
-#### Model definition
-| key | type | required | description |
-| --- | ---- | :------: | ----------- |
-| subject | [string](#string) | Y | mail subject (title) |
-| body | [html](#html) | Y | email content (html or plain text) |
-| from | [string](#string) | Y | sender email address |
-| to | [string[]](#string) | Y | to email addresses |
-| cc | [string[]](#string) || [CC](https://en.wikipedia.org/wiki/Carbon_copy) addresses |
-| bcc | [string[]](#string) || [BCC](https://en.wikipedia.org/wiki/Blind_carbon_copy) addresses |
-| reply_to | [string](#string) || reply-to target email address |
-| attachments | [string[]](#string) || list of attachment file names (without actual content) |
-| event_dt | [ts_mili](#ts-mili) || mail sending start time |
-| called_from | [location](#location) || where email is sent from |
-
-#### Client recommendations
-
-- Use editor with html syntax highlight for body
-- If possible add preview mode for body with rendered html
-
 ## route
 
 :::danger
@@ -631,36 +596,6 @@ function fetch(key: $name): return: CachedData
 | allowed_methods | [method[]](#method) || list of allowed request methods for this route |
 | type | [string](#string) || helpful if you have many route types (api based, controllers, callbacks, views, etc..) |
 | defined_in | [location](#location) || where is this route defined |
-
-## middleware
-
-:::danger
-@todo will be removed
-:::
-
-```json
-{
-    "name": "\Illuminate\Routing\Middleware\ThrottleRequests",
-    "group": "System",
-    "duration": 16,
-    "defined_in": {
-        "file": "/vendor/illuminate/src/Routing/Middleware/ThrottleRequests.php"
-    },
-    "called_from": {
-        "file": "/app/Http/Kernel.php",
-        "line": 75
-    },
-}
-```
-
-#### Model definition
-| key | type | required | description |
-| --- | ---- | :------: | ----------- |
-| name | [string](#string) | Y | Middleware name |
-| group | [string](#string) || Helpful if you have lot of middleware (validation, auth, fetch, etc..) |
-| duration | [duration_mili](#duration-mili) || middleware execute duration |
-| defined_in | [location](#location) || where is this middleware defined |
-| called_from | [location](#location) || where was middleware called |
 
 ## template
 

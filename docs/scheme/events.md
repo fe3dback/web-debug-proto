@@ -5,7 +5,7 @@ lang: en-US
 
 ## Log
 
-<event-definition type="log" :time=1547058563454 :defined_in=null :payload='[
+<event-definition type="log" :defined_in=null :payload='[
 
     {
         key: "message",
@@ -58,7 +58,7 @@ property `importance` can by `int` `[from 1 to 8]`, so you need to map `log leve
 
 ## Income Request
 
-<event-definition type="income_request" :time=1547058563454 :defined_in=null :payload='[
+<event-definition type="income_request" :defined_in=null :payload='[
 
     {
         key: "method",
@@ -121,9 +121,17 @@ property `importance` can by `int` `[from 1 to 8]`, so you need to map `log leve
 
 ## Middleware
 
-:::warning
-@todo
-:::
+<event-definition type="middleware" :payload='[
+
+    {
+        key: "name",
+        type: "string",
+        required: true,
+        description: "Middleware name",
+        example: "\"\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\""
+    }
+
+]' />
 
 ## Access Check
 
@@ -139,9 +147,78 @@ property `importance` can by `int` `[from 1 to 8]`, so you need to map `log leve
 
 ## Email
 
-:::warning
-@todo
-:::
+<event-definition type="email" :payload='[
+
+    {
+        key: "subject",
+        type: "string",
+        required: true,
+        description: "mail subject (title)",
+        example: "\"Welcome to our forum\""
+    },
+
+    {
+        key: "body",
+        type: "html",
+        required: true,
+        description: "email content (html or plain text)",
+        example: "\"&lt;h1&gt;Hello John&lt;/h1&gt; &lt;p&gt;Now you are member of our great C++ community!&lt;/p&gt;\""
+    },
+
+    {
+        key: "from",
+        type: "string",
+        required: true,
+        description: "sender email address",
+        example: "\"no-reply@example.com\""
+    },
+
+    {
+        key: "to",
+        type: "string[]",
+        required: true,
+        description: "to email addresses",
+        example: "[\"john_doe@example.com\", \"admin@example.com\"]"
+    },
+
+    {
+        key: "cc",
+        type: "string[]",
+        required: false,
+        description: "CC addresses",
+        example: "[\"john_doe@example.com\", \"admin@example.com\"]"
+    },
+
+    {
+        key: "bcc",
+        type: "string[]",
+        required: false,
+        description: "BCC addresses",
+        example: "[\"john_doe@example.com\", \"admin@example.com\"]"
+    },
+
+    {
+        key: "reply_to",
+        type: "string",
+        required: false,
+        description: "reply-to target email address",
+        example: "\"contact@forum.example.com\""
+    },
+
+    {
+        key: "attachments",
+        type: "string[]",
+        required: false,
+        description: "list of attachment file names (without actual content)",
+        example: "[\"payment-info.pdf\"]"
+    }
+
+]' />
+
+#### Client recommendations
+
+- Use editor with html syntax highlight for body
+- If possible add preview mode for body with rendered html
 
 ## Template
 
