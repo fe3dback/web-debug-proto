@@ -1,5 +1,5 @@
 module.exports = {
-    base: '/web-debug-proto/',
+    base: '/',
     title: 'Web Debug Protocol',
     description: 'Union debug protocol for modern web applications. Any language, any framework.',
     markdown: {
