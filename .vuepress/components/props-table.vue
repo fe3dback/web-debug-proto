@@ -30,8 +30,13 @@
             },
         },
         methods: {
-            prepareTypeForUriHash(typeString) {
-                return typeString.replace(/\[\]/g, '');
+            prepareTypeForUriHash(prop) {
+
+                if (prop.url) {
+                    return prop.url;
+                }
+
+                return '/docs/scheme/types.html#' + prop.type.replace(/\[\]/g, '');
             }
         }
     }
@@ -52,7 +57,7 @@
             <td>{{prop.key}}</td>
             <td>
                 <NavLink :item="{
-                    link: '/docs/scheme/types.html#' + prepareTypeForUriHash(prop.type),
+                    link: prepareTypeForUriHash(prop),
                     text: prop.type
                 }"></NavLink>
             </td>

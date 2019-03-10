@@ -27,11 +27,11 @@ We recommend split implementation on 2 levels:
 - Basic **module**, implement all OOP models, tree structures
 and code interfaces.
 
-- **This module** *SHOULD* care about storing and retrieve information from storage by guid. can delegate storage functionality to common interface (database, cache, file system, etc..). Storage *CAN BE* configurable.
+- **This module** *SHOULD* care about storing and retrieve information from storage by uuid. can delegate storage functionality to common interface (database, cache, file system, etc..). Storage *CAN BE* configurable.
 
 - **This module** *MUST NOT* collect any information about the request.
 
-- By default, if no debug/profile information is provided, and `store()` method is called, only `scheme version` and request `guid` *SHOULD BE* saved to storage.
+- By default, if no debug/profile information is provided, and `store()` method is called, only `scheme version` and request `uuid` *SHOULD BE* saved to storage.
 
 #### How to write core module
 
@@ -46,7 +46,7 @@ $storage = new SQLiteStorage(..);
 $profiler = new Profiler(version: 1);
 $profiler->setStorage(IStorage: $storage);
 $profiler->setProfileEndpoint(uri: '/_profile/');
-$profiler->getGuid(); // ef95a542-25a3-4f71-a0e9-640c92f43813
+$profiler->getUuid(); // ef95a542-25a3-4f71-a0e9-640c92f43813
 
 // add some info about current request
 $profiler->setUri(uri: $request->getUri());
@@ -79,15 +79,15 @@ And define specified profile route in your app:
 
 // client will request "/_profile/ef95a542-25a3-4f71-a0e9-640c92f43813"
 
-Route::get('/_profile/{guid}', function ($guid) {
+Route::get('/_profile/{uuid}', function ($uuid) {
 
     // disable debug on production services
     if ($this->isProduction()) {
         return $response->withCode(code: 403);
     }
 
-    // find profile data by guid
-    $data = $profiler->get(guid: $guid);
+    // find profile data by uuid
+    $data = $profiler->get(uuid: $uuid);
 
     if ($data) {
         $response->addHeader(key: 'Content-Type', value: 'application/json');

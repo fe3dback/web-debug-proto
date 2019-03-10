@@ -12,18 +12,34 @@ You can read more about JSON here:
 
 ## Scheme definition
 
-- `Scheme` = `id` + `version` + `Event[]`
-- `id` = unique request id (uuid)
-- `version` = scheme version (unsigned int)
-- each `Event` is object
-- each `Event` has `type`, `payload` and other not required [properties](#event-properties)
-- `Event` `payload` object scheme depend on `Event` `type`
-- `Event` `type` is enum, but can by any custom type. `client` will display `payload` as raw json if type is not known
-- `Event` can contains nested `Scheme` with another `events`
+<type-definition title_payload="" title_preview="" :payload='[
 
-:::tip example of minimal scheme markup
-<<< @/examples/scheme_definition.json
-:::
+    {
+        key: "id",
+        type: "uuid",
+        required: true,
+        description: "unique request id (uuid)",
+        example: "\"ef95a542-25a3-4f71-a0e9-640c92f43813\""
+    },
+
+    {
+        key: "version",
+        type: "int",
+        required: true,
+        description: "scheme version",
+        example: "1"
+    },
+
+    {
+        key: "events",
+        type: "Event[]",
+        required: true,
+        description: "debug/profile information about request",
+        example: "[]",
+        url: "/docs/scheme/#event-definition"
+    },
+
+]' />
 
 <note title="Note">
 
@@ -33,21 +49,95 @@ You can read more about JSON here:
 
 </note>
 
-### Event properties
-| name | type | required | description |
-| ---- | ---- | -------- | ----------- |
-| type | [Event types](#event-types) | Y | event type define object properties of `payload` |
-| payload | object | Y | event details (context), available properties depend on `type` |
-| tags | [tag[]](types.html#tag) | | tags used for filtering events in `client` |
-| importance | [importance](types.html#importance) | | used for filtering in `client` |
-| time | [ts_mili](types.html#ts-mili) | | event timestamp in ms |
-| duration | [duration_mili](types.html#duration-mili) | | event duration in ms |
-| success | [bool](types.html#bool) | | `false` in case of error / alarm. Will be highlighted in `client` |
-| called_from | [location](types.html#location) | | code location, where this event is called from (ex. where template is rendered) |
-| defined_in | [location](types.html#location) | | code location, where this event is called from (ex. where template is rendered) |
-| nested | [`Scheme`](#scheme-definition) | | recursion to `Scheme`. Can contains other nested `Events` |
+### Event definition
 
-### Event types
+<type-definition title_payload="" :payload='[
+
+    {
+        key: "type",
+        type: "event_type",
+        required: true,
+        description: "event type define object properties of `payload`",
+        example: "\"log\"",
+        url: "/docs/scheme/#event-type-definition"
+    },
+
+    {
+        key: "payload",
+        type: "object",
+        required: true,
+        description: "event details (context). Available properties depend on event type",
+        example: "{}"
+    },
+
+    {
+        key: "tags",
+        type: "tag[]",
+        required: false,
+        description: "used for filtering in client",
+        example: "[\"db:mysql\",\"server:php_03\",\"is_production\"]"
+    },
+
+    {
+        key: "importance",
+        type: "importance",
+        required: false,
+        description: "used for filtering in client",
+        example: "4"
+    },
+
+    {
+        key: "time",
+        type: "ts_mili",
+        required: false,
+        description: "event timestamp in ms",
+        example: "1547058563454"
+    },
+
+    {
+        key: "duration",
+        type: "duration_mili",
+        required: false,
+        description: "event duration in ms",
+        example: "15"
+    },
+
+    {
+        key: "success",
+        type: "bool",
+        required: false,
+        description: "false in case of error / alarm. Will be highlighted in client",
+        example: "true"
+    },
+
+    {
+        key: "called_from",
+        type: "location",
+        required: false,
+        description: "code location, where this event is called from (ex. controller where template is being rendered)",
+        example: "<@type-location"
+    },
+
+    {
+        key: "defined_in",
+        type: "location",
+        required: false,
+        description: "where code defined in (ex. path to template file)",
+        example: "<@type-location"
+    },
+
+    {
+        key: "nested",
+        type: "Event[]",
+        required: false,
+        description: "contains other nested Events",
+        example: "[]",
+        url: "/docs/scheme/#event-definition"
+    },
+
+]' />
+
+### Event-Type definition
 
 This is known list of event types, but you can use any own types
 

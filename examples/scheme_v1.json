@@ -8,19 +8,7 @@
       "time": 1547058561177,
       "importance": 1,
       "payload": {
-        "level": "debug",
         "message": "User X is try to login to admin panel",
-        "group": "php:app_03"
-      }
-    },
-
-    {
-      "type": "log",
-      "time": 1547058571245,
-      "importance": 2,
-      "payload": {
-        "level": "warning",
-        "message": "User X is logged in admin panel",
         "group": "php:app_03"
       }
     },
@@ -49,26 +37,15 @@
       "nested": [
         {
           "type": "log",
-          "time": 1547058563454,
-          "importance": 1,
-          "payload": {
-            "level": "debug",
-            "message": "Formatting sql query"
-          }
-        },
-        {
-          "type": "log",
           "time": 1547058571245,
           "importance": 5,
           "payload": {
-            "level": "error",
             "message": "Mysql server is going away!"
           }
         },
         {
           "type": "email",
           "time": 1547058583422,
-          "importance": 3,
           "payload": {
             "subject": "Mysql is down!",
             "body": "<h1>Hello admin</h1> <p>mysql is down.</p>",
