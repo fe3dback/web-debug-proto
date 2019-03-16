@@ -144,13 +144,14 @@ This is known list of event types, but you can use any own types
 | type | event description |
 | --- | ----------- |
 | [log](events.html#log) | application logs |
-| [income_request](events.html#income-request) | request received event, payload contain all request props (method, uri, cookies, params, etc..) |
-| [middleware](events.html#middleware) | middleware triggered event |
-| [access_check](events.html#access-check) | checked permissions and auth during request |
-| [query](events.html#query) | database, io, cache queries during request |
-| [email](events.html#email) | sent email events |
-| [template](events.html#template) | rendered templates |
+| [query](events.html#query) | database queries during request |
+| [request](events.html#request) | request received event, payload contain all request props (method, uri, cookies, params, etc..) |
 | [response](events.html#template) | response event before output, payload contain response properties (status code, total duration, etc..) |
+| [middleware](events.html#middleware) | middleware triggered event |
+| [template](events.html#template) | rendered templates |
+| [email](events.html#email) | sent email events |
+| [event](events.html#event) | executed code events or hooks |
+| [access_check](events.html#access-check) | checked permissions and auth during request |
 
 ### Example of scheme tree
 

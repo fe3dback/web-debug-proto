@@ -51,7 +51,7 @@
         },
         data() {
             return {
-                mode: 'payload'
+                mode: 'payload-0'
             }
         },
         computed: {
@@ -86,29 +86,57 @@
                 }
 
                 this.payload.forEach((prop) => {
-                    model.payload[prop.key] = JSON.parse(prop.example)
+
+                    let examples = [];
+                    if (typeof prop.example === 'object') {
+                        examples = prop.example;
+                    } else {
+                        examples.push(prop.example)
+                    }
+
+                    model.payload[prop.key] = JSON.parse(examples.shift())
                 });
 
                 return model
             },
 
-            modelPayload() {
-                return this.modelExample.payload;
-            },
-            codePayload() {
-                return JSON.stringify(this.modelPayload, null, 2);
+            codePayloadVariants() {
+
+                let variants = [];
+                this.payload.forEach((prop) => {
+
+                    let examples = [];
+
+                    if (typeof prop.example === 'object') {
+                        examples = prop.example;
+                    } else {
+                        examples.push(prop.example)
+                    }
+
+                    examples.forEach((exp, ind) => {
+                        if (typeof variants[ind] === 'undefined') {
+                            variants[ind] = {};
+                        }
+
+                        variants[ind][prop.key] = JSON.parse(exp);
+                    });
+                });
+
+                return variants.map((obj) => {
+                    return JSON.stringify(obj, null, 2);
+                })
             },
             codeExample() {
                 return JSON.stringify(this.modelExample, null, 2);
-            },
-            isModePayload() {
-                return this.mode === 'payload';
             },
             isModeExample() {
                 return this.mode === 'example';
             },
         },
         methods: {
+            isModePayload(ind) {
+                return this.mode === `payload-${ind}`;
+            },
             setMode(mode) {
                 this.mode = mode
             }
@@ -123,15 +151,20 @@
 
         <h4>Preview</h4>
         <div class="btn-group">
-            <div class="btn" :class="{'btn-active': isModePayload}" @click="setMode('payload')">Only payload</div>
-            <div class="btn" :class="{'btn-active': isModeExample}" @click="setMode('example')">Example</div>
+            <div v-for="v, ind in codePayloadVariants" class="btn" :class="{'btn-active': isModePayload(ind)}" @click="setMode(`payload-${ind}`)">
+                <span v-if="codePayloadVariants.length >= 2">Payload only (ex. #{{ind + 1}})</span>
+                <span v-else>Payload only</span>
+            </div>
+            <div class="btn" :class="{'btn-active': isModeExample}" @click="setMode('example')">
+                Full package
+            </div>
         </div>
 
+        <div v-for="vCode, ind in codePayloadVariants" v-if="isModePayload(ind)">
+            <x-code-preview :code=vCode :isStacked=true></x-code-preview>
+        </div>
         <div v-if="isModeExample">
             <x-code-preview :code=codeExample :isStacked=true></x-code-preview>
-        </div>
-        <div v-if="isModePayload">
-            <x-code-preview :code=codePayload :isStacked=true></x-code-preview>
         </div>
     </div>
 </template>

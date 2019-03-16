@@ -21,7 +21,7 @@ lang: en-US
         required: false,
         description: "additional log context, should be free-form json in string",
         example: "\"{\\\"user_id\\\": 12345}\""
-    },
+    }
 
 ]' />
 
@@ -56,9 +56,61 @@ property `importance` can by `int` `[from 1 to 8]`, so you need to map `log leve
 | alert | 7 | Action must be taken immediately. Example: Entire website down, database unavailable, etc. This should trigger the SMS alerts and wake you up |
 | emergency | 8 | Emergency: system is unusable |
 
-## Income Request
 
-<event-definition type="income_request" :defined_in=null :payload='[
+## Query
+
+
+<event-definition type="query" :payload='[
+
+    {
+        key: "target",
+        type: "string",
+        required: true,
+        description: "query target, for example db, io, cache or service name (mysql, influxdb, redis, rabbitmq, etc..). Used in client for group all request to same service",
+        example: [
+            "\"mysql\"",
+            "\"mongodb\""
+        ]
+    },
+
+    {
+        key: "query",
+        type: "string",
+        required: true,
+        description: "request query string",
+        example: [
+            "\"SELECT * FROM articles WHERE ID = 2;\"",
+            "\"{ status: \\\"A\\\", qty: { $lt: 30 } }\""
+        ]
+    },
+
+    {
+        key: "syntax",
+        type: "string",
+        required: false,
+        description: "syntax for query highlight in client",
+        example: [
+            "\"sql\"",
+            "\"json\""
+        ],
+        enum_values: ["sql", "json", "xml", "text"]
+    }
+
+]' />
+
+#### Client rules
+- Display total execution duration/count for all queries by each `target`. For example:
+    - target `mysql` 7 requests, total 210 ms.
+    - target `redis` 12 requests, total 64 ms.
+
+#### Client recommendations
+
+- Highlight `query` by file type defined in `syntax` field. If field `syntax` is not set, do not highlight query.
+- hide full query under cut, if length of `query` field is >= 512 chars
+
+## Request
+
+<event-definition type="request" :defined_in=null :payload='[
 
     {
         key: "method",
@@ -114,10 +166,15 @@ property `importance` can by `int` `[from 1 to 8]`, so you need to map `log leve
         required: false,
         description: "loaded session params",
         example: "[{\"key\": \"userid\", \"value\": 21114}, {\"key\": \"views_count\", \"value\": 23}]"
-    },
+    }
 
 ]' />
 
+## Response
+
+:::warning
+@todo
+:::
 
 ## Middleware
 
@@ -133,17 +190,19 @@ property `importance` can by `int` `[from 1 to 8]`, so you need to map `log leve
 
 ]' />
 
-## Access Check
+## Template
 
-:::warning
-@todo
-:::
+<event-definition type="template" :payload='[
 
-## Query
+    {
+        key: "name",
+        type: "string",
+        required: true,
+        description: "executed/rendered template name",
+        example: "\"/resources/templates/header.twig\""
+    }
 
-:::warning
-@todo
-:::
+]' />
 
 ## Email
 
@@ -220,13 +279,29 @@ property `importance` can by `int` `[from 1 to 8]`, so you need to map `log leve
 - Use editor with html syntax highlight for body
 - If possible add preview mode for body with rendered html
 
-## Template
+## Event
 
-:::warning
-@todo
-:::
+<event-definition type="event" :payload='[
 
-## Response
+    {
+        key: "name",
+        type: "string",
+        required: true,
+        description: "Called event name (listener class, id, etc..)",
+        example: "\"ConsoleHandler::onCommand\""
+    },
+
+    {
+        key: "group",
+        type: "string",
+        required: false,
+        description: "Helpful if you want split event by logic groups (kernel, loader, app, etc..)",
+        example: "\"kernel\""
+    }
+
+]' />
+
+## Access Check
 
 :::warning
 @todo

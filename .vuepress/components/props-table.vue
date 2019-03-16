@@ -64,7 +64,17 @@
             <td style="text-align: center;">
                 <span v-if="prop.required">Y</span>
             </td>
-            <td>{{prop.description}}</td>
+            <td>
+                <p>{{prop.description}}</p>
+                <template v-if="prop.enum_values">
+                    <b>Allowed values:</b>
+                    <ul>
+                        <li v-for="eValue in prop.enum_values">
+                            {{eValue}}
+                        </li>
+                    </ul>
+                </template>
+            </td>
         </tr>
         </tbody>
     </table>
