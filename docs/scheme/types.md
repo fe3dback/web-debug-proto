@@ -302,6 +302,21 @@ range between pos <= i && i <= pos_end.
 
 ]' />
 
+## acl_vote
+
+ENUM extends [string](#string)
+
+```json
+"GRANT"
+```
+
+#### Enum values
+| key | description |
+| --- | ----------- |
+| GRANT | access is allowed for this check (vote for grant access) |
+| DENIED | access is not allowed for this check (vote for denied access) |
+
+
 ## >>>> Development line <<<<
 :::danger
 // ------------------------------------------------------
@@ -476,83 +491,3 @@ function fetch(key: $name): return: CachedData
     $profiler->cacheIO(type: 'WRITE', key: $name);
 }
 ```
-
-## access_check
-
-:::danger
-@todo will be removed
-:::
-
-```json
-{
-    "request": "authrorizedUser",
-    "control": "post:42",
-    "action": "view",
-    "vote": "GRANT",
-    "group": "ui",
-    "checked_in": {
-        "file": "/src/Controller/PostController.php",
-        "line": 15
-    }
-}
-```
-
-#### Model definition
-| key | type | required | description |
-| --- | ---- | :------: | ----------- |
-| request | [string](#string) | Y | Access Request Object (username, api token, etc..) |
-| control | [string](#string) || Access Control Object (article, admin panel, secure page, etc..) |
-| action | [string](#string) || Access eXtension Object (read, edit, delete, etc..) |
-| vote | [acl_vote](#acl-vote) | Y | ACL Resolution (allow, denied) |
-| group | [string](#string) || Helpful if you want split access checks by logic groups (db, ui, user, api, etc..) |
-| checked_in | [location](#location) || where this access is checked |
-
-Abstract ACL check.
-
-:::tip example (voters)
-If you use voters, define each vote as acl, for example:
-```php
-$this->denyAccessUnlessGranted('view', $post);
-```
-```json
-{
-    "request": "authrorizedUser",
-    "control": "post:42",
-    "action": "view",
-    "vote": "GRANT"
-}
-```
-:::
-
-:::tip classic ACL tables
-```text{4}
-Root
-|- Staff            ( ALLOW [View Own - Projects], ALLOW [Add - Projects], ALLOW [Edit Own - Projects] )
-|  |- Facilitators  ( DENY  [Add - Projects] )
-|  |- Managers      ( ALLOW [Edit - Projects] )
-|  '- Executives    ( ALLOW [Edit - Projects], ALLOW [Delete - Projects] )
-```
-
-```json
-{
-    "request": "Managers",
-    "control": "Projects",
-    "action": "Edit",
-    "vote": "ALLOW"
-}
-```
-:::
-
-## acl_vote
-
-ENUM extends [string](#string)
-
-```json
-"GRANT"
-```
-
-#### Enum values
-| key | description |
-| --- | ----------- |
-| GRANT | access is allowed for this check (vote for grant access) |
-| DENIED | access is not allowed for this check (vote for denied access) |

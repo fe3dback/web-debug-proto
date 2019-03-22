@@ -303,6 +303,85 @@ property `importance` can by `int` `[from 1 to 8]`, so you need to map `log leve
 
 ## Access Check
 
-:::warning
-@todo
-:::
+Access checking based on ACO (Access control objects) or ACL (access control list).
+
+<event-definition type="access_check" :payload='[
+
+    {
+        key: "access",
+        type: "acl_vote",
+        required: true,
+        description: "result of checking permission (GRANT/DENIED)",
+        example: "\"GRANT\""
+    },
+    
+    {
+        key: "control",
+        type: "string",
+        required: false,
+        description: "name of object with restricted access",
+        example: "\"Engines\""
+    },
+    
+    {
+        key: "object",
+        type: "string",
+        required: false,
+        description: "name of requester object (who want get restricted access)",
+        example: "\"R2-D2\""
+    },
+    
+    {
+        key: "action",
+        type: "string",
+        required: false,
+        description: "name of required action",
+        example: "\"publish\""
+    },
+
+]' />
+
+#### For example:
+
+Who/Where | Cockpit | Lounge | Guns | Engines
+--------- | ------- | ------ | ---- | -------
+Han | Y | Y | Y | Y
+Chewie | Y | Y | Y | 
+Obi-wan |  | Y |  | 
+Luke | | Y | | 
+R2-D2 | | | | Y
+C3PO | | Y | | 
+
+can `R2-D2` access to `Cockpit`?
+```json
+{
+  "access": "DENIED",
+  "control": "Cockpit",
+  "object": "R2-D2"
+}
+```
+
+can `R2-D2` access to `Lounge`?
+```json
+{
+  "access": "GRANT",
+  "control": "Engines",
+  "object": "R2-D2"
+}
+```
+
+can `user admin` access to `publish` object `article helloWorld`?
+```json
+{
+  "access": "GRANT",
+  "control": "article:helloWorld",
+  "object": "user:admin",
+  "action": "publish"
+}
+```
+
+#### How to use this with votes system
+
+You can add votes mapped by access (GRANT = vote up, DENIED = vote down),
+
+Final result of voting can be added with higher importance

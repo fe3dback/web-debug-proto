@@ -151,7 +151,7 @@ This is known list of event types, but you can use any own types
 | [template](events.html#template) | rendered templates |
 | [email](events.html#email) | sent email events |
 | [event](events.html#event) | executed code events or hooks |
-| [access_check](events.html#access-check) | checked permissions and auth during request |
+| [access_check](events.html#access-check) | checked permissions during request |
 
 ### Example of scheme tree
 
