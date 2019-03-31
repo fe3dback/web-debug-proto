@@ -32,7 +32,7 @@ You can read more about JSON here:
 
     {
         key: "events",
-        type: "Event[]",
+        type: "event[]",
         required: true,
         description: "debug/profile information about request",
         example: "[]",
@@ -55,7 +55,7 @@ You can read more about JSON here:
 
     {
         key: "type",
-        type: "event_type",
+        type: "eventType",
         required: true,
         description: "event type define object properties of `payload`",
         example: "\"log\"",
@@ -88,15 +88,15 @@ You can read more about JSON here:
 
     {
         key: "time",
-        type: "ts_mili",
+        type: "tsMs",
         required: false,
-        description: "event timestamp in ms",
+        description: "event date-time in ms",
         example: "1547058563454"
     },
 
     {
         key: "duration",
-        type: "duration_mili",
+        type: "durationMs",
         required: false,
         description: "event duration in ms",
         example: "15"
@@ -111,7 +111,7 @@ You can read more about JSON here:
     },
 
     {
-        key: "called_from",
+        key: "calledFrom",
         type: "location",
         required: false,
         description: "code location, where this event is called from (ex. controller where template is being rendered)",
@@ -119,7 +119,7 @@ You can read more about JSON here:
     },
 
     {
-        key: "defined_in",
+        key: "definedIn",
         type: "location",
         required: false,
         description: "where code defined in (ex. path to template file)",
@@ -128,7 +128,7 @@ You can read more about JSON here:
 
     {
         key: "nested",
-        type: "Event[]",
+        type: "event[]",
         required: false,
         description: "contains other nested Events",
         example: "[]",
@@ -137,7 +137,7 @@ You can read more about JSON here:
 
 ]' />
 
-### Event-Type definition
+### Event Type definition
 
 This is known list of event types, but you can use any own types
 
@@ -151,72 +151,8 @@ This is known list of event types, but you can use any own types
 | [template](events.html#template) | rendered templates |
 | [email](events.html#email) | sent email events |
 | [event](events.html#event) | executed code events or hooks |
-| [access_check](events.html#access-check) | checked permissions during request |
-
-### Example of scheme tree
-
-:::warning
-@todo redraw this
-:::
-
-```text
-
-                                    .---------------------------.
-                 .---------------.  |          payload          |
-                 |     Event     |  |---------------------------|
-                 |---------------|  | event details (context),  |
-  .-----------.  | * type        |  | available properties      |
-  |  Scheme   |  | * payload     |  | depend on type            |
-  |-----------|  | - tags        |  '---------------------------'
-  | [ Event ] |  | - time        |                ^
-  | [ Event ] |->| - duration    |----------------------------.
-  | [ .. ]    |  | - importance  |         v                  |
-  | [ Event ] |  | - success     |  .------------.            |
-  '-----------'  | - called_from |  |    type    |            |
-        ^        | - defined_in  |  |------------|            |
-        #        | - nested      |  | log        |            |
-        #        '---------------'  | query      |            |
-        #                           | email      |            v
-        #                           | template   |     .------------.
-        #                           | middleware |     |   nested   |
-        #                           | ..         |     |------------|
-        #                           | CUSTOM     |     | *recursion |
-        #                           '------------'     '------------'
-        #                                                     #
-        <######################################################
-
-```
+| [accessCheck](events.html#accessCheck) | checked permissions during request |
 
 ### Example of scheme
 
 <<< @/examples/scheme_v1.json
-
-## todo (refactor this)
-
-:::warning
-this is old stuff, please ignore all below
-:::
-
-
-| key | type | required | description |
-| --- | ---- | -------- | ----------- |
-| route | [route](types.html#route) || matched route controller |
-| memory_peak | [byte](types.html#byte) || max/peak memory usage (in bytes) during request |
-| user | [user](types.html#user) || current auth user |
-| acl | [access_check[]](types.html#access-check) || checked permissions and auth during request |
-| db_queries | [db_query[]](types.html#db-query) || database queries during request |
-| cache_queries | [cache_query[]](types.html#cache-query) || cache queries during request |
-| templates | [template[]](types.html#template) || rendered templates |
-| events | [event[]](types.html#event) || triggered events |
-| response_at | [ts_mili](types.html#ts-mili) || response generated at |
-| response_code | [int](types.html#int) || response HTTP code |
-
-
-#### Future fields proposal for next version
-
-| key | type | required | description |
-| --- | ---- | -------- | ----------- |
-| timeline | @todo || profile date for waterfall, all executed code methods with duration |
-| async_requests | @todo || not blocking HTTP request (also support debug) |
-| sub_requests | @todo || nested, blocking HTTP request (also support debug) |
-| custom | @todo || custom tables, view, widgets.. |

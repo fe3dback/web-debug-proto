@@ -1,0 +1,30 @@
+[
+  {
+    "key": "file",
+    "type": "relativePath",
+    "required": true,
+    "description": "relative path to project root",
+    "example": "\"/src/renderer/main.js\""
+  },
+  {
+    "key": "line",
+    "type": "int",
+    "required": false,
+    "description": "line in file",
+    "example": "123"
+  },
+  {
+    "key": "positionStart",
+    "type": "int",
+    "required": false,
+    "description": "cursor position in line (work only if \"line\" defined)",
+    "example": "56"
+  },
+  {
+    "key": "positionEnd",
+    "type": "int",
+    "required": false,
+    "description": "cursor end position in line (work only if \"pos\" defined)",
+    "example": "56"
+  }
+]

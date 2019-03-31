@@ -7,33 +7,25 @@
       "type": "log",
       "time": 1547058561177,
       "importance": 1,
+      "tags": [
+        "php:app_03"
+      ],
       "payload": {
-        "message": "User X is try to login to admin panel",
-        "group": "php:app_03"
+        "message": "User X is try to login to admin panel"
       }
     },
 
     {
-      "type": "request",
+      "type": "query",
       "time": 1547058563454,
+      "duration": 18,
       "importance": 4,
       "payload": {
-        "type": "mysql",
+        "target": "mysql",
         "query": "UPDATE users SET last_loggin = ?dt WHERE id = ?id",
-        "parsed": "UPDATE users SET last_loggin = '2019-02-20 10:32:20' WHERE id = 1000",
-        "duration": 15,
-        "bindings": [
-          {
-            "key": "id",
-            "value": "1000"
-          },
-          {
-            "key": "dt",
-            "value": "2019-02-20 10:32:20"
-          }
-        ]
+        "syntax": "sql"
       },
-      "state": false,
+      "success": false,
       "nested": [
         {
           "type": "log",

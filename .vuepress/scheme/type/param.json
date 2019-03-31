@@ -1,0 +1,16 @@
+[
+  {
+    "key": "key",
+    "type": "string",
+    "required": true,
+    "description": "param title/code/name",
+    "example": "\"title\""
+  },
+  {
+    "key": "value",
+    "type": "string",
+    "required": true,
+    "description": "param value",
+    "example": "\"hello world\""
+  }
+]

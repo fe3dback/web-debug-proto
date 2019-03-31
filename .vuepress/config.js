@@ -45,7 +45,6 @@ module.exports = {
                         './specification/',
                         './specification/transport/headers-request',
                         './specification/transport/json-response',
-                        './specification/transport/html-meta',
                     ]
                 },
                 {

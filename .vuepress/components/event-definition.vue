@@ -1,7 +1,7 @@
 <script>
     export default {
         props: {
-            payload: Array,
+            payload: [Array, String],
             type: {
                 type: String,
                 required: true
@@ -28,7 +28,7 @@
                 type: [Boolean],
                 default: true
             },
-            defined_in: {
+            definedIn: {
                 type: [Object],
                 default: () => {
                     return {
@@ -37,14 +37,14 @@
                     }
                 }
             },
-            called_from: {
+            calledFrom: {
                 type: [Object],
                 default: () => {
                     return {
                         file: "/src/Http/Middleware/Auth.php",
                         line: 95,
-                        pos: 8,
-                        pos_end: 72,
+                        positionStart: 8,
+                        positionEnd: 72,
                     }
                 }
             }
@@ -78,11 +78,11 @@
                 if (this.success) {
                     model['success'] = this.success;
                 }
-                if (this.defined_in) {
-                    model['defined_in'] = this.defined_in;
+                if (this.definedIn) {
+                    model['definedIn'] = this.definedIn;
                 }
-                if (this.called_from) {
-                    model['called_from'] = this.called_from;
+                if (this.calledFrom) {
+                    model['calledFrom'] = this.calledFrom;
                 }
 
                 this.payload.forEach((prop) => {

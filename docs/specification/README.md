@@ -47,7 +47,7 @@ HTTP Response for `Request`
 Server return only debug UUID and api endpoint.
 Client make request to api endpoint and load all debug data.
 
-[read specification](transport/headers-request)
+[read specification](transport/headers-request.html)
 
 :::tip pros
 + universal transport, working everywhere
@@ -97,18 +97,12 @@ Client make request to api endpoint and load all debug data.
 - currently no IAAS available yet
 :::
 
-## Proposal transports
-
-:::danger
-This transports currently is not supported
-:::
-
 ### json response (injected)
 
 All debug data injected to normal application json response (in special
 json key)
 
-[read specification](transport/json-response)
+[read specification](transport/json-response.html)
 
 :::tip pros
 + server does not store anything
@@ -124,26 +118,6 @@ json key)
 - server should implement client logic for handling nested requests
 :::
 
-
-### html meta (injected)
-
-All debug data injected to header meta tag with special id.
-
-[read specification](transport/html-meta)
-
-:::tip pros
-+ server does not store anything
-+ no additional round trips (all debug data already in response)
-+ working with custom js clients (html app)
-:::
-
-:::danger cons
-- working only with html pages
-- increase body size and request time
-- client should get json by xpath and parse it from string (not all clients can do this)
-- server should implement client logic for handling nested requests
-:::
-
 ## Implementations
 
 #### Server side
@@ -156,15 +130,6 @@ same time.
 Client SHOULD load debug data from transports by priority:
 - Headers+api
     - if Response Headers contain `X-Http-Debug-Id`
-
-
-:::warning proposal additional transport priorities
-
-- html meta
-    - if Content-Type is html,
-    - if HTML contains meta tag with id `id="x-http-debug"` and json
 - json response
     - if Content-Type is application/json
     - if json body contains key `"_x_http_debug": "{..}"`
-
-:::

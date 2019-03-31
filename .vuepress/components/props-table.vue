@@ -36,7 +36,7 @@
                     return prop.url;
                 }
 
-                return '/docs/scheme/types.html#' + prop.type.replace(/\[\]/g, '');
+                return '/docs/scheme/types.html#' + prop.type.replace(/\[\]/g, '').toLowerCase();
             }
         }
     }
@@ -66,10 +66,10 @@
             </td>
             <td>
                 <p>{{prop.description}}</p>
-                <template v-if="prop.enum_values">
+                <template v-if="prop.enumValues">
                     <b>Allowed values:</b>
                     <ul>
-                        <li v-for="eValue in prop.enum_values">
+                        <li v-for="eValue in prop.enumValues">
                             {{eValue}}
                         </li>
                     </ul>

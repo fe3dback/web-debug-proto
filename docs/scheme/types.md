@@ -63,13 +63,47 @@ Recommended to use 4 version of UUID (random)
 "5b67d5ef-b9cc-4a3e-896d-93e5f4500e09"
 ```
 
+## tsMs
+
+extends [int](#int)
+
+unixtime (GMT) with milliseconds
+
+```json
+1547058561177
+```
+
+## durationMs
+
+extends [int](#int)
+
+time duration in milliseconds
+
+```json
+140
+```
+
+## byte
+
+extends [int](#int)
+
+size in bytes
+
+```json
+1024
+```
+
+::: tip example (1 MB)
+1000000
+:::
+
 ## importance
 
 extends [int](#int)
 
 Importance is int from 1 to 8, used for filtering in client
 
-All standart log levels should be mapped on `server` to int by this table:
+All standard log levels should be mapped on `server` to int by this table:
 
 | level | importance | description |
 | --- | ----------------- | ----------- |
@@ -164,40 +198,6 @@ Example of UI with filters:
 
 ```
 
-## ts_mili
-
-extends [int](#int)
-
-unixtime (GMT) with milliseconds
-
-```json
-1547058561177
-```
-
-## duration_mili
-
-extends [int](#int)
-
-time duration in milliseconds
-
-```json
-140
-```
-
-## byte
-
-extends [int](#int)
-
-size in bytes
-
-```json
-1024
-```
-
-::: tip example (1 MB)
-1000000
-:::
-
 ## method
 
 extends [string](#string)
@@ -235,7 +235,7 @@ Relative:
 "/api/hello?foo=bar"
 ```
 
-## rel_path
+## relativePath
 
 extends [string](#string)
 
@@ -265,13 +265,13 @@ Allows you to specify the exact link to the position in the project code
 
 #### Client rules
 
-- Prepend defined project root path to "rel_path"
+- Prepend defined project root path to "relativePath"
 - Load file in Read-only mode and fetch +-3 lines from specified "line"
 - If no "line" specified, you should display only path to file
 - Do not display absolute path with project root, only relative.
-- Highlight all "line", if no "pos" specified
-- Highlight all "line" and add "cursor" if only "line" and "pos" specified
-- If "pos" and "pos_end" specified, client application MUST highlight
+- Highlight all "line", if no "positionStart" specified
+- Highlight all "line" and add "cursor" if only "line" and "positionStart" specified
+- If "positionStart" and "positionEnd" specified, client application MUST highlight
 range between pos <= i && i <= pos_end.
 
 #### Client recommendations
@@ -282,27 +282,9 @@ range between pos <= i && i <= pos_end.
 
 ## param
 
-<type-definition :payload='[
+<type-definition payload='@type-param' />
 
-    {
-        key: "key",
-        type: "string",
-        required: true,
-        description: "param title/code/name",
-        example: "\"title\""
-    },
-
-    {
-        key: "value",
-        type: "string",
-        required: true,
-        description: "param value",
-        example: "\"hello world\""
-    },
-
-]' />
-
-## acl_vote
+## aclVote
 
 ENUM extends [string](#string)
 
@@ -315,179 +297,3 @@ ENUM extends [string](#string)
 | --- | ----------- |
 | GRANT | access is allowed for this check (vote for grant access) |
 | DENIED | access is not allowed for this check (vote for denied access) |
-
-
-## >>>> Development line <<<<
-:::danger
-// ------------------------------------------------------
-
-// @todo: In development below this line
-
-// ------------------------------------------------------
-:::
-
-## user
-
-:::danger
-@todo will be removed
-:::
-
-```json
-{
-    "id": "12345",
-    "name": "admin",
-    "email": "admin@example.com",
-    "groups": [
-        {
-            "id": "42",
-            "title": "editors",
-            "perms": [
-                {
-                    "key": "edit",
-                    "value": "articles"
-                }
-            ]
-        },
-        {
-            "id": "14",
-            "title": "Content Editors"
-        }
-    ]
-}
-```
-
-#### Model definition
-| key | type | required | description |
-| --- | ---- | :------: | ----------- |
-| id | [string](#string) | Y | user id |
-| name | [string](#string) || user name/code/title |
-| email | [string](#string) || user email |
-| groups | [user_group[]](#user-group) || list of user groups |
-
-
-## user_group
-
-:::danger
-@todo will be removed
-:::
-
-```json
-{
-    "id": "42",
-    "title": "editors",
-    "perms": [
-        {
-            "key": "articles",
-            "value": "view"
-        },
-        {
-            "key": "articles",
-            "value": "edit"
-        }
-    ],
-     "props": [
-         {
-             "key": "custom_prop_name",
-             "value": "hello_world"
-         }
-     ],
-}
-```
-
-#### Model definition
-| key | type | required | description |
-| --- | ---- | :------: | ----------- |
-| id | [string](#string) | Y | group id |
-| title | [string](#string) || group name/code/title |
-| perms | [param[]](#param) || list of perms |
-| props | [param[]](#param) || any additional custom props |
-
-## cache_query
-
-:::danger
-@todo will be removed
-:::
-
-```json
-{
-    "type": "HIT",
-    "group": "articles",
-    "key": "octocats-in-space",
-    "storage": "redis",
-    "duration": 89,
-    "ttl": 60000,
-    "size": 1594,
-    "called_from": {
-        "file": "/src/Http/ArticlesController.php",
-        "line": 68
-    },
-    "tags": ["articles", "home_page", "author:32", "category:14,12"]
-}
-```
-
-::: tip ttl example
-60000 = current time + 60 sec.
-:::
-
-#### Model definition
-| key | type | required | description |
-| --- | ---- | :------: | ----------- |
-| type | [cache_type](#cache-type) | Y | cache IO record type |
-| key | [string](#string) | Y | cache key |
-| group | [string](#string) || cache group |
-| event_dt | [ts_mili](#ts-mili) || cache exact start time |
-| storage | [string](#string) || storage label, useful if you use several storage at once |
-| duration | [duration_mili](#duration-mili) || cache save/load time duration |
-| ttl | [duration_mili](#duration-mili) || cache time to live, relative to current time |
-| size | [byte](#byte) || cache body size in bytes |
-| called_from | [location](#location) || code location where this cache is called |
-| tags | [string[]](#string) || list of cache tags |
-
-## cache_type
-
-ENUM extends [string](#string)
-
-```json
-"HIT"
-```
-
-#### Enum values
-| key | description |
-| --- | ----------- |
-| HIT | Cache exist, data loaded from cache |
-| MISS | Cache is not exist |
-| WRITE | Create/Update data in cache |
-| DELETE | Deleting data from cache |
-
-`Total reads = (HIT + MISS)`
-
-`Total writes = (WRITE + DELETE)`
-
-`Total IO = (reads + writes)`
-
-::: tip Server Tip
-If you want to restore cache after MISS, you should add to cache
-two records MISS + WRITE
-:::
-
-#### Server Example
-
-```php
-// pseudocode
-
-function fetch(key: $name): return: CachedData
-{
-    if (Cache::keyExist(key: $name)) {
-        $profiler->cacheIO(type: 'HIT', key: $name);
-        return Cache::load(key: $name);
-    }
-
-    $profiler->cacheIO(type: 'MISS', key: $name);
-
-    // load from backend and put data to cache
-
-    $data = $backendApi->load(key: $name);
-    Cache::save(key: $name, data: $data);
-    $profiler->cacheIO(type: 'WRITE', key: $name);
-}
-```

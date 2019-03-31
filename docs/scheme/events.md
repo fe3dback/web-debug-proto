@@ -5,7 +5,7 @@ lang: en-US
 
 ## Log
 
-<event-definition type="log" :defined_in=null :payload='[
+<event-definition type="log" :definedIn=null :payload='[
 
     {
         key: "message",
@@ -59,7 +59,6 @@ property `importance` can by `int` `[from 1 to 8]`, so you need to map `log leve
 
 ## Query
 
-
 <event-definition type="query" :payload='[
 
     {
@@ -93,7 +92,7 @@ property `importance` can by `int` `[from 1 to 8]`, so you need to map `log leve
             "\"sql\"",
             "\"json\""
         ],
-        enum_values: ["sql", "json", "xml", "text"]
+        enumValues: ["sql", "json", "xml", "text"]
     }
 
 ]' />
@@ -110,7 +109,7 @@ property `importance` can by `int` `[from 1 to 8]`, so you need to map `log leve
 
 ## Request
 
-<event-definition type="request" :defined_in=null :payload='[
+<event-definition type="request" :definedIn=null :payload='[
 
     {
         key: "method",
@@ -172,9 +171,21 @@ property `importance` can by `int` `[from 1 to 8]`, so you need to map `log leve
 
 ## Response
 
-:::warning
-@todo
-:::
+<event-definition type="response" :definedIn=null :calledFrom=null :payload='[
+
+    {
+        key: "memoryPeak",
+        type: "byte",
+        required: false,
+        description: "max/peak memory usage (in bytes) during request",
+        example: "1024"
+    },
+
+]' />
+
+#### Server rules
+
+- Use `duration` field for total request time
 
 ## Middleware
 
@@ -257,7 +268,7 @@ property `importance` can by `int` `[from 1 to 8]`, so you need to map `log leve
     },
 
     {
-        key: "reply_to",
+        key: "replyTo",
         type: "string",
         required: false,
         description: "reply-to target email address",
@@ -305,24 +316,24 @@ property `importance` can by `int` `[from 1 to 8]`, so you need to map `log leve
 
 Access checking based on ACO (Access control objects) or ACL (access control list).
 
-<event-definition type="access_check" :payload='[
+<event-definition type="accessCheck" :payload='[
 
     {
         key: "access",
-        type: "acl_vote",
+        type: "aclVote",
         required: true,
         description: "result of checking permission (GRANT/DENIED)",
         example: "\"GRANT\""
     },
-    
+
     {
         key: "control",
         type: "string",
-        required: false,
+        required: true,
         description: "name of object with restricted access",
         example: "\"Engines\""
     },
-    
+
     {
         key: "object",
         type: "string",
@@ -330,7 +341,7 @@ Access checking based on ACO (Access control objects) or ACL (access control lis
         description: "name of requester object (who want get restricted access)",
         example: "\"R2-D2\""
     },
-    
+
     {
         key: "action",
         type: "string",
@@ -346,11 +357,11 @@ Access checking based on ACO (Access control objects) or ACL (access control lis
 Who/Where | Cockpit | Lounge | Guns | Engines
 --------- | ------- | ------ | ---- | -------
 Han | Y | Y | Y | Y
-Chewie | Y | Y | Y | 
-Obi-wan |  | Y |  | 
-Luke | | Y | | 
+Chewie | Y | Y | Y |
+Obi-wan |  | Y |  |
+Luke | | Y | |
 R2-D2 | | | | Y
-C3PO | | Y | | 
+C3PO | | Y | |
 
 can `R2-D2` access to `Cockpit`?
 ```json
@@ -361,7 +372,7 @@ can `R2-D2` access to `Cockpit`?
 }
 ```
 
-can `R2-D2` access to `Lounge`?
+can `R2-D2` access to `Engines`?
 ```json
 {
   "access": "GRANT",
