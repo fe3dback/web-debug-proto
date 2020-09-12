@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Events | Web Debug Protocol</title>
+    <meta name="generator" content="VuePress 1.5.4">
+    
+    <meta name="description" content="Union debug protocol for modern web applications. Any language, any framework.">
+    <link rel="preload" href="/web-debug-proto/assets/css/0.styles.255eed16.css" as="style"><link rel="preload" href="/web-debug-proto/assets/js/app.5818d223.js" as="script"><link rel="preload" href="/web-debug-proto/assets/js/2.5741dcd5.js" as="script"><link rel="preload" href="/web-debug-proto/assets/js/17.9c8903de.js" as="script"><link rel="preload" href="/web-debug-proto/assets/js/5.6fab73cf.js" as="script"><link rel="preload" href="/web-debug-proto/assets/js/4.4f324507.js" as="script"><link rel="preload" href="/web-debug-proto/assets/js/8.bf96a8ae.js" as="script"><link rel="prefetch" href="/web-debug-proto/assets/js/10.50e1e3fc.js"><link rel="prefetch" href="/web-debug-proto/assets/js/11.6d7e3a64.js"><link rel="prefetch" href="/web-debug-proto/assets/js/12.5f3d9e25.js"><link rel="prefetch" href="/web-debug-proto/assets/js/13.f313b4b9.js"><link rel="prefetch" href="/web-debug-proto/assets/js/14.87d1752b.js"><link rel="prefetch" href="/web-debug-proto/assets/js/15.5ac88fc9.js"><link rel="prefetch" href="/web-debug-proto/assets/js/16.84408e9d.js"><link rel="prefetch" href="/web-debug-proto/assets/js/18.b3b97172.js"><link rel="prefetch" href="/web-debug-proto/assets/js/19.523d875b.js"><link rel="prefetch" href="/web-debug-proto/assets/js/20.9318ed70.js"><link rel="prefetch" href="/web-debug-proto/assets/js/21.87b15ac1.js"><link rel="prefetch" href="/web-debug-proto/assets/js/22.239bfb4f.js"><link rel="prefetch" href="/web-debug-proto/assets/js/23.07eef07b.js"><link rel="prefetch" href="/web-debug-proto/assets/js/24.49f04cdb.js"><link rel="prefetch" href="/web-debug-proto/assets/js/25.8c10c534.js"><link rel="prefetch" href="/web-debug-proto/assets/js/3.c98c0aa7.js"><link rel="prefetch" href="/web-debug-proto/assets/js/6.918cdf8d.js"><link rel="prefetch" href="/web-debug-proto/assets/js/7.40c280e0.js"><link rel="prefetch" href="/web-debug-proto/assets/js/9.6fbdf803.js">
+    <link rel="stylesheet" href="/web-debug-proto/assets/css/0.styles.255eed16.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/web-debug-proto/" class="home-link router-link-active"><!----> <span class="site-name">Web Debug Protocol</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/web-debug-proto/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/web-debug-proto/docs/" class="nav-link router-link-active">
+  Docs
+</a></div><div class="nav-item"><a href="/web-debug-proto/implementations/" class="nav-link">
+  Implementations
+</a></div><div class="nav-item"><a href="/web-debug-proto/contact/" class="nav-link">
+  Contact
+</a></div><div class="nav-item"><a href="/web-debug-proto/license/" class="nav-link">
+  License
+</a></div> <a href="https://github.com/fe3dback/web-debug-proto/issues" target="_blank" rel="noopener noreferrer" class="repo-link">
+    github issues
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/web-debug-proto/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/web-debug-proto/docs/" class="nav-link router-link-active">
+  Docs
+</a></div><div class="nav-item"><a href="/web-debug-proto/implementations/" class="nav-link">
+  Implementations
+</a></div><div class="nav-item"><a href="/web-debug-proto/contact/" class="nav-link">
+  Contact
+</a></div><div class="nav-item"><a href="/web-debug-proto/license/" class="nav-link">
+  License
+</a></div> <a href="https://github.com/fe3dback/web-debug-proto/issues" target="_blank" rel="noopener noreferrer" class="repo-link">
+    github issues
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><a href="/web-debug-proto/docs/" aria-current="page" class="sidebar-link">Documentation</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Specifications</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/web-debug-proto/docs/specification/" class="sidebar-link">Specification</a></li><li><a href="/web-debug-proto/docs/specification/transport/headers-request.html" class="sidebar-link">Transport - Headers + API</a></li><li><a href="/web-debug-proto/docs/specification/transport/json-response.html" class="sidebar-link">Transport - JSON response</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Latest Scheme (0.0.A)</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/web-debug-proto/docs/scheme/" aria-current="page" class="sidebar-link">Scheme</a></li><li><a href="/web-debug-proto/docs/scheme/events.html" aria-current="page" class="active sidebar-link">Events</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/web-debug-proto/docs/scheme/events.html#log" class="sidebar-link">Log</a></li><li class="sidebar-sub-header"><a href="/web-debug-proto/docs/scheme/events.html#query" class="sidebar-link">Query</a></li><li class="sidebar-sub-header"><a href="/web-debug-proto/docs/scheme/events.html#request" class="sidebar-link">Request</a></li><li class="sidebar-sub-header"><a href="/web-debug-proto/docs/scheme/events.html#response" class="sidebar-link">Response</a></li><li class="sidebar-sub-header"><a href="/web-debug-proto/docs/scheme/events.html#middleware" class="sidebar-link">Middleware</a></li><li class="sidebar-sub-header"><a href="/web-debug-proto/docs/scheme/events.html#template" class="sidebar-link">Template</a></li><li class="sidebar-sub-header"><a href="/web-debug-proto/docs/scheme/events.html#email" class="sidebar-link">Email</a></li><li class="sidebar-sub-header"><a href="/web-debug-proto/docs/scheme/events.html#event" class="sidebar-link">Event</a></li><li class="sidebar-sub-header"><a href="/web-debug-proto/docs/scheme/events.html#access-check" class="sidebar-link">Access Check</a></li></ul></li><li><a href="/web-debug-proto/docs/scheme/types.html" class="sidebar-link">Types</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Guides</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/web-debug-proto/docs/server-side/" class="sidebar-link">Server side modules</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="log"><a href="#log" class="header-anchor">#</a> Log</h2> <div><h4>Payload definition</h4> <table><thead><tr><th>key</th> <th>type</th> <th>required</th> <th>description</th></tr></thead> <tbody><tr><td>message</td> <td><a href="/web-debug-proto/docs/scheme/types.html#string" class="nav-link">
+  string
+</a></td> <td style="text-align: center;"><span>Y</span></td> <td><p>full log text</p> <!----></td></tr><tr><td>context</td> <td><a href="/web-debug-proto/docs/scheme/types.html#string" class="nav-link">
+  string
+</a></td> <td style="text-align: center;"><!----></td> <td><p>additional log context, should be free-form json in string</p> <!----></td></tr></tbody></table> <h4>Preview</h4> <div class="btn-group"><div class="btn btn-active"><span>Payload only</span></div> <div class="btn">
+            Full package
+        </div></div> <div><pre class="stacked-code-block"><code>{
+  "message": "User X is logged in admin panel",
+  "context": "{\"user_id\": 12345}"
+}</code></pre></div> <!----></div> <h4 id="server-recommendations"><a href="#server-recommendations" class="header-anchor">#</a> Server recommendations</h4> <ul><li>DO NOT add date-time to message prefix. For example &quot;<code>[14:12:20] Hello world</code>&quot;.</li></ul> <h4 id="client-rules"><a href="#client-rules" class="header-anchor">#</a> Client rules</h4> <ul><li>Use different colors for different log levels, for example red for &quot;errors&quot;, blue for &quot;info&quot;, etc..</li> <li>Display log context in read-only text field</li> <li>Truncate context to max 4096 symbols</li></ul> <h4 id="client-recommendations"><a href="#client-recommendations" class="header-anchor">#</a> Client recommendations</h4> <ul><li>Highlight context field as JSON</li> <li>Hide context by default and show only after user click on log</li></ul> <h4 id="importance-map-table-mapped-level-to-int"><a href="#importance-map-table-mapped-level-to-int" class="header-anchor">#</a> importance map table (mapped level to int)</h4> <p>property <code>importance</code> can by <code>int</code> <code>[from 1 to 8]</code>, so you need to map <code>log levels</code> to event <code>importance</code></p> <table><thead><tr><th>level</th> <th>importance</th> <th>description</th></tr></thead> <tbody><tr><td>debug</td> <td>1</td> <td>Detailed debug information</td></tr> <tr><td>info</td> <td>2</td> <td>Interesting events. Examples: User logs in</td></tr> <tr><td>notice</td> <td>3</td> <td>Normal but significant events</td></tr> <tr><td>warning</td> <td>4</td> <td>Exceptional occurrences that are not errors. Examples: Use of deprecated APIs, poor use of an API, undesirable things that are not necessarily wrong</td></tr> <tr><td>error</td> <td>5</td> <td>Runtime errors that do not require immediate action but should typically be logged and monitored</td></tr> <tr><td>critical</td> <td>6</td> <td>Critical conditions. Example: Application component unavailable, unexpected exception</td></tr> <tr><td>alert</td> <td>7</td> <td>Action must be taken immediately. Example: Entire website down, database unavailable, etc. This should trigger the SMS alerts and wake you up</td></tr> <tr><td>emergency</td> <td>8</td> <td>Emergency: system is unusable</td></tr></tbody></table> <h2 id="query"><a href="#query" class="header-anchor">#</a> Query</h2> <div><h4>Payload definition</h4> <table><thead><tr><th>key</th> <th>type</th> <th>required</th> <th>description</th></tr></thead> <tbody><tr><td>target</td> <td><a href="/web-debug-proto/docs/scheme/types.html#string" class="nav-link">
+  string
+</a></td> <td style="text-align: center;"><span>Y</span></td> <td><p>query target, for example db, io, cache or service name (mysql, influxdb, redis, rabbitmq, etc..). Used in client for group all request to same service</p> <!----></td></tr><tr><td>query</td> <td><a href="/web-debug-proto/docs/scheme/types.html#string" class="nav-link">
+  string
+</a></td> <td style="text-align: center;"><span>Y</span></td> <td><p>request query string</p> <!----></td></tr><tr><td>syntax</td> <td><a href="/web-debug-proto/docs/scheme/types.html#string" class="nav-link">
+  string
+</a></td> <td style="text-align: center;"><!----></td> <td><p>syntax for query highlight in client</p> <b>Allowed values:</b> <ul><li>
+                        sql
+                    </li><li>
+                        json
+                    </li><li>
+                        xml
+                    </li><li>
+                        text
+                    </li></ul></td></tr></tbody></table> <h4>Preview</h4> <div class="btn-group"><div class="btn btn-active"><span>Payload only (ex. #1)</span></div><div class="btn"><span>Payload only (ex. #2)</span></div> <div class="btn">
+            Full package
+        </div></div> <div><pre class="stacked-code-block"><code>{
+  "target": "mysql",
+  "query": "SELECT * FROM articles WHERE ID = 2;",
+  "syntax": "sql"
+}</code></pre></div><!----> <!----></div> <h4 id="client-rules-2"><a href="#client-rules-2" class="header-anchor">#</a> Client rules</h4> <ul><li>Display total execution duration/count for all queries by each <code>target</code>. For example:
+<ul><li>target <code>mysql</code> 7 requests, total 210 ms.</li> <li>target <code>redis</code> 12 requests, total 64 ms.</li></ul></li></ul> <h4 id="client-recommendations-2"><a href="#client-recommendations-2" class="header-anchor">#</a> Client recommendations</h4> <ul><li>Highlight <code>query</code> by file type defined in <code>syntax</code> field. If field <code>syntax</code> is not set, do not highlight query.</li> <li>hide full query under cut, if length of <code>query</code> field is &gt;= 512 chars</li></ul> <h2 id="request"><a href="#request" class="header-anchor">#</a> Request</h2> <div><h4>Payload definition</h4> <table><thead><tr><th>key</th> <th>type</th> <th>required</th> <th>description</th></tr></thead> <tbody><tr><td>method</td> <td><a href="/web-debug-proto/docs/scheme/types.html#method" class="nav-link">
+  method
+</a></td> <td style="text-align: center;"><!----></td> <td><p>request HTTP method</p> <!----></td></tr><tr><td>uri</td> <td><a href="/web-debug-proto/docs/scheme/types.html#uri" class="nav-link">
+  uri
+</a></td> <td style="text-align: center;"><!----></td> <td><p>full request uri</p> <!----></td></tr><tr><td>headers</td> <td><a href="/web-debug-proto/docs/scheme/types.html#param" class="nav-link">
+  param[]
+</a></td> <td style="text-align: center;"><!----></td> <td><p>list of received request headers</p> <!----></td></tr><tr><td>query</td> <td><a href="/web-debug-proto/docs/scheme/types.html#param" class="nav-link">
+  param[]
+</a></td> <td style="text-align: center;"><!----></td> <td><p>list of received request query (GET) params</p> <!----></td></tr><tr><td>body</td> <td><a href="/web-debug-proto/docs/scheme/types.html#param" class="nav-link">
+  param[]
+</a></td> <td style="text-align: center;"><!----></td> <td><p>list of received request body (POST) params</p> <!----></td></tr><tr><td>cookies</td> <td><a href="/web-debug-proto/docs/scheme/types.html#param" class="nav-link">
+  param[]
+</a></td> <td style="text-align: center;"><!----></td> <td><p>list of received request cookies</p> <!----></td></tr><tr><td>session</td> <td><a href="/web-debug-proto/docs/scheme/types.html#param" class="nav-link">
+  param[]
+</a></td> <td style="text-align: center;"><!----></td> <td><p>loaded session params</p> <!----></td></tr></tbody></table> <h4>Preview</h4> <div class="btn-group"><div class="btn btn-active"><span>Payload only</span></div> <div class="btn">
+            Full package
+        </div></div> <div><pre class="stacked-code-block"><code>{
+  "method": "POST",
+  "uri": "/api/hello?foo=bar",
+  "headers": [
+    {
+      "key": "accept",
+      "value": "text/html"
+    },
+    {
+      "key": "cache-control",
+      "value": "no-cache"
+    }
+  ],
+  "query": [
+    {
+      "key": "foo",
+      "value": "bar"
+    }
+  ],
+  "body": [
+    {
+      "key": "foo",
+      "value": "bar"
+    }
+  ],
+  "cookies": [
+    {
+      "key": "PHPSESS",
+      "value": "l6q632qbzua97o3p2p71biefbkrijbil"
+    },
+    {
+      "key": "_ym_uid",
+      "value": "15356948596"
+    }
+  ],
+  "session": [
+    {
+      "key": "userid",
+      "value": 21114
+    },
+    {
+      "key": "views_count",
+      "value": 23
+    }
+  ]
+}</code></pre></div> <!----></div> <h2 id="response"><a href="#response" class="header-anchor">#</a> Response</h2> <div><h4>Payload definition</h4> <table><thead><tr><th>key</th> <th>type</th> <th>required</th> <th>description</th></tr></thead> <tbody><tr><td>memoryPeak</td> <td><a href="/web-debug-proto/docs/scheme/types.html#byte" class="nav-link">
+  byte
+</a></td> <td style="text-align: center;"><!----></td> <td><p>max/peak memory usage (in bytes) during request</p> <!----></td></tr></tbody></table> <h4>Preview</h4> <div class="btn-group"><div class="btn btn-active"><span>Payload only</span></div> <div class="btn">
+            Full package
+        </div></div> <div><pre class="stacked-code-block"><code>{
+  "memoryPeak": 1024
+}</code></pre></div> <!----></div> <h4 id="server-rules"><a href="#server-rules" class="header-anchor">#</a> Server rules</h4> <ul><li>Use <code>duration</code> field for total request time</li></ul> <h2 id="middleware"><a href="#middleware" class="header-anchor">#</a> Middleware</h2> <div><h4>Payload definition</h4> <table><thead><tr><th>key</th> <th>type</th> <th>required</th> <th>description</th></tr></thead> <tbody><tr><td>name</td> <td><a href="/web-debug-proto/docs/scheme/types.html#string" class="nav-link">
+  string
+</a></td> <td style="text-align: center;"><span>Y</span></td> <td><p>Middleware name</p> <!----></td></tr></tbody></table> <h4>Preview</h4> <div class="btn-group"><div class="btn btn-active"><span>Payload only</span></div> <div class="btn">
+            Full package
+        </div></div> <div><pre class="stacked-code-block"><code>{
+  "name": "\\Illuminate\\Routing\\Middleware\\ThrottleRequests"
+}</code></pre></div> <!----></div> <h2 id="template"><a href="#template" class="header-anchor">#</a> Template</h2> <div><h4>Payload definition</h4> <table><thead><tr><th>key</th> <th>type</th> <th>required</th> <th>description</th></tr></thead> <tbody><tr><td>name</td> <td><a href="/web-debug-proto/docs/scheme/types.html#string" class="nav-link">
+  string
+</a></td> <td style="text-align: center;"><span>Y</span></td> <td><p>executed/rendered template name</p> <!----></td></tr></tbody></table> <h4>Preview</h4> <div class="btn-group"><div class="btn btn-active"><span>Payload only</span></div> <div class="btn">
+            Full package
+        </div></div> <div><pre class="stacked-code-block"><code>{
+  "name": "/resources/templates/header.twig"
+}</code></pre></div> <!----></div> <h2 id="email"><a href="#email" class="header-anchor">#</a> Email</h2> <div><h4>Payload definition</h4> <table><thead><tr><th>key</th> <th>type</th> <th>required</th> <th>description</th></tr></thead> <tbody><tr><td>subject</td> <td><a href="/web-debug-proto/docs/scheme/types.html#string" class="nav-link">
+  string
+</a></td> <td style="text-align: center;"><span>Y</span></td> <td><p>mail subject (title)</p> <!----></td></tr><tr><td>body</td> <td><a href="/web-debug-proto/docs/scheme/types.html#html" class="nav-link">
+  html
+</a></td> <td style="text-align: center;"><span>Y</span></td> <td><p>email content (html or plain text)</p> <!----></td></tr><tr><td>from</td> <td><a href="/web-debug-proto/docs/scheme/types.html#string" class="nav-link">
+  string
+</a></td> <td style="text-align: center;"><span>Y</span></td> <td><p>sender email address</p> <!----></td></tr><tr><td>to</td> <td><a href="/web-debug-proto/docs/scheme/types.html#string" class="nav-link">
+  string[]
+</a></td> <td style="text-align: center;"><span>Y</span></td> <td><p>to email addresses</p> <!----></td></tr><tr><td>cc</td> <td><a href="/web-debug-proto/docs/scheme/types.html#string" class="nav-link">
+  string[]
+</a></td> <td style="text-align: center;"><!----></td> <td><p>CC addresses</p> <!----></td></tr><tr><td>bcc</td> <td><a href="/web-debug-proto/docs/scheme/types.html#string" class="nav-link">
+  string[]
+</a></td> <td style="text-align: center;"><!----></td> <td><p>BCC addresses</p> <!----></td></tr><tr><td>replyTo</td> <td><a href="/web-debug-proto/docs/scheme/types.html#string" class="nav-link">
+  string
+</a></td> <td style="text-align: center;"><!----></td> <td><p>reply-to target email address</p> <!----></td></tr><tr><td>attachments</td> <td><a href="/web-debug-proto/docs/scheme/types.html#string" class="nav-link">
+  string[]
+</a></td> <td style="text-align: center;"><!----></td> <td><p>list of attachment file names (without actual content)</p> <!----></td></tr></tbody></table> <h4>Preview</h4> <div class="btn-group"><div class="btn btn-active"><span>Payload only</span></div> <div class="btn">
+            Full package
+        </div></div> <div><pre class="stacked-code-block"><code>{
+  "subject": "Welcome to our forum",
+  "body": "<h1>Hello John</h1> <p>Now you are member of our great C++ community!</p>",
+  "from": "no-reply@example.com",
+  "to": [
+    "john_doe@example.com",
+    "admin@example.com"
+  ],
+  "cc": [
+    "john_doe@example.com",
+    "admin@example.com"
+  ],
+  "bcc": [
+    "john_doe@example.com",
+    "admin@example.com"
+  ],
+  "replyTo": "contact@forum.example.com",
+  "attachments": [
+    "payment-info.pdf"
+  ]
+}</code></pre></div> <!----></div> <h4 id="client-recommendations-3"><a href="#client-recommendations-3" class="header-anchor">#</a> Client recommendations</h4> <ul><li>Use editor with html syntax highlight for body</li> <li>If possible add preview mode for body with rendered html</li></ul> <h2 id="event"><a href="#event" class="header-anchor">#</a> Event</h2> <div><h4>Payload definition</h4> <table><thead><tr><th>key</th> <th>type</th> <th>required</th> <th>description</th></tr></thead> <tbody><tr><td>name</td> <td><a href="/web-debug-proto/docs/scheme/types.html#string" class="nav-link">
+  string
+</a></td> <td style="text-align: center;"><span>Y</span></td> <td><p>Called event name (listener class, id, etc..)</p> <!----></td></tr><tr><td>group</td> <td><a href="/web-debug-proto/docs/scheme/types.html#string" class="nav-link">
+  string
+</a></td> <td style="text-align: center;"><!----></td> <td><p>Helpful if you want split event by logic groups (kernel, loader, app, etc..)</p> <!----></td></tr></tbody></table> <h4>Preview</h4> <div class="btn-group"><div class="btn btn-active"><span>Payload only</span></div> <div class="btn">
+            Full package
+        </div></div> <div><pre class="stacked-code-block"><code>{
+  "name": "ConsoleHandler::onCommand",
+  "group": "kernel"
+}</code></pre></div> <!----></div> <h2 id="access-check"><a href="#access-check" class="header-anchor">#</a> Access Check</h2> <p>Access checking based on ACO (Access control objects) or ACL (access control list).</p> <div><h4>Payload definition</h4> <table><thead><tr><th>key</th> <th>type</th> <th>required</th> <th>description</th></tr></thead> <tbody><tr><td>access</td> <td><a href="/web-debug-proto/docs/scheme/types.html#aclvote" class="nav-link">
+  aclVote
+</a></td> <td style="text-align: center;"><span>Y</span></td> <td><p>result of checking permission (GRANT/DENIED)</p> <!----></td></tr><tr><td>control</td> <td><a href="/web-debug-proto/docs/scheme/types.html#string" class="nav-link">
+  string
+</a></td> <td style="text-align: center;"><span>Y</span></td> <td><p>name of object with restricted access</p> <!----></td></tr><tr><td>object</td> <td><a href="/web-debug-proto/docs/scheme/types.html#string" class="nav-link">
+  string
+</a></td> <td style="text-align: center;"><!----></td> <td><p>name of requester object (who want get restricted access)</p> <!----></td></tr><tr><td>action</td> <td><a href="/web-debug-proto/docs/scheme/types.html#string" class="nav-link">
+  string
+</a></td> <td style="text-align: center;"><!----></td> <td><p>name of required action</p> <!----></td></tr></tbody></table> <h4>Preview</h4> <div class="btn-group"><div class="btn btn-active"><span>Payload only</span></div> <div class="btn">
+            Full package
+        </div></div> <div><pre class="stacked-code-block"><code>{
+  "access": "GRANT",
+  "control": "Engines",
+  "object": "R2-D2",
+  "action": "publish"
+}</code></pre></div> <!----></div> <h4 id="for-example"><a href="#for-example" class="header-anchor">#</a> For example:</h4> <table><thead><tr><th>Who/Where</th> <th>Cockpit</th> <th>Lounge</th> <th>Guns</th> <th>Engines</th></tr></thead> <tbody><tr><td>Han</td> <td>Y</td> <td>Y</td> <td>Y</td> <td>Y</td></tr> <tr><td>Chewie</td> <td>Y</td> <td>Y</td> <td>Y</td> <td></td></tr> <tr><td>Obi-wan</td> <td></td> <td>Y</td> <td></td> <td></td></tr> <tr><td>Luke</td> <td></td> <td>Y</td> <td></td> <td></td></tr> <tr><td>R2-D2</td> <td></td> <td></td> <td></td> <td>Y</td></tr> <tr><td>C3PO</td> <td></td> <td>Y</td> <td></td> <td></td></tr></tbody></table> <p>can <code>R2-D2</code> access to <code>Cockpit</code>?</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;access&quot;</span><span class="token operator">:</span> <span class="token string">&quot;DENIED&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;control&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Cockpit&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;object&quot;</span><span class="token operator">:</span> <span class="token string">&quot;R2-D2&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>can <code>R2-D2</code> access to <code>Engines</code>?</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;access&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GRANT&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;control&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Engines&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;object&quot;</span><span class="token operator">:</span> <span class="token string">&quot;R2-D2&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>can <code>user admin</code> access to <code>publish</code> object <code>article helloWorld</code>?</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;access&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GRANT&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;control&quot;</span><span class="token operator">:</span> <span class="token string">&quot;article:helloWorld&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;object&quot;</span><span class="token operator">:</span> <span class="token string">&quot;user:admin&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;action&quot;</span><span class="token operator">:</span> <span class="token string">&quot;publish&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="how-to-use-this-with-votes-system"><a href="#how-to-use-this-with-votes-system" class="header-anchor">#</a> How to use this with votes system</h4> <p>You can add votes mapped by access (GRANT = vote up, DENIED = vote down),</p> <p>Final result of voting can be added with higher importance</p></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/fe3dback/web-debug-proto/edit/master/docs/scheme/events.md" target="_blank" rel="noopener noreferrer">Edit this page on github</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/web-debug-proto/docs/scheme/" class="prev router-link-active">
+        Scheme
+      </a></span> <span class="next"><a href="/web-debug-proto/docs/scheme/types.html">
+        Types
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/web-debug-proto/assets/js/app.5818d223.js" defer></script><script src="/web-debug-proto/assets/js/2.5741dcd5.js" defer></script><script src="/web-debug-proto/assets/js/17.9c8903de.js" defer></script><script src="/web-debug-proto/assets/js/5.6fab73cf.js" defer></script><script src="/web-debug-proto/assets/js/4.4f324507.js" defer></script><script src="/web-debug-proto/assets/js/8.bf96a8ae.js" defer></script>
+  </body>
+</html>

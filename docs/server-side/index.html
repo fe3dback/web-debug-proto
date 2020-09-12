@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Server side modules | Web Debug Protocol</title>
+    <meta name="generator" content="VuePress 1.5.4">
+    
+    <meta name="description" content="Union debug protocol for modern web applications. Any language, any framework.">
+    <link rel="preload" href="/web-debug-proto/assets/css/0.styles.255eed16.css" as="style"><link rel="preload" href="/web-debug-proto/assets/js/app.5818d223.js" as="script"><link rel="preload" href="/web-debug-proto/assets/js/2.5741dcd5.js" as="script"><link rel="preload" href="/web-debug-proto/assets/js/19.523d875b.js" as="script"><link rel="prefetch" href="/web-debug-proto/assets/js/10.50e1e3fc.js"><link rel="prefetch" href="/web-debug-proto/assets/js/11.6d7e3a64.js"><link rel="prefetch" href="/web-debug-proto/assets/js/12.5f3d9e25.js"><link rel="prefetch" href="/web-debug-proto/assets/js/13.f313b4b9.js"><link rel="prefetch" href="/web-debug-proto/assets/js/14.87d1752b.js"><link rel="prefetch" href="/web-debug-proto/assets/js/15.5ac88fc9.js"><link rel="prefetch" href="/web-debug-proto/assets/js/16.84408e9d.js"><link rel="prefetch" href="/web-debug-proto/assets/js/17.9c8903de.js"><link rel="prefetch" href="/web-debug-proto/assets/js/18.b3b97172.js"><link rel="prefetch" href="/web-debug-proto/assets/js/20.9318ed70.js"><link rel="prefetch" href="/web-debug-proto/assets/js/21.87b15ac1.js"><link rel="prefetch" href="/web-debug-proto/assets/js/22.239bfb4f.js"><link rel="prefetch" href="/web-debug-proto/assets/js/23.07eef07b.js"><link rel="prefetch" href="/web-debug-proto/assets/js/24.49f04cdb.js"><link rel="prefetch" href="/web-debug-proto/assets/js/25.8c10c534.js"><link rel="prefetch" href="/web-debug-proto/assets/js/3.c98c0aa7.js"><link rel="prefetch" href="/web-debug-proto/assets/js/4.4f324507.js"><link rel="prefetch" href="/web-debug-proto/assets/js/5.6fab73cf.js"><link rel="prefetch" href="/web-debug-proto/assets/js/6.918cdf8d.js"><link rel="prefetch" href="/web-debug-proto/assets/js/7.40c280e0.js"><link rel="prefetch" href="/web-debug-proto/assets/js/8.bf96a8ae.js"><link rel="prefetch" href="/web-debug-proto/assets/js/9.6fbdf803.js">
+    <link rel="stylesheet" href="/web-debug-proto/assets/css/0.styles.255eed16.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/web-debug-proto/" class="home-link router-link-active"><!----> <span class="site-name">Web Debug Protocol</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/web-debug-proto/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/web-debug-proto/docs/" class="nav-link router-link-active">
+  Docs
+</a></div><div class="nav-item"><a href="/web-debug-proto/implementations/" class="nav-link">
+  Implementations
+</a></div><div class="nav-item"><a href="/web-debug-proto/contact/" class="nav-link">
+  Contact
+</a></div><div class="nav-item"><a href="/web-debug-proto/license/" class="nav-link">
+  License
+</a></div> <a href="https://github.com/fe3dback/web-debug-proto/issues" target="_blank" rel="noopener noreferrer" class="repo-link">
+    github issues
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/web-debug-proto/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/web-debug-proto/docs/" class="nav-link router-link-active">
+  Docs
+</a></div><div class="nav-item"><a href="/web-debug-proto/implementations/" class="nav-link">
+  Implementations
+</a></div><div class="nav-item"><a href="/web-debug-proto/contact/" class="nav-link">
+  Contact
+</a></div><div class="nav-item"><a href="/web-debug-proto/license/" class="nav-link">
+  License
+</a></div> <a href="https://github.com/fe3dback/web-debug-proto/issues" target="_blank" rel="noopener noreferrer" class="repo-link">
+    github issues
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><a href="/web-debug-proto/docs/" aria-current="page" class="sidebar-link">Documentation</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Specifications</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/web-debug-proto/docs/specification/" class="sidebar-link">Specification</a></li><li><a href="/web-debug-proto/docs/specification/transport/headers-request.html" class="sidebar-link">Transport - Headers + API</a></li><li><a href="/web-debug-proto/docs/specification/transport/json-response.html" class="sidebar-link">Transport - JSON response</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Latest Scheme (0.0.A)</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/web-debug-proto/docs/scheme/" class="sidebar-link">Scheme</a></li><li><a href="/web-debug-proto/docs/scheme/events.html" class="sidebar-link">Events</a></li><li><a href="/web-debug-proto/docs/scheme/types.html" class="sidebar-link">Types</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Guides</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/web-debug-proto/docs/server-side/" aria-current="page" class="active sidebar-link">Server side modules</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/web-debug-proto/docs/server-side/#install" class="sidebar-link">Install</a></li><li class="sidebar-sub-header"><a href="/web-debug-proto/docs/server-side/#implement" class="sidebar-link">Implement</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/web-debug-proto/docs/server-side/#_1-core-module" class="sidebar-link">1. Core module</a></li><li class="sidebar-sub-header"><a href="/web-debug-proto/docs/server-side/#_2-framework-bundle" class="sidebar-link">2. Framework bundle</a></li><li class="sidebar-sub-header"><a href="/web-debug-proto/docs/server-side/#_2-custom-app" class="sidebar-link">2. Custom app</a></li></ul></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="install"><a href="#install" class="header-anchor">#</a> Install</h2> <p>Check in <a href="/web-debug-proto/implementations/">implementations</a> page, for already existing
+modules and libs.</p> <p>@todo normal description here</p> <h2 id="implement"><a href="#implement" class="header-anchor">#</a> Implement</h2> <p>We recommend split implementation on 2 levels:</p> <div class="language- extra-class"><pre class="language-text"><code>  +------------------------+
+2 | Framework bundle / App |
+  +------------------------+--+
+1 | Core module               |
+  +---------------------------+
+</code></pre></div><h3 id="_1-core-module"><a href="#_1-core-module" class="header-anchor">#</a> 1. Core module</h3> <ul><li><p>Basic <strong>module</strong>, implement all OOP models, tree structures
+and code interfaces.</p></li> <li><p><strong>This module</strong> <em>SHOULD</em> care about storing and retrieve information from storage by uuid. can delegate storage functionality to common interface (database, cache, file system, etc..). Storage <em>CAN BE</em> configurable.</p></li> <li><p><strong>This module</strong> <em>MUST NOT</em> collect any information about the request.</p></li> <li><p>By default, if no debug/profile information is provided, and <code>store()</code> method is called, only <code>scheme version</code> and request <code>uuid</code> <em>SHOULD BE</em> saved to storage.</p></li></ul> <h4 id="how-to-write-core-module"><a href="#how-to-write-core-module" class="header-anchor">#</a> How to write core module</h4> <p>See <a href="/web-debug-proto/docs/specification/#server-side">specification page</a> for details.</p> <h4 id="examples"><a href="#examples" class="header-anchor">#</a> Examples</h4> <div class="language-php extra-class"><pre class="language-php"><code><span class="token comment">// this is pseudo code</span>
+
+<span class="token variable">$storage</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SQLiteStorage</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$profiler</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Profiler</span><span class="token punctuation">(</span>version<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$profiler</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">setStorage</span><span class="token punctuation">(</span>IStorage<span class="token punctuation">:</span> <span class="token variable">$storage</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$profiler</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">setProfileEndpoint</span><span class="token punctuation">(</span>uri<span class="token punctuation">:</span> <span class="token single-quoted-string string">'/_profile/'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$profiler</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">getUuid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ef95a542-25a3-4f71-a0e9-640c92f43813</span>
+
+<span class="token comment">// add some info about current request</span>
+<span class="token variable">$profiler</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">setUri</span><span class="token punctuation">(</span>uri<span class="token punctuation">:</span> <span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">getUri</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// and for example for query</span>
+<span class="token variable">$query</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DbQuery</span><span class="token punctuation">(</span>
+    db_type<span class="token punctuation">:</span> <span class="token single-quoted-string string">'postgres'</span><span class="token punctuation">,</span>
+    query<span class="token punctuation">:</span> <span class="token single-quoted-string string">'SELECT * FROM articles LIMIT 1'</span><span class="token punctuation">,</span>
+    duration<span class="token punctuation">:</span> <span class="token number">4</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$profiler</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">addQuery</span><span class="token punctuation">(</span>DbQuery<span class="token punctuation">:</span> <span class="token variable">$query</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// save profile/debug info into sqlite table</span>
+<span class="token variable">$profiler</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">store</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// append headers to response</span>
+<span class="token variable">$response</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">addHeaders</span><span class="token punctuation">(</span><span class="token variable">$profiler</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">getHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// getHeaders:</span>
+<span class="token comment">// [</span>
+<span class="token comment">//     &quot;X-Http-Debug-Id&quot;: &quot;ef95a542-25a3-4f71-a0e9-640c92f43813&quot;,</span>
+<span class="token comment">//     &quot;X-Http-Debug-Api&quot;: &quot;/_profile/&quot;</span>
+<span class="token comment">// ]</span>
+</code></pre></div><p>And define specified profile route in your app:</p> <div class="language-php extra-class"><pre class="language-php"><code><span class="token comment">// this is pseudo code</span>
+
+<span class="token comment">// client will request &quot;/_profile/ef95a542-25a3-4f71-a0e9-640c92f43813&quot;</span>
+
+Route<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'/_profile/{uuid}'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$uuid</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">// disable debug on production services</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">isProduction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token variable">$response</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">withCode</span><span class="token punctuation">(</span>code<span class="token punctuation">:</span> <span class="token number">403</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// find profile data by uuid</span>
+    <span class="token variable">$data</span> <span class="token operator">=</span> <span class="token variable">$profiler</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">get</span><span class="token punctuation">(</span>uuid<span class="token punctuation">:</span> <span class="token variable">$uuid</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token variable">$response</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">addHeader</span><span class="token punctuation">(</span>key<span class="token punctuation">:</span> <span class="token single-quoted-string string">'Content-Type'</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token single-quoted-string string">'application/json'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$response</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">setBody</span><span class="token punctuation">(</span>buffer<span class="token punctuation">:</span> <span class="token variable">$data</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">exportToJson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token variable">$response</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">withCode</span><span class="token punctuation">(</span>code<span class="token punctuation">:</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// nothing found :(</span>
+    <span class="token keyword">return</span> <span class="token variable">$response</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">withCode</span><span class="token punctuation">(</span>code<span class="token punctuation">:</span> <span class="token number">404</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">example</p> <p>Profile response with debug information</p></div> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ef95a542-25a3-4f71-a0e9-640c92f43813&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;uri&quot;</span><span class="token operator">:</span> <span class="token string">&quot;/articles/&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;queries&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token property">&quot;db_type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;postgres&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;query&quot;</span><span class="token operator">:</span> <span class="token string">&quot;SELECT * FROM articles LIMIT 1&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;duration&quot;</span><span class="token operator">:</span> <span class="token number">4</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="_2-framework-bundle"><a href="#_2-framework-bundle" class="header-anchor">#</a> 2. Framework bundle</h3> <p>Library based on level 1 <strong>core module</strong>.</p> <div class="custom-block tip"><p class="custom-block-title">example</p> <p>&quot;Symfony framework bundle&quot; for &quot;PHP&quot;, where:</p> <ul><li>Level 1 = vendor PHP library &quot;<strong>core module</strong>&quot;</li> <li>Level 2 = Symfony framework bundle</li></ul></div> <ul><li><strong>This bundle</strong> <em>SHOULD</em> collect all debug/profile information during request</li> <li><strong>module</strong> <em>MAY</em> use native framework debugger and profiler for data</li> <li><strong>module</strong> <em>MAY</em> use framework router and storage</li> <li><strong>module</strong> <em>MAY</em> use additional configuration</li></ul> <p>Ideally this should work &quot;out of the box&quot;, just install bundle and all done.</p> <h3 id="_2-custom-app"><a href="#_2-custom-app" class="header-anchor">#</a> 2. Custom app</h3> <p>If no framework used for project, you'll have to write level 2
+library/bundle.</p> <p>Please refer to level 1 <strong>core module</strong> documentation for help.</p> <p><a href="/web-debug-proto/implementations/">Check exist core module implementations</a> for your programming
+language.</p></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/fe3dback/web-debug-proto/edit/master/docs/server-side/README.md" target="_blank" rel="noopener noreferrer">Edit this page on github</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/web-debug-proto/docs/scheme/types.html" class="prev">
+        Types
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/web-debug-proto/assets/js/app.5818d223.js" defer></script><script src="/web-debug-proto/assets/js/2.5741dcd5.js" defer></script><script src="/web-debug-proto/assets/js/19.523d875b.js" defer></script>
+  </body>
+</html>

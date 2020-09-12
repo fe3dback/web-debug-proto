@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Scheme | Web Debug Protocol</title>
+    <meta name="generator" content="VuePress 1.5.4">
+    
+    <meta name="description" content="Union debug protocol for modern web applications. Any language, any framework.">
+    <link rel="preload" href="/web-debug-proto/assets/css/0.styles.255eed16.css" as="style"><link rel="preload" href="/web-debug-proto/assets/js/app.5818d223.js" as="script"><link rel="preload" href="/web-debug-proto/assets/js/2.5741dcd5.js" as="script"><link rel="preload" href="/web-debug-proto/assets/js/16.84408e9d.js" as="script"><link rel="preload" href="/web-debug-proto/assets/js/11.6d7e3a64.js" as="script"><link rel="preload" href="/web-debug-proto/assets/js/4.4f324507.js" as="script"><link rel="preload" href="/web-debug-proto/assets/js/8.bf96a8ae.js" as="script"><link rel="preload" href="/web-debug-proto/assets/js/7.40c280e0.js" as="script"><link rel="prefetch" href="/web-debug-proto/assets/js/10.50e1e3fc.js"><link rel="prefetch" href="/web-debug-proto/assets/js/12.5f3d9e25.js"><link rel="prefetch" href="/web-debug-proto/assets/js/13.f313b4b9.js"><link rel="prefetch" href="/web-debug-proto/assets/js/14.87d1752b.js"><link rel="prefetch" href="/web-debug-proto/assets/js/15.5ac88fc9.js"><link rel="prefetch" href="/web-debug-proto/assets/js/17.9c8903de.js"><link rel="prefetch" href="/web-debug-proto/assets/js/18.b3b97172.js"><link rel="prefetch" href="/web-debug-proto/assets/js/19.523d875b.js"><link rel="prefetch" href="/web-debug-proto/assets/js/20.9318ed70.js"><link rel="prefetch" href="/web-debug-proto/assets/js/21.87b15ac1.js"><link rel="prefetch" href="/web-debug-proto/assets/js/22.239bfb4f.js"><link rel="prefetch" href="/web-debug-proto/assets/js/23.07eef07b.js"><link rel="prefetch" href="/web-debug-proto/assets/js/24.49f04cdb.js"><link rel="prefetch" href="/web-debug-proto/assets/js/25.8c10c534.js"><link rel="prefetch" href="/web-debug-proto/assets/js/3.c98c0aa7.js"><link rel="prefetch" href="/web-debug-proto/assets/js/5.6fab73cf.js"><link rel="prefetch" href="/web-debug-proto/assets/js/6.918cdf8d.js"><link rel="prefetch" href="/web-debug-proto/assets/js/9.6fbdf803.js">
+    <link rel="stylesheet" href="/web-debug-proto/assets/css/0.styles.255eed16.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/web-debug-proto/" class="home-link router-link-active"><!----> <span class="site-name">Web Debug Protocol</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/web-debug-proto/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/web-debug-proto/docs/" class="nav-link router-link-active">
+  Docs
+</a></div><div class="nav-item"><a href="/web-debug-proto/implementations/" class="nav-link">
+  Implementations
+</a></div><div class="nav-item"><a href="/web-debug-proto/contact/" class="nav-link">
+  Contact
+</a></div><div class="nav-item"><a href="/web-debug-proto/license/" class="nav-link">
+  License
+</a></div> <a href="https://github.com/fe3dback/web-debug-proto/issues" target="_blank" rel="noopener noreferrer" class="repo-link">
+    github issues
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/web-debug-proto/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/web-debug-proto/docs/" class="nav-link router-link-active">
+  Docs
+</a></div><div class="nav-item"><a href="/web-debug-proto/implementations/" class="nav-link">
+  Implementations
+</a></div><div class="nav-item"><a href="/web-debug-proto/contact/" class="nav-link">
+  Contact
+</a></div><div class="nav-item"><a href="/web-debug-proto/license/" class="nav-link">
+  License
+</a></div> <a href="https://github.com/fe3dback/web-debug-proto/issues" target="_blank" rel="noopener noreferrer" class="repo-link">
+    github issues
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><a href="/web-debug-proto/docs/" aria-current="page" class="sidebar-link">Documentation</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Specifications</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/web-debug-proto/docs/specification/" class="sidebar-link">Specification</a></li><li><a href="/web-debug-proto/docs/specification/transport/headers-request.html" class="sidebar-link">Transport - Headers + API</a></li><li><a href="/web-debug-proto/docs/specification/transport/json-response.html" class="sidebar-link">Transport - JSON response</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Latest Scheme (0.0.A)</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/web-debug-proto/docs/scheme/" aria-current="page" class="active sidebar-link">Scheme</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/web-debug-proto/docs/scheme/#json" class="sidebar-link">JSON</a></li><li class="sidebar-sub-header"><a href="/web-debug-proto/docs/scheme/#scheme-definition" class="sidebar-link">Scheme definition</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/web-debug-proto/docs/scheme/#event-definition" class="sidebar-link">Event definition</a></li><li class="sidebar-sub-header"><a href="/web-debug-proto/docs/scheme/#event-type-definition" class="sidebar-link">Event Type definition</a></li><li class="sidebar-sub-header"><a href="/web-debug-proto/docs/scheme/#example-of-scheme" class="sidebar-link">Example of scheme</a></li></ul></li></ul></li><li><a href="/web-debug-proto/docs/scheme/events.html" class="sidebar-link">Events</a></li><li><a href="/web-debug-proto/docs/scheme/types.html" class="sidebar-link">Types</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Guides</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/web-debug-proto/docs/server-side/" class="sidebar-link">Server side modules</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="json"><a href="#json" class="header-anchor">#</a> JSON</h2> <p>Scheme should be described in JSON</p> <p>You can read more about JSON here:
+<a href="https://tools.ietf.org/html/rfc7159" target="_blank" rel="noopener noreferrer">rfc7151 JSON<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <h2 id="scheme-definition"><a href="#scheme-definition" class="header-anchor">#</a> Scheme definition</h2> <div><!----> <table><thead><tr><th>key</th> <th>type</th> <th>required</th> <th>description</th></tr></thead> <tbody><tr><td>id</td> <td><a href="/web-debug-proto/docs/scheme/types.html#uuid" class="nav-link">
+  uuid
+</a></td> <td style="text-align: center;"><span>Y</span></td> <td><p>unique request id (uuid)</p> <!----></td></tr><tr><td>version</td> <td><a href="/web-debug-proto/docs/scheme/types.html#int" class="nav-link">
+  int
+</a></td> <td style="text-align: center;"><span>Y</span></td> <td><p>scheme version</p> <!----></td></tr><tr><td>events</td> <td><a href="/web-debug-proto/docs/scheme/#event-definition" class="nav-link">
+  event[]
+</a></td> <td style="text-align: center;"><span>Y</span></td> <td><p>debug/profile information about request</p> <!----></td></tr></tbody></table> <!----> <pre><code>{
+  "id": "ef95a542-25a3-4f71-a0e9-640c92f43813",
+  "version": 1,
+  "events": []
+}</code></pre></div> <div class="note"><p class="title">Note</p> <ul><li>Scheme is sort of logs (events) list with context (payload).</li> <li>Scheme can by recursive (Tree structure)</li> <li>Events in scheme will be sorted from oldest to newest</li></ul></div> <h3 id="event-definition"><a href="#event-definition" class="header-anchor">#</a> Event definition</h3> <div><!----> <table><thead><tr><th>key</th> <th>type</th> <th>required</th> <th>description</th></tr></thead> <tbody><tr><td>type</td> <td><a href="/web-debug-proto/docs/scheme/#event-type-definition" class="nav-link">
+  eventType
+</a></td> <td style="text-align: center;"><span>Y</span></td> <td><p>event type define object properties of `payload`</p> <!----></td></tr><tr><td>payload</td> <td><a href="/web-debug-proto/docs/scheme/types.html#object" class="nav-link">
+  object
+</a></td> <td style="text-align: center;"><span>Y</span></td> <td><p>event details (context). Available properties depend on event type</p> <!----></td></tr><tr><td>tags</td> <td><a href="/web-debug-proto/docs/scheme/types.html#tag" class="nav-link">
+  tag[]
+</a></td> <td style="text-align: center;"><!----></td> <td><p>used for filtering in client</p> <!----></td></tr><tr><td>importance</td> <td><a href="/web-debug-proto/docs/scheme/types.html#importance" class="nav-link">
+  importance
+</a></td> <td style="text-align: center;"><!----></td> <td><p>used for filtering in client</p> <!----></td></tr><tr><td>time</td> <td><a href="/web-debug-proto/docs/scheme/types.html#tsms" class="nav-link">
+  tsMs
+</a></td> <td style="text-align: center;"><!----></td> <td><p>event date-time in ms</p> <!----></td></tr><tr><td>duration</td> <td><a href="/web-debug-proto/docs/scheme/types.html#durationms" class="nav-link">
+  durationMs
+</a></td> <td style="text-align: center;"><!----></td> <td><p>event duration in ms</p> <!----></td></tr><tr><td>success</td> <td><a href="/web-debug-proto/docs/scheme/types.html#bool" class="nav-link">
+  bool
+</a></td> <td style="text-align: center;"><!----></td> <td><p>false in case of error / alarm. Will be highlighted in client</p> <!----></td></tr><tr><td>calledFrom</td> <td><a href="/web-debug-proto/docs/scheme/types.html#location" class="nav-link">
+  location
+</a></td> <td style="text-align: center;"><!----></td> <td><p>code location, where this event is called from (ex. controller where template is being rendered)</p> <!----></td></tr><tr><td>definedIn</td> <td><a href="/web-debug-proto/docs/scheme/types.html#location" class="nav-link">
+  location
+</a></td> <td style="text-align: center;"><!----></td> <td><p>where code defined in (ex. path to template file)</p> <!----></td></tr><tr><td>nested</td> <td><a href="/web-debug-proto/docs/scheme/#event-definition" class="nav-link">
+  event[]
+</a></td> <td style="text-align: center;"><!----></td> <td><p>contains other nested Events</p> <!----></td></tr></tbody></table> <h4>Preview</h4> <pre><code>{
+  "type": "log",
+  "payload": {},
+  "tags": [
+    "db:mysql",
+    "server:php_03",
+    "is_production"
+  ],
+  "importance": 4,
+  "time": 1547058563454,
+  "duration": 15,
+  "success": true,
+  "calledFrom": {
+    "file": "/src/renderer/main.js",
+    "line": 123,
+    "positionStart": 56,
+    "positionEnd": 56
+  },
+  "definedIn": {
+    "file": "/src/renderer/main.js",
+    "line": 123,
+    "positionStart": 56,
+    "positionEnd": 56
+  },
+  "nested": []
+}</code></pre></div> <h3 id="event-type-definition"><a href="#event-type-definition" class="header-anchor">#</a> Event Type definition</h3> <p>This is known list of event types, but you can use any own types</p> <table><thead><tr><th>type</th> <th>event description</th></tr></thead> <tbody><tr><td><a href="/web-debug-proto/docs/scheme/events.html#log">log</a></td> <td>application logs</td></tr> <tr><td><a href="/web-debug-proto/docs/scheme/events.html#query">query</a></td> <td>database queries during request</td></tr> <tr><td><a href="/web-debug-proto/docs/scheme/events.html#request">request</a></td> <td>request received event, payload contain all request props (method, uri, cookies, params, etc..)</td></tr> <tr><td><a href="/web-debug-proto/docs/scheme/events.html#template">response</a></td> <td>response event before output, payload contain response properties (status code, total duration, etc..)</td></tr> <tr><td><a href="/web-debug-proto/docs/scheme/events.html#middleware">middleware</a></td> <td>middleware triggered event</td></tr> <tr><td><a href="/web-debug-proto/docs/scheme/events.html#template">template</a></td> <td>rendered templates</td></tr> <tr><td><a href="/web-debug-proto/docs/scheme/events.html#email">email</a></td> <td>sent email events</td></tr> <tr><td><a href="/web-debug-proto/docs/scheme/events.html#event">event</a></td> <td>executed code events or hooks</td></tr> <tr><td><a href="/web-debug-proto/docs/scheme/events.html#accessCheck">accessCheck</a></td> <td>checked permissions during request</td></tr></tbody></table> <h3 id="example-of-scheme"><a href="#example-of-scheme" class="header-anchor">#</a> Example of scheme</h3> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ef95a542-25a3-4f71-a0e9-640c92f43813&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;events&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;log&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;time&quot;</span><span class="token operator">:</span> <span class="token number">1547058561177</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;importance&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;tags&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">&quot;php:app_03&quot;</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;payload&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;message&quot;</span><span class="token operator">:</span> <span class="token string">&quot;User X is try to login to admin panel&quot;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;query&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;time&quot;</span><span class="token operator">:</span> <span class="token number">1547058563454</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;duration&quot;</span><span class="token operator">:</span> <span class="token number">18</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;importance&quot;</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;payload&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;target&quot;</span><span class="token operator">:</span> <span class="token string">&quot;mysql&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;query&quot;</span><span class="token operator">:</span> <span class="token string">&quot;UPDATE users SET last_loggin = ?dt WHERE id = ?id&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;syntax&quot;</span><span class="token operator">:</span> <span class="token string">&quot;sql&quot;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;success&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;nested&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;log&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;time&quot;</span><span class="token operator">:</span> <span class="token number">1547058571245</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;importance&quot;</span><span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;payload&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;message&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Mysql server is going away!&quot;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;email&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;time&quot;</span><span class="token operator">:</span> <span class="token number">1547058583422</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;payload&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;subject&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Mysql is down!&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&lt;h1&gt;Hello admin&lt;/h1&gt; &lt;p&gt;mysql is down.&lt;/p&gt;&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;from&quot;</span><span class="token operator">:</span> <span class="token string">&quot;no-reply@example.com&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;to&quot;</span><span class="token operator">:</span> <span class="token string">&quot;admin@example.com&quot;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/fe3dback/web-debug-proto/edit/master/docs/scheme/README.md" target="_blank" rel="noopener noreferrer">Edit this page on github</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/web-debug-proto/docs/specification/transport/json-response.html" class="prev">
+        Transport - JSON response
+      </a></span> <span class="next"><a href="/web-debug-proto/docs/scheme/events.html">
+        Events
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/web-debug-proto/assets/js/app.5818d223.js" defer></script><script src="/web-debug-proto/assets/js/2.5741dcd5.js" defer></script><script src="/web-debug-proto/assets/js/16.84408e9d.js" defer></script><script src="/web-debug-proto/assets/js/11.6d7e3a64.js" defer></script><script src="/web-debug-proto/assets/js/4.4f324507.js" defer></script><script src="/web-debug-proto/assets/js/8.bf96a8ae.js" defer></script><script src="/web-debug-proto/assets/js/7.40c280e0.js" defer></script>
+  </body>
+</html>

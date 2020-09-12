@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[10],{372:function(t,e,s){"use strict";s.r(e);var i={props:["uri","alt"]},n=s(43),r=Object(n.a)(i,(function(){var t=this.$createElement,e=this._self._c||t;return e("centered",[e("img",{attrs:{src:this.$withBase(this.uri),alt:this.alt}})])}),[],!1,null,null,null);e.default=r.exports}}]);
