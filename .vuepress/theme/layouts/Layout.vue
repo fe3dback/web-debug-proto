@@ -13,55 +13,52 @@
     <div
       class="sidebar-mask"
       @click="toggleSidebar(false)"
-    ></div>
+    />
 
     <Sidebar
       :items="sidebarItems"
       @toggle-sidebar="toggleSidebar"
     >
-      <slot
-        name="sidebar-top"
-        slot="top"
-      />
-      <slot
-        name="sidebar-bottom"
-        slot="bottom"
-      />
+      <template #top>
+        <slot name="sidebar-top" />
+      </template>
+      <template #bottom>
+        <slot name="sidebar-bottom" />
+      </template>
     </Sidebar>
 
-    <Home v-if="$page.frontmatter.home"/>
+    <Home v-if="$page.frontmatter.home" />
 
     <Page
       v-else
       :sidebar-items="sidebarItems"
     >
-      <slot
-        name="page-top"
-        slot="top"
-      />
-      <slot
-        name="page-bottom"
-        slot="bottom"
-      />
+      <template #top>
+        <slot name="page-top" />
+      </template>
+      <template #bottom>
+        <slot name="page-bottom" />
+      </template>
     </Page>
   </div>
 </template>
 
 <script>
-if (typeof window === 'object') {
-  window.Prism = {
-    manual: true
-  };
-}
-
-import Home from '../components/Home.vue'
-import Navbar from '../components/Navbar.vue'
-import Page from '../components/Page.vue'
-import Sidebar from '../components/Sidebar.vue'
+import Home from '@theme/components/Home.vue'
+import Navbar from '@theme/components/Navbar.vue'
+import Page from '@theme/components/Page.vue'
+import Sidebar from '@theme/components/Sidebar.vue'
 import { resolveSidebarItems } from '../util'
 
 export default {
-  components: { Home, Page, Sidebar, Navbar },
+  name: 'Layout',
+
+  components: {
+    Home,
+    Page,
+    Sidebar,
+    Navbar
+  },
 
   data () {
     return {
@@ -74,25 +71,25 @@ export default {
       const { themeConfig } = this.$site
       const { frontmatter } = this.$page
       if (
-        frontmatter.navbar === false ||
-        themeConfig.navbar === false) {
+        frontmatter.navbar === false
+        || themeConfig.navbar === false) {
         return false
       }
       return (
-        this.$title ||
-        themeConfig.logo ||
-        themeConfig.repo ||
-        themeConfig.nav ||
-        this.$themeLocaleConfig.nav
+        this.$title
+        || themeConfig.logo
+        || themeConfig.repo
+        || themeConfig.nav
+        || this.$themeLocaleConfig.nav
       )
     },
 
     shouldShowSidebar () {
       const { frontmatter } = this.$page
       return (
-        !frontmatter.home &&
-        frontmatter.sidebar !== false &&
-        this.sidebarItems.length
+        !frontmatter.home
+        && frontmatter.sidebar !== false
+        && this.sidebarItems.length
       )
     },
 
@@ -127,6 +124,7 @@ export default {
   methods: {
     toggleSidebar (to) {
       this.isSidebarOpen = typeof to === 'boolean' ? to : !this.isSidebarOpen
+      this.$emit('toggle-sidebar', this.isSidebarOpen)
     },
 
     // side swipe
@@ -151,6 +149,3 @@ export default {
   }
 }
 </script>
-
-<style src="prismjs/themes/prism-tomorrow.css"></style>
-<style src="../styles/theme.styl" lang="stylus"></style>

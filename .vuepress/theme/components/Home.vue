@@ -1,21 +1,32 @@
 <template>
-  <main class="home" aria-labelledby="main-title">
+  <main
+    class="home"
+    :aria-labelledby="data.heroText !== null ? 'main-title' : null"
+  >
     <header class="hero">
       <img
         v-if="data.heroImage"
         :src="$withBase(data.heroImage)"
-        alt="hero"
+        :alt="data.heroAlt || 'hero'"
       >
 
-      <h1 id="main-title">{{ data.heroText || $title || 'Hello' }}</h1>
+      <h1
+        v-if="data.heroText !== null"
+        id="main-title"
+      >
+        {{ data.heroText || $title || 'Hello' }}
+      </h1>
 
-      <p class="description">
+      <p
+        v-if="data.tagline !== null"
+        class="description"
+      >
         {{ data.tagline || $description || 'Welcome to your VuePress site' }}
       </p>
 
       <p
-        class="action"
         v-if="data.actionText && data.actionLink"
+        class="action"
       >
         <NavLink
           class="action-button"
@@ -25,24 +36,24 @@
     </header>
 
     <div
-      class="features"
       v-if="data.features && data.features.length"
+      class="features"
     >
       <div
-        class="feature"
         v-for="(feature, index) in data.features"
         :key="index"
+        class="feature"
       >
         <h2>{{ feature.title }}</h2>
         <p>{{ feature.details }}</p>
       </div>
     </div>
 
-    <Content class="custom"/>
+    <Content class="theme-default-content custom" />
 
     <div
-      class="footer"
       v-if="data.footer"
+      class="footer"
     >
       {{ data.footer }}
     </div>
@@ -50,9 +61,11 @@
 </template>
 
 <script>
-import NavLink from './NavLink.vue'
+import NavLink from '@theme/components/NavLink.vue'
 
 export default {
+  name: 'Home',
+
   components: { NavLink },
 
   computed: {
@@ -73,16 +86,16 @@ export default {
 <style lang="stylus">
 .home
   padding $navbarHeight 2rem 0
-  max-width 960px
+  max-width $homePageWidth
   margin 0px auto
   display block
   .hero
     text-align center
     img
       max-width: 100%
-      max-height 500px
+      max-height 280px
       display block
-      margin 3rem auto -4.5rem
+      margin 3rem auto 1.5rem
     h1
       font-size 3rem
     h1, .description, .action

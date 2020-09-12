@@ -1,7 +1,7 @@
 export const hashRE = /#.*$/
 export const extRE = /\.(md|html)$/
 export const endingSlashRE = /\/$/
-export const outboundRE = /^(https?:|mailto:|tel:)/
+export const outboundRE = /^[a-z]+:/i
 
 export function normalize (path) {
   return decodeURI(path)
@@ -43,7 +43,7 @@ export function ensureExt (path) {
 }
 
 export function isActive (route, path) {
-  const routeHash = route.hash
+  const routeHash = decodeURIComponent(route.hash)
   const linkHash = getHash(path)
   if (linkHash && routeHash !== linkHash) {
     return false
@@ -54,6 +54,12 @@ export function isActive (route, path) {
 }
 
 export function resolvePage (pages, rawPath, base) {
+  if (isExternal(rawPath)) {
+    return {
+      type: 'external',
+      path: rawPath
+    }
+  }
   if (base) {
     rawPath = resolvePath(rawPath, base)
   }
@@ -132,6 +138,9 @@ export function resolveSidebarItems (page, regularPath, site, localePath) {
     return []
   } else {
     const { base, config } = resolveMatchingConfig(regularPath, sidebarConfig)
+    if (config === 'auto') {
+      return resolveHeaders(page)
+    }
     return config
       ? config.map(item => resolveItem(item, pages, base))
       : []
@@ -148,6 +157,7 @@ function resolveHeaders (page) {
     type: 'group',
     collapsable: false,
     title: page.title,
+    path: null,
     children: headers.map(h => ({
       type: 'auto',
       title: h.title,
@@ -191,7 +201,7 @@ export function resolveMatchingConfig (regularPath, config) {
     }
   }
   for (const base in config) {
-    if (ensureEndingSlash(regularPath).indexOf(base) === 0) {
+    if (ensureEndingSlash(regularPath).indexOf(encodeURI(base)) === 0) {
       return {
         base,
         config: config[base]
@@ -207,7 +217,7 @@ function ensureEndingSlash (path) {
     : path + '/'
 }
 
-function resolveItem (item, pages, base, isNested) {
+function resolveItem (item, pages, base, groupDepth = 1) {
   if (typeof item === 'string') {
     return resolvePage(pages, item, base)
   } else if (Array.isArray(item)) {
@@ -215,17 +225,19 @@ function resolveItem (item, pages, base, isNested) {
       title: item[1]
     })
   } else {
-    if (isNested) {
-      console.error(
-        '[vuepress] Nested sidebar groups are not supported. ' +
-        'Consider using navbar + categories instead.'
-      )
-    }
     const children = item.children || []
+    if (children.length === 0 && item.path) {
+      return Object.assign(resolvePage(pages, item.path, base), {
+        title: item.title
+      })
+    }
     return {
       type: 'group',
+      path: item.path,
       title: item.title,
-      children: children.map(child => resolveItem(child, pages, base, true)),
+      sidebarDepth: item.sidebarDepth,
+      initialOpenGroupIndex: item.initialOpenGroupIndex,
+      children: children.map(child => resolveItem(child, pages, base, groupDepth + 1)),
       collapsable: item.collapsable !== false
     }
   }
